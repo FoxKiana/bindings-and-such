@@ -200,7 +200,7 @@ fn String trans_type(String name, Allocator alloc)
   return res;
 }
 
-macro void vulkan(String src, String out) @public
+fn void vulkan(String src, String out) @public
 {
   BGTransCallbacks transfns = {
     .func = fn String(String name, Allocator alloc) =>

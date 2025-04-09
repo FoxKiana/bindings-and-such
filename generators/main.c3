@@ -9,6 +9,9 @@ fn void main(String[] args)
   
   io::printfn("--- Generate Vulkan");
   @generate(args, "vulkan/vulkan.h", "vulkan");
+
+  io::printfn("--- Generate GLFW");
+  @generate(args, "glfw3.h", "glfw");
 }
 
 
