@@ -1,0 +1,13 @@
+{
+  "output" : "build",
+
+  "dependency-search-paths" : [ "bindgen", "libs" ],
+  "dependencies" : [ "bindgen" ],
+
+  "targets" : {
+    "gen" : {
+      "sources" : [ "generators/**" ],
+      "type" : "executable",
+    },
+  },
+}
