@@ -1,3 +1,47 @@
 {
   "provides" : "vulkan",
+  "targets" : {
+    "freebsd-x64" : {
+      "linked-libraries" : [ "vulkan" ],
+    },
+    "linux-aarch64" : {
+      "linked-libraries" : [ "vulkan" ],
+    },
+    "linux-riscv32" : {
+      "linked-libraries" : [ "vulkan" ],
+    },
+    "linux-riscv64" : {
+      "linked-libraries" : [ "vulkan" ],
+    },
+    "linux-x86" : {
+      "linked-libraries" : [ "vulkan" ],
+    },
+    "linux-x64" : {
+      "linked-libraries" : [ "vulkan" ],
+    },
+    "macos-aarch64" : {
+      "linked-libraries" : [ "vulkan" ],
+    },
+    "macos-x64" : {
+      "linked-libraries" : [ "vulkan" ],
+    },
+    "netbsd-x64" : {
+      "linked-libraries" : [ "vulkan" ],
+    },
+    "openbsd-x64" : {
+      "linked-libraries" : [ "vulkan" ],
+    },
+    "wasm32" : {
+      "linked-libraries" : [ "vulkan" ],
+    },
+    "wasm64" : {
+      "linked-libraries" : [ "vulkan" ],
+    },
+    "windows-aarch64" : {
+      "linked-libraries" : [ "vulkan-1" ],
+    },
+    "windows-x64" : {
+      "linked-libraries" : [ "vulkan-1" ],
+    },
+  }
 }

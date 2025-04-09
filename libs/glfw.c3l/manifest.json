@@ -1,3 +1,33 @@
 {
-  "provides" : "glfw",
+  "provides": "glfw",
+  "targets" : {
+    "macos-x64" : {
+      "linked-libraries" : []
+    },
+    "macos-aarch64" : {
+      "linked-libraries" : []
+    },
+    "linux-aarch64" : {
+      "linked-libraries" : ["glfw"]
+    },
+    "linux-riscv32" : {
+      "linked-libraries" : ["glfw"]
+    },
+    "linux-riscv64" : {
+      "linked-libraries" : ["glfw"]
+    },
+    "linux-x86" : {
+      "linked-libraries" : [ "glfw" ]
+    },
+    "linux-x64" : {
+      "linked-libraries" : [ "glfw" ]
+    },
+    "freebsd-x64" : {
+      "link-args" : [ "-L /usr/local/lib" ],
+      "linked-libraries" : [ "glfw" ],
+    },
+    "windows-x64" : {
+      "linked-libraries" : []
+    }
+  }
 }
