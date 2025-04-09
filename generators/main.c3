@@ -7,11 +7,9 @@ fn void main(String[] args)
 {
   io::printfn("--- Current directory: %s", path::cwd(tmem)!!);
   
-  io::printfn("--- Generate Vulkan");
   @generate(args, "vulkan/vulkan.h", "vulkan");
-
-  io::printfn("--- Generate GLFW");
   @generate(args, "glfw3.h", "glfw");
+  
 }
 
 
@@ -20,6 +18,7 @@ fn void main(String[] args)
 *>
 macro bool @generate(String[] args, String $hname, String $name)
 {
+  io::printfn("--- Generating " +++ $name);
   $if $hname == "":
     $hname = $name;
   $endif
