@@ -8,13 +8,14 @@ fn void main(String[] args)
   io::printfn("--- Current directory: %s", path::cwd(tmem)!!);
   
   @generate(args, "vulkan/vulkan.h", "vulkan");
-  @generate(args, "glfw3.h", "glfw");
+  @generate(args, "glfw3.h", "glfw", "vulkan");
 }
 
 <*
+ vaargs - dependencies
  @return "true if args contain $name"
 *>
-macro bool @generate(String[] args, String $hname, String $name)
+macro bool @generate(String[] args, String $hname, String $name, ...)
 {
   $if $hname == "":
     $hname = $name;
@@ -28,7 +29,7 @@ macro bool @generate(String[] args, String $hname, String $name)
     $eval($name)("./headers/" +++ $hname, $res);
 
     io::printfn("--- Checking " +++ $name);
-    @check($res);
+    @check($res, $vasplat);
   
     return true;
   }
@@ -38,9 +39,15 @@ macro bool @generate(String[] args, String $hname, String $name)
   }
 }
 
-macro void @check(String $name)
+macro void @check(String $name, ...)
 {
-  SubProcess proc = process::create({ "c3c", "compile", "-C", $name }, { .inherit_environment = true })!!;
+  var $list = { "c3c", "compile", "-C", $name, "--libdir", "./libs/" };
+
+  $foreach $x : {$vasplat}:
+    $list = $list +++ "--lib" +++ $x;
+  $endforeach
+
+  SubProcess proc = process::create($list, { .inherit_environment = true })!!;
   defer proc.destroy();
   proc.join()!!;
 

@@ -2,16 +2,16 @@
 module gen @local;
 import bindgen, std::io;
 
-fn String get_if_condition(String str)
+fn BGModuleWrap get_module_wrap(String name, Allocator alloc)
 {
-  switch (str)
+  switch (name)
   {
     case "glfwGetInstanceProcAddress":
     case "glfwGetPhysicalDevicePresentationSupport":
     case "glfwCreateWindowSurface":
-      return "$defined(env::GLFW_INCLUDE_VULKAN) &&& env::GLFW_INCLUDE_VULKAN";
+      return { "$defined(env::GLFW_INCLUDE_VULKAN) &&& env::GLFW_INCLUDE_VULKAN", "vulkan" };
     default:
-      return "";
+      return {};
   }
 }
 
@@ -33,8 +33,7 @@ fn void glfw(String src, String out) @public
   };
 
   BGGenCallbacks gen_fns = {
-    .if_condition = fn String(String str, Allocator alloc) =>
-      get_if_condition(str).copy(alloc),
+    .module_wrap = &get_module_wrap,
   };
 
   BGOptions opts = {
