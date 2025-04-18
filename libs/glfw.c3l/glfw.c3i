@@ -603,87 +603,89 @@ typedef GLFWcursor = void;
 
 alias GLFWerrorfun = fn void(
   CInt error_code, 
-  CChar * description);
+  CChar* description);
 
 alias GLFWwindowposfun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt xpos, 
   CInt ypos);
 
 alias GLFWwindowsizefun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt width, 
   CInt height);
 
-alias GLFWwindowclosefun = fn void(  GLFWwindow * window);
+alias GLFWwindowclosefun = fn void(
+  GLFWwindow* window);
 
-alias GLFWwindowrefreshfun = fn void(  GLFWwindow * window);
+alias GLFWwindowrefreshfun = fn void(
+  GLFWwindow* window);
 
 alias GLFWwindowfocusfun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt focused);
 
 alias GLFWwindowiconifyfun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt iconified);
 
 alias GLFWwindowmaximizefun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt maximized);
 
 alias GLFWframebuffersizefun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt width, 
   CInt height);
 
 alias GLFWwindowcontentscalefun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   float xscale, 
   float yscale);
 
 alias GLFWmousebuttonfun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt button, 
   CInt action, 
   CInt mods);
 
 alias GLFWcursorposfun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   double xpos, 
   double ypos);
 
 alias GLFWcursorenterfun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt entered);
 
 alias GLFWscrollfun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   double xoffset, 
   double yoffset);
 
 alias GLFWkeyfun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt key, 
   CInt scancode, 
   CInt action, 
   CInt mods);
 
 alias GLFWcharfun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CUInt codepoint);
 
 alias GLFWcharmodsfun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CUInt codepoint, 
   CInt mods);
 
 alias GLFWdropfun = fn void(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt path_count, 
-  CChar *[] paths);
+  CChar* paths);
 
 alias GLFWmonitorfun = fn void(
-  GLFWmonitor * monitor, 
+  GLFWmonitor* monitor, 
   CInt event);
 
 alias GLFWjoystickfun = fn void(
@@ -700,16 +702,16 @@ struct GLFWvidmode {
 }
 
 struct GLFWgammaramp {
-  CUShort * red;
-  CUShort * green;
-  CUShort * blue;
+  CUShort* red;
+  CUShort* green;
+  CUShort* blue;
   CUInt size;
 }
 
 struct GLFWimage {
   CInt width;
   CInt height;
-  char * pixels;
+  char* pixels;
 }
 
 struct GLFWgamepadstate {
@@ -729,93 +731,93 @@ fn void initHint(
 @extern("glfwInitHint");
 
 fn void getVersion(
-  CInt * major, 
-  CInt * minor, 
-  CInt * rev)
+  CInt* major, 
+  CInt* minor, 
+  CInt* rev)
 @extern("glfwGetVersion");
 
-fn CChar * getVersionString()
+fn CChar* getVersionString()
 @extern("glfwGetVersionString");
 
 fn CInt getError(
-  CChar ** description)
+  CChar** description)
 @extern("glfwGetError");
 
 fn GLFWerrorfun setErrorCallback(
   GLFWerrorfun callback)
 @extern("glfwSetErrorCallback");
 
-fn GLFWmonitor ** getMonitors(
-  CInt * count)
+fn GLFWmonitor** getMonitors(
+  CInt* count)
 @extern("glfwGetMonitors");
 
-fn GLFWmonitor * getPrimaryMonitor()
+fn GLFWmonitor* getPrimaryMonitor()
 @extern("glfwGetPrimaryMonitor");
 
 fn void getMonitorPos(
-  GLFWmonitor * monitor, 
-  CInt * xpos, 
-  CInt * ypos)
+  GLFWmonitor* monitor, 
+  CInt* xpos, 
+  CInt* ypos)
 @extern("glfwGetMonitorPos");
 
 fn void getMonitorWorkarea(
-  GLFWmonitor * monitor, 
-  CInt * xpos, 
-  CInt * ypos, 
-  CInt * width, 
-  CInt * height)
+  GLFWmonitor* monitor, 
+  CInt* xpos, 
+  CInt* ypos, 
+  CInt* width, 
+  CInt* height)
 @extern("glfwGetMonitorWorkarea");
 
 fn void getMonitorPhysicalSize(
-  GLFWmonitor * monitor, 
-  CInt * width_mm, 
-  CInt * height_mm)
+  GLFWmonitor* monitor, 
+  CInt* width_mm, 
+  CInt* height_mm)
 @extern("glfwGetMonitorPhysicalSize");
 
 fn void getMonitorContentScale(
-  GLFWmonitor * monitor, 
-  float * xscale, 
-  float * yscale)
+  GLFWmonitor* monitor, 
+  float* xscale, 
+  float* yscale)
 @extern("glfwGetMonitorContentScale");
 
-fn CChar * getMonitorName(
-  GLFWmonitor * monitor)
+fn CChar* getMonitorName(
+  GLFWmonitor* monitor)
 @extern("glfwGetMonitorName");
 
 fn void setMonitorUserPointer(
-  GLFWmonitor * monitor, 
-  void * pointer)
+  GLFWmonitor* monitor, 
+  void* pointer)
 @extern("glfwSetMonitorUserPointer");
 
-fn void * getMonitorUserPointer(
-  GLFWmonitor * monitor)
+fn void* getMonitorUserPointer(
+  GLFWmonitor* monitor)
 @extern("glfwGetMonitorUserPointer");
 
 fn GLFWmonitorfun setMonitorCallback(
   GLFWmonitorfun callback)
 @extern("glfwSetMonitorCallback");
 
-fn GLFWvidmode * getVideoModes(
-  GLFWmonitor * monitor, 
-  CInt * count)
+fn GLFWvidmode* getVideoModes(
+  GLFWmonitor* monitor, 
+  CInt* count)
 @extern("glfwGetVideoModes");
 
-fn GLFWvidmode * getVideoMode(
-  GLFWmonitor * monitor)
+fn GLFWvidmode* getVideoMode(
+  GLFWmonitor* monitor)
 @extern("glfwGetVideoMode");
 
 fn void setGamma(
-  GLFWmonitor * monitor, 
+  GLFWmonitor* monitor, 
   float gamma)
 @extern("glfwSetGamma");
 
-fn GLFWgammaramp * getGammaRamp(
-  GLFWmonitor * monitor)
+fn GLFWgammaramp* getGammaRamp(
+  GLFWmonitor* monitor)
 @extern("glfwGetGammaRamp");
 
 fn void setGammaRamp(
-  GLFWmonitor * monitor, 
-  GLFWgammaramp * ramp)
+  GLFWmonitor* monitor, 
+  GLFWgammaramp* ramp)
 @extern("glfwSetGammaRamp");
 
 fn void defaultWindowHints()
@@ -828,61 +830,61 @@ fn void windowHint(
 
 fn void windowHintString(
   CInt hint, 
-  CChar * value)
+  CChar* value)
 @extern("glfwWindowHintString");
 
-fn GLFWwindow * createWindow(
+fn GLFWwindow* createWindow(
   CInt width, 
   CInt height, 
-  CChar * title, 
-  GLFWmonitor * monitor, 
-  GLFWwindow * share)
+  CChar* title, 
+  GLFWmonitor* monitor, 
+  GLFWwindow* share)
 @extern("glfwCreateWindow");
 
 fn void destroyWindow(
-  GLFWwindow * window)
+  GLFWwindow* window)
 @extern("glfwDestroyWindow");
 
 fn CInt windowShouldClose(
-  GLFWwindow * window)
+  GLFWwindow* window)
 @extern("glfwWindowShouldClose");
 
 fn void setWindowShouldClose(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt value)
 @extern("glfwSetWindowShouldClose");
 
 fn void setWindowTitle(
-  GLFWwindow * window, 
-  CChar * title)
+  GLFWwindow* window, 
+  CChar* title)
 @extern("glfwSetWindowTitle");
 
 fn void setWindowIcon(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt count, 
-  GLFWimage * images)
+  GLFWimage* images)
 @extern("glfwSetWindowIcon");
 
 fn void getWindowPos(
-  GLFWwindow * window, 
-  CInt * xpos, 
-  CInt * ypos)
+  GLFWwindow* window, 
+  CInt* xpos, 
+  CInt* ypos)
 @extern("glfwGetWindowPos");
 
 fn void setWindowPos(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt xpos, 
   CInt ypos)
 @extern("glfwSetWindowPos");
 
 fn void getWindowSize(
-  GLFWwindow * window, 
-  CInt * width, 
-  CInt * height)
+  GLFWwindow* window, 
+  CInt* width, 
+  CInt* height)
 @extern("glfwGetWindowSize");
 
 fn void setWindowSizeLimits(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt minwidth, 
   CInt minheight, 
   CInt maxwidth, 
@@ -890,81 +892,81 @@ fn void setWindowSizeLimits(
 @extern("glfwSetWindowSizeLimits");
 
 fn void setWindowAspectRatio(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt numer, 
   CInt denom)
 @extern("glfwSetWindowAspectRatio");
 
 fn void setWindowSize(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt width, 
   CInt height)
 @extern("glfwSetWindowSize");
 
 fn void getFramebufferSize(
-  GLFWwindow * window, 
-  CInt * width, 
-  CInt * height)
+  GLFWwindow* window, 
+  CInt* width, 
+  CInt* height)
 @extern("glfwGetFramebufferSize");
 
 fn void getWindowFrameSize(
-  GLFWwindow * window, 
-  CInt * left, 
-  CInt * top, 
-  CInt * right, 
-  CInt * bottom)
+  GLFWwindow* window, 
+  CInt* left, 
+  CInt* top, 
+  CInt* right, 
+  CInt* bottom)
 @extern("glfwGetWindowFrameSize");
 
 fn void getWindowContentScale(
-  GLFWwindow * window, 
-  float * xscale, 
-  float * yscale)
+  GLFWwindow* window, 
+  float* xscale, 
+  float* yscale)
 @extern("glfwGetWindowContentScale");
 
 fn float getWindowOpacity(
-  GLFWwindow * window)
+  GLFWwindow* window)
 @extern("glfwGetWindowOpacity");
 
 fn void setWindowOpacity(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   float opacity)
 @extern("glfwSetWindowOpacity");
 
 fn void iconifyWindow(
-  GLFWwindow * window)
+  GLFWwindow* window)
 @extern("glfwIconifyWindow");
 
 fn void restoreWindow(
-  GLFWwindow * window)
+  GLFWwindow* window)
 @extern("glfwRestoreWindow");
 
 fn void maximizeWindow(
-  GLFWwindow * window)
+  GLFWwindow* window)
 @extern("glfwMaximizeWindow");
 
 fn void showWindow(
-  GLFWwindow * window)
+  GLFWwindow* window)
 @extern("glfwShowWindow");
 
 fn void hideWindow(
-  GLFWwindow * window)
+  GLFWwindow* window)
 @extern("glfwHideWindow");
 
 fn void focusWindow(
-  GLFWwindow * window)
+  GLFWwindow* window)
 @extern("glfwFocusWindow");
 
 fn void requestWindowAttention(
-  GLFWwindow * window)
+  GLFWwindow* window)
 @extern("glfwRequestWindowAttention");
 
-fn GLFWmonitor * getWindowMonitor(
-  GLFWwindow * window)
+fn GLFWmonitor* getWindowMonitor(
+  GLFWwindow* window)
 @extern("glfwGetWindowMonitor");
 
 fn void setWindowMonitor(
-  GLFWwindow * window, 
-  GLFWmonitor * monitor, 
+  GLFWwindow* window, 
+  GLFWmonitor* monitor, 
   CInt xpos, 
   CInt ypos, 
   CInt width, 
@@ -973,67 +975,67 @@ fn void setWindowMonitor(
 @extern("glfwSetWindowMonitor");
 
 fn CInt getWindowAttrib(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt attrib)
 @extern("glfwGetWindowAttrib");
 
 fn void setWindowAttrib(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt attrib, 
   CInt value)
 @extern("glfwSetWindowAttrib");
 
 fn void setWindowUserPointer(
-  GLFWwindow * window, 
-  void * pointer)
+  GLFWwindow* window, 
+  void* pointer)
 @extern("glfwSetWindowUserPointer");
 
-fn void * getWindowUserPointer(
-  GLFWwindow * window)
+fn void* getWindowUserPointer(
+  GLFWwindow* window)
 @extern("glfwGetWindowUserPointer");
 
 fn GLFWwindowposfun setWindowPosCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWwindowposfun callback)
 @extern("glfwSetWindowPosCallback");
 
 fn GLFWwindowsizefun setWindowSizeCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWwindowsizefun callback)
 @extern("glfwSetWindowSizeCallback");
 
 fn GLFWwindowclosefun setWindowCloseCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWwindowclosefun callback)
 @extern("glfwSetWindowCloseCallback");
 
 fn GLFWwindowrefreshfun setWindowRefreshCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWwindowrefreshfun callback)
 @extern("glfwSetWindowRefreshCallback");
 
 fn GLFWwindowfocusfun setWindowFocusCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWwindowfocusfun callback)
 @extern("glfwSetWindowFocusCallback");
 
 fn GLFWwindowiconifyfun setWindowIconifyCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWwindowiconifyfun callback)
 @extern("glfwSetWindowIconifyCallback");
 
 fn GLFWwindowmaximizefun setWindowMaximizeCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWwindowmaximizefun callback)
 @extern("glfwSetWindowMaximizeCallback");
 
 fn GLFWframebuffersizefun setFramebufferSizeCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWframebuffersizefun callback)
 @extern("glfwSetFramebufferSizeCallback");
 
 fn GLFWwindowcontentscalefun setWindowContentScaleCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWwindowcontentscalefun callback)
 @extern("glfwSetWindowContentScaleCallback");
 
@@ -1051,12 +1053,12 @@ fn void postEmptyEvent()
 @extern("glfwPostEmptyEvent");
 
 fn CInt getInputMode(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt mode)
 @extern("glfwGetInputMode");
 
 fn void setInputMode(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt mode, 
   CInt value)
 @extern("glfwSetInputMode");
@@ -1064,7 +1066,7 @@ fn void setInputMode(
 fn CInt rawMouseMotionSupported()
 @extern("glfwRawMouseMotionSupported");
 
-fn CChar * getKeyName(
+fn CChar* getKeyName(
   CInt key, 
   CInt scancode)
 @extern("glfwGetKeyName");
@@ -1074,83 +1076,83 @@ fn CInt getKeyScancode(
 @extern("glfwGetKeyScancode");
 
 fn CInt getKey(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt key)
 @extern("glfwGetKey");
 
 fn CInt getMouseButton(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   CInt button)
 @extern("glfwGetMouseButton");
 
 fn void getCursorPos(
-  GLFWwindow * window, 
-  double * xpos, 
-  double * ypos)
+  GLFWwindow* window, 
+  double* xpos, 
+  double* ypos)
 @extern("glfwGetCursorPos");
 
 fn void setCursorPos(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   double xpos, 
   double ypos)
 @extern("glfwSetCursorPos");
 
-fn GLFWcursor * createCursor(
-  GLFWimage * image, 
+fn GLFWcursor* createCursor(
+  GLFWimage* image, 
   CInt xhot, 
   CInt yhot)
 @extern("glfwCreateCursor");
 
-fn GLFWcursor * createStandardCursor(
+fn GLFWcursor* createStandardCursor(
   CInt shape)
 @extern("glfwCreateStandardCursor");
 
 fn void destroyCursor(
-  GLFWcursor * cursor)
+  GLFWcursor* cursor)
 @extern("glfwDestroyCursor");
 
 fn void setCursor(
-  GLFWwindow * window, 
-  GLFWcursor * cursor)
+  GLFWwindow* window, 
+  GLFWcursor* cursor)
 @extern("glfwSetCursor");
 
 fn GLFWkeyfun setKeyCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWkeyfun callback)
 @extern("glfwSetKeyCallback");
 
 fn GLFWcharfun setCharCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWcharfun callback)
 @extern("glfwSetCharCallback");
 
 fn GLFWcharmodsfun setCharModsCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWcharmodsfun callback)
 @extern("glfwSetCharModsCallback");
 
 fn GLFWmousebuttonfun setMouseButtonCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWmousebuttonfun callback)
 @extern("glfwSetMouseButtonCallback");
 
 fn GLFWcursorposfun setCursorPosCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWcursorposfun callback)
 @extern("glfwSetCursorPosCallback");
 
 fn GLFWcursorenterfun setCursorEnterCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWcursorenterfun callback)
 @extern("glfwSetCursorEnterCallback");
 
 fn GLFWscrollfun setScrollCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWscrollfun callback)
 @extern("glfwSetScrollCallback");
 
 fn GLFWdropfun setDropCallback(
-  GLFWwindow * window, 
+  GLFWwindow* window, 
   GLFWdropfun callback)
 @extern("glfwSetDropCallback");
 
@@ -1158,35 +1160,35 @@ fn CInt joystickPresent(
   CInt jid)
 @extern("glfwJoystickPresent");
 
-fn float * getJoystickAxes(
+fn float* getJoystickAxes(
   CInt jid, 
-  CInt * count)
+  CInt* count)
 @extern("glfwGetJoystickAxes");
 
-fn char * getJoystickButtons(
+fn char* getJoystickButtons(
   CInt jid, 
-  CInt * count)
+  CInt* count)
 @extern("glfwGetJoystickButtons");
 
-fn char * getJoystickHats(
+fn char* getJoystickHats(
   CInt jid, 
-  CInt * count)
+  CInt* count)
 @extern("glfwGetJoystickHats");
 
-fn CChar * getJoystickName(
+fn CChar* getJoystickName(
   CInt jid)
 @extern("glfwGetJoystickName");
 
-fn CChar * getJoystickGUID(
+fn CChar* getJoystickGUID(
   CInt jid)
 @extern("glfwGetJoystickGUID");
 
 fn void setJoystickUserPointer(
   CInt jid, 
-  void * pointer)
+  void* pointer)
 @extern("glfwSetJoystickUserPointer");
 
-fn void * getJoystickUserPointer(
+fn void* getJoystickUserPointer(
   CInt jid)
 @extern("glfwGetJoystickUserPointer");
 
@@ -1199,25 +1201,25 @@ fn GLFWjoystickfun setJoystickCallback(
 @extern("glfwSetJoystickCallback");
 
 fn CInt updateGamepadMappings(
-  CChar * string)
+  CChar* string)
 @extern("glfwUpdateGamepadMappings");
 
-fn CChar * getGamepadName(
+fn CChar* getGamepadName(
   CInt jid)
 @extern("glfwGetGamepadName");
 
 fn CInt getGamepadState(
   CInt jid, 
-  GLFWgamepadstate * state)
+  GLFWgamepadstate* state)
 @extern("glfwGetGamepadState");
 
 fn void setClipboardString(
-  GLFWwindow * window, 
-  CChar * string)
+  GLFWwindow* window, 
+  CChar* string)
 @extern("glfwSetClipboardString");
 
-fn CChar * getClipboardString(
-  GLFWwindow * window)
+fn CChar* getClipboardString(
+  GLFWwindow* window)
 @extern("glfwGetClipboardString");
 
 fn double getTime()
@@ -1234,14 +1236,14 @@ fn ulong getTimerFrequency()
 @extern("glfwGetTimerFrequency");
 
 fn void makeContextCurrent(
-  GLFWwindow * window)
+  GLFWwindow* window)
 @extern("glfwMakeContextCurrent");
 
-fn GLFWwindow * getCurrentContext()
+fn GLFWwindow* getCurrentContext()
 @extern("glfwGetCurrentContext");
 
 fn void swapBuffers(
-  GLFWwindow * window)
+  GLFWwindow* window)
 @extern("glfwSwapBuffers");
 
 fn void swapInterval(
@@ -1249,18 +1251,18 @@ fn void swapInterval(
 @extern("glfwSwapInterval");
 
 fn CInt extensionSupported(
-  CChar * extension)
+  CChar* extension)
 @extern("glfwExtensionSupported");
 
 fn GLFWglproc getProcAddress(
-  CChar * procname)
+  CChar* procname)
 @extern("glfwGetProcAddress");
 
 fn CInt vulkanSupported()
 @extern("glfwVulkanSupported");
 
-fn CChar ** getRequiredInstanceExtensions(
-  uint * count)
+fn CChar** getRequiredInstanceExtensions(
+  uint* count)
 @extern("glfwGetRequiredInstanceExtensions");
 
 module glfw @if($defined(env::GLFW_INCLUDE_VULKAN) &&& env::GLFW_INCLUDE_VULKAN);
@@ -1268,7 +1270,7 @@ import vulkan;
 
 fn GLFWvkproc getInstanceProcAddress(
   VkInstance instance, 
-  CChar * procname)
+  CChar* procname)
 @extern("glfwGetInstanceProcAddress");
 
 fn CInt getPhysicalDevicePresentationSupport(
@@ -1279,7 +1281,7 @@ fn CInt getPhysicalDevicePresentationSupport(
 
 fn VkResult createWindowSurface(
   VkInstance instance, 
-  GLFWwindow * window, 
-  VkAllocationCallbacks * allocator, 
-  VkSurfaceKHR * surface)
+  GLFWwindow* window, 
+  VkAllocationCallbacks* allocator, 
+  VkSurfaceKHR* surface)
 @extern("glfwCreateWindowSurface");

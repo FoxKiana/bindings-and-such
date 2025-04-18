@@ -9,7 +9,7 @@ To install bindings for library **foo**, simply copy **foo.c3l** located in **li
 
 ## Generating bindings
 
-First of all, install **libclang** required by [bindgen.c3l](https://github.com/vssukharev/bindgen.c3l), then simply run `c3c run` from root directory. Yaou can specify which kind of bindings you wanna generate by just doing `c3c ruu -- glfw` as an example.
+First of all, install **libclang** required by [bindgen.c3l](https://github.com/vssukharev/bindgen.c3l), then simply run `c3c run` from root directory. Yaou can specify which kind of bindings you wanna generate by just doing `c3c run -- glfw` as an example.
 
 ## Creating your own bindings
 

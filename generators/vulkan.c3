@@ -174,30 +174,18 @@ fn String get_const_rhs(String name)
 
 fn String trans_type(String name, Allocator alloc)
 {
-  String res;
-
-  String? t = name.map_basic_type(alloc);
-  if (catch t)
+  switch
   {
-    switch
-    {
-      case name.starts_with("wl_"):
-      case name.starts_with("xcb_"):
-        res = name.snake_to_pascal(alloc);
+    case name.starts_with("wl_"):
+    case name.starts_with("xcb_"):
+      return name.snake_to_pascal(alloc);
 
-      case name.is_screaming():
-        res = name.screaming_to_pascal(alloc);
+    case name.is_screaming():
+      return name.screaming_to_pascal(alloc);
 
-      default:
-        res = name.camel_to_pascal(alloc);
-    }
+    default:
+      return name.camel_to_pascal(alloc);
   }
-  else
-  {
-    res = t;
-  }
-
-  return res;
 }
 
 fn void vulkan(String src, String out) @public
