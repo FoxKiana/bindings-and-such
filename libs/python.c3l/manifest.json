@@ -1,0 +1,33 @@
+{
+  "provides": "python",
+  "targets" : {
+    "macos-x64" : {
+      "linked-libraries" : []
+    },
+    "macos-aarch64" : {
+      "linked-libraries" : []
+    },
+    "linux-aarch64" : {
+      "linked-libraries" : []
+    },
+    "linux-riscv32" : {
+      "linked-libraries" : []
+    },
+    "linux-riscv64" : {
+      "linked-libraries" : []
+    },
+    "linux-x86" : {
+      "linked-libraries" : []
+    },
+    "linux-x64" : {
+      "linked-libraries" : []
+    },
+    "freebsd-x64" : {
+      "link-args" : [],
+      "linked-libraries" : [],
+    },
+    "windows-x64" : {
+      "linked-libraries" : []
+    }
+  }
+}

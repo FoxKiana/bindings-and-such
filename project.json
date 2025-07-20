@@ -1,12 +1,25 @@
 {
   "output" : "build",
 
-  "dependency-search-paths" : [ "bindgen", "libs" ],
+  "dependency-search-paths" : [ ".", "libs" ],
   "dependencies" : [ "bindgen" ],
+  "sources" : [ "generators/general.c3" ],
 
   "targets" : {
-    "gen" : {
-      "sources" : [ "generators/**" ],
+    "python" : {
+      "sources" : [ "generators/python.c3" ],
+      "type" : "executable",
+    },
+    "vulkan" : {
+      "sources" : [ "generators/vulkan.c3" ],
+      "type" : "executable",
+    },
+    "glfw" : {
+      "sources" : [ "generators/glfw.c3" ],
+      "type" : "executable",
+    },
+    "llvm" : {
+      "sources" : [ "generators/llvm.c3" ],
       "type" : "executable",
     },
   },

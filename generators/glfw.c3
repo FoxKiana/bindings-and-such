@@ -1,21 +1,13 @@
 
-module gen @local;
+module gen;
 import bindgen, std::io;
 
-fn BGModuleWrap get_module_wrap(String name, Allocator alloc)
+fn void main()
 {
-  switch (name)
-  {
-    case "glfwGetInstanceProcAddress":
-    case "glfwGetPhysicalDevicePresentationSupport":
-    case "glfwCreateWindowSurface":
-      return { "$defined(env::GLFW_INCLUDE_VULKAN) &&& env::GLFW_INCLUDE_VULKAN", "vulkan" };
-    default:
-      return {};
-  }
+  @generate(&glfw, "glfw", "glfw3.h", { "vulkan" });
 }
 
-fn void glfw(String src, String out) @public
+fn void glfw(String src, String out)
 {
   BGTransCallbacks transfns = {
     .func = fn String(String str, Allocator alloc) =>
@@ -44,7 +36,20 @@ fn void glfw(String src, String out) @public
     .skip_errors = false,
   };
 
-  bg::translate_header(src, transfns, opts, gen_fns)!!;
+  bg::translate_header(src, opts, transfns, gen_fns)!!;
+}
+
+fn BGModuleWrap get_module_wrap(String name, Allocator alloc)
+{
+  switch (name)
+  {
+    case "glfwGetInstanceProcAddress":
+    case "glfwGetPhysicalDevicePresentationSupport":
+    case "glfwCreateWindowSurface":
+      return { "$defined(env::GLFW_INCLUDE_VULKAN) &&& env::GLFW_INCLUDE_VULKAN", "vulkan" };
+    default:
+      return {};
+  }
 }
 
 

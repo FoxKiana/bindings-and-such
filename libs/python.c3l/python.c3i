@@ -1,0 +1,4211 @@
+
+module python;
+
+const PY_RELEASE_LEVEL_ALPHA = 0xA;
+const PY_RELEASE_LEVEL_BETA = 0xB;
+const PY_RELEASE_LEVEL_GAMMA = 0xC;
+const PY_RELEASE_LEVEL_FINAL = 0xF;
+const PY_MAJOR_VERSION = 3;
+const PY_MINOR_VERSION = 12;
+const PY_MICRO_VERSION = 9;
+const PY_RELEASE_LEVEL = PY_RELEASE_LEVEL_FINAL;
+const PY_RELEASE_SERIAL = 0;
+const PY_VERSION = "3.12.9";
+const PY_VERSION_HEX = ((PY_MAJOR_VERSION<<24)|(PY_MINOR_VERSION<<16)|(PY_MICRO_VERSION<<8)|(PY_RELEASE_LEVEL<<4)|(PY_RELEASE_SERIAL<<0));
+const ALIGNOF_LONG = 8;
+const ALIGNOF_MAX_ALIGN_T = 16;
+const ALIGNOF_SIZE_T = 8;
+const DOUBLE_IS_LITTLE_ENDIAN_IEEE754 = 1;
+const ENABLE_IPV6 = 1;
+const HAVE_ACCEPT = 1;
+const HAVE_ACCEPT4 = 1;
+const HAVE_ACOSH = 1;
+const HAVE_ADDRINFO = 1;
+const HAVE_ALARM = 1;
+const HAVE_ALLOCA_H = 1;
+const HAVE_ASINH = 1;
+const HAVE_ASM_TYPES_H = 1;
+const HAVE_ATANH = 1;
+const HAVE_BIND = 1;
+const HAVE_BIND_TEXTDOMAIN_CODESET = 1;
+const HAVE_BUILTIN_ATOMIC = 1;
+const HAVE_CHMOD = 1;
+const HAVE_CHOWN = 1;
+const HAVE_CHROOT = 1;
+const HAVE_CLOCK = 1;
+const HAVE_CLOCK_GETRES = 1;
+const HAVE_CLOCK_GETTIME = 1;
+const HAVE_CLOCK_NANOSLEEP = 1;
+const HAVE_CLOCK_SETTIME = 1;
+const HAVE_CLOSE_RANGE = 1;
+const HAVE_COMPUTED_GOTOS = 1;
+const HAVE_CONFSTR = 1;
+const HAVE_CONNECT = 1;
+const HAVE_COPY_FILE_RANGE = 1;
+const HAVE_CRYPT_H = 1;
+const HAVE_CRYPT_R = 1;
+const HAVE_CTERMID = 1;
+const HAVE_CURSES_FILTER = 1;
+const HAVE_CURSES_H = 1;
+const HAVE_CURSES_HAS_KEY = 1;
+const HAVE_CURSES_IMMEDOK = 1;
+const HAVE_CURSES_IS_PAD = 1;
+const HAVE_CURSES_IS_TERM_RESIZED = 1;
+const HAVE_CURSES_RESIZETERM = 1;
+const HAVE_CURSES_RESIZE_TERM = 1;
+const HAVE_CURSES_SYNCOK = 1;
+const HAVE_CURSES_TYPEAHEAD = 1;
+const HAVE_CURSES_USE_ENV = 1;
+const HAVE_CURSES_WCHGAT = 1;
+const HAVE_DECL_RTLD_DEEPBIND = 1;
+const HAVE_DECL_RTLD_GLOBAL = 1;
+const HAVE_DECL_RTLD_LAZY = 1;
+const HAVE_DECL_RTLD_LOCAL = 1;
+const HAVE_DECL_RTLD_MEMBER = 0;
+const HAVE_DECL_RTLD_NODELETE = 1;
+const HAVE_DECL_RTLD_NOLOAD = 1;
+const HAVE_DECL_RTLD_NOW = 1;
+const HAVE_DEVICE_MACROS = 1;
+const HAVE_DEV_PTMX = 1;
+const HAVE_DIRENT_D_TYPE = 1;
+const HAVE_DIRENT_H = 1;
+const HAVE_DIRFD = 1;
+const HAVE_DLFCN_H = 1;
+const HAVE_DLOPEN = 1;
+const HAVE_DUP = 1;
+const HAVE_DUP2 = 1;
+const HAVE_DUP3 = 1;
+const HAVE_DYNAMIC_LOADING = 1;
+const HAVE_ENDIAN_H = 1;
+const HAVE_EPOLL = 1;
+const HAVE_EPOLL_CREATE1 = 1;
+const HAVE_ERF = 1;
+const HAVE_ERFC = 1;
+const HAVE_ERRNO_H = 1;
+const HAVE_EVENTFD = 1;
+const HAVE_EXECV = 1;
+const HAVE_EXPLICIT_BZERO = 1;
+const HAVE_EXPM1 = 1;
+const HAVE_FACCESSAT = 1;
+const HAVE_FCHDIR = 1;
+const HAVE_FCHMOD = 1;
+const HAVE_FCHMODAT = 1;
+const HAVE_FCHOWN = 1;
+const HAVE_FCHOWNAT = 1;
+const HAVE_FCNTL_H = 1;
+const HAVE_FDATASYNC = 1;
+const HAVE_FDOPENDIR = 1;
+const HAVE_FEXECVE = 1;
+const HAVE_FFI_CLOSURE_ALLOC = 1;
+const HAVE_FFI_PREP_CIF_VAR = 1;
+const HAVE_FFI_PREP_CLOSURE_LOC = 1;
+const HAVE_FLOCK = 1;
+const HAVE_FORK = 1;
+const HAVE_FORKPTY = 1;
+const HAVE_FPATHCONF = 1;
+const HAVE_FSEEKO = 1;
+const HAVE_FSTATAT = 1;
+const HAVE_FSTATVFS = 1;
+const HAVE_FSYNC = 1;
+const HAVE_FTELLO = 1;
+const HAVE_FTIME = 1;
+const HAVE_FTRUNCATE = 1;
+const HAVE_FUTIMENS = 1;
+const HAVE_FUTIMES = 1;
+const HAVE_FUTIMESAT = 1;
+const HAVE_GAI_STRERROR = 1;
+const HAVE_GCC_ASM_FOR_X64 = 1;
+const HAVE_GCC_ASM_FOR_X87 = 1;
+const HAVE_GCC_UINT128_T = 1;
+const HAVE_GDBM_H = 1;
+const HAVE_GDBM_NDBM_H = 1;
+const HAVE_GETADDRINFO = 1;
+const HAVE_GETC_UNLOCKED = 1;
+const HAVE_GETEGID = 1;
+const HAVE_GETENTROPY = 1;
+const HAVE_GETEUID = 1;
+const HAVE_GETGID = 1;
+const HAVE_GETGRGID = 1;
+const HAVE_GETGRGID_R = 1;
+const HAVE_GETGRNAM_R = 1;
+const HAVE_GETGROUPLIST = 1;
+const HAVE_GETGROUPS = 1;
+const HAVE_GETHOSTBYADDR = 1;
+const HAVE_GETHOSTBYNAME = 1;
+const HAVE_GETHOSTBYNAME_R = 1;
+const HAVE_GETHOSTBYNAME_R_6_ARG = 1;
+const HAVE_GETHOSTNAME = 1;
+const HAVE_GETITIMER = 1;
+const HAVE_GETLOADAVG = 1;
+const HAVE_GETLOGIN = 1;
+const HAVE_GETNAMEINFO = 1;
+const HAVE_GETPAGESIZE = 1;
+const HAVE_GETPEERNAME = 1;
+const HAVE_GETPGID = 1;
+const HAVE_GETPGRP = 1;
+const HAVE_GETPID = 1;
+const HAVE_GETPPID = 1;
+const HAVE_GETPRIORITY = 1;
+const HAVE_GETPROTOBYNAME = 1;
+const HAVE_GETPWENT = 1;
+const HAVE_GETPWNAM_R = 1;
+const HAVE_GETPWUID = 1;
+const HAVE_GETPWUID_R = 1;
+const HAVE_GETRANDOM = 1;
+const HAVE_GETRANDOM_SYSCALL = 1;
+const HAVE_GETRESGID = 1;
+const HAVE_GETRESUID = 1;
+const HAVE_GETRUSAGE = 1;
+const HAVE_GETSERVBYNAME = 1;
+const HAVE_GETSERVBYPORT = 1;
+const HAVE_GETSID = 1;
+const HAVE_GETSOCKNAME = 1;
+const HAVE_GETSPENT = 1;
+const HAVE_GETSPNAM = 1;
+const HAVE_GETUID = 1;
+const HAVE_GETWD = 1;
+const HAVE_GRP_H = 1;
+const HAVE_HSTRERROR = 1;
+const HAVE_HTOLE64 = 1;
+const HAVE_IF_NAMEINDEX = 1;
+const HAVE_INET_ATON = 1;
+const HAVE_INET_NTOA = 1;
+const HAVE_INET_PTON = 1;
+const HAVE_INITGROUPS = 1;
+const HAVE_INTTYPES_H = 1;
+const HAVE_KILL = 1;
+const HAVE_KILLPG = 1;
+const HAVE_LANGINFO_H = 1;
+const HAVE_LCHOWN = 1;
+const HAVE_LIBDL = 1;
+const HAVE_LIBINTL_H = 1;
+const HAVE_LIBSQLITE3 = 1;
+const HAVE_LINK = 1;
+const HAVE_LINKAT = 1;
+const HAVE_LINUX_AUXVEC_H = 1;
+const HAVE_LINUX_CAN_BCM_H = 1;
+const HAVE_LINUX_CAN_H = 1;
+const HAVE_LINUX_CAN_J1939_H = 1;
+const HAVE_LINUX_CAN_RAW_FD_FRAMES = 1;
+const HAVE_LINUX_CAN_RAW_H = 1;
+const HAVE_LINUX_CAN_RAW_JOIN_FILTERS = 1;
+const HAVE_LINUX_FS_H = 1;
+const HAVE_LINUX_LIMITS_H = 1;
+const HAVE_LINUX_MEMFD_H = 1;
+const HAVE_LINUX_NETLINK_H = 1;
+const HAVE_LINUX_QRTR_H = 1;
+const HAVE_LINUX_RANDOM_H = 1;
+const HAVE_LINUX_SOUNDCARD_H = 1;
+const HAVE_LINUX_TIPC_H = 1;
+const HAVE_LINUX_VM_SOCKETS_H = 1;
+const HAVE_LINUX_WAIT_H = 1;
+const HAVE_LISTEN = 1;
+const HAVE_LOCKF = 1;
+const HAVE_LOG1P = 1;
+const HAVE_LOG2 = 1;
+const HAVE_LOGIN_TTY = 1;
+const HAVE_LONG_DOUBLE = 1;
+const HAVE_LSTAT = 1;
+const HAVE_LUTIMES = 1;
+const HAVE_MADVISE = 1;
+const HAVE_MAKEDEV = 1;
+const HAVE_MBRTOWC = 1;
+const HAVE_MEMFD_CREATE = 1;
+const HAVE_MEMRCHR = 1;
+const HAVE_MKDIRAT = 1;
+const HAVE_MKFIFO = 1;
+const HAVE_MKFIFOAT = 1;
+const HAVE_MKNOD = 1;
+const HAVE_MKNODAT = 1;
+const HAVE_MKTIME = 1;
+const HAVE_MMAP = 1;
+const HAVE_MREMAP = 1;
+const HAVE_NANOSLEEP = 1;
+const HAVE_NCURSESW = 1;
+const HAVE_NCURSES_H = 1;
+const HAVE_NDBM_H = 1;
+const HAVE_NETDB_H = 1;
+const HAVE_NETINET_IN_H = 1;
+const HAVE_NETPACKET_PACKET_H = 1;
+const HAVE_NET_ETHERNET_H = 1;
+const HAVE_NET_IF_H = 1;
+const HAVE_NICE = 1;
+const HAVE_OPENAT = 1;
+const HAVE_OPENDIR = 1;
+const HAVE_OPENPTY = 1;
+const HAVE_PANEL_H = 1;
+const HAVE_PATHCONF = 1;
+const HAVE_PAUSE = 1;
+const HAVE_PIPE = 1;
+const HAVE_PIPE2 = 1;
+const HAVE_POLL = 1;
+const HAVE_POLL_H = 1;
+const HAVE_POSIX_FADVISE = 1;
+const HAVE_POSIX_FALLOCATE = 1;
+const HAVE_POSIX_SPAWN = 1;
+const HAVE_POSIX_SPAWNP = 1;
+const HAVE_PREAD = 1;
+const HAVE_PREADV = 1;
+const HAVE_PREADV2 = 1;
+const HAVE_PRLIMIT = 1;
+const HAVE_PROTOTYPES = 1;
+const HAVE_PTHREAD_CONDATTR_SETCLOCK = 1;
+const HAVE_PTHREAD_GETCPUCLOCKID = 1;
+const HAVE_PTHREAD_H = 1;
+const HAVE_PTHREAD_KILL = 1;
+const HAVE_PTHREAD_SIGMASK = 1;
+const HAVE_PTY_H = 1;
+const HAVE_PWRITE = 1;
+const HAVE_PWRITEV = 1;
+const HAVE_PWRITEV2 = 1;
+const HAVE_READLINK = 1;
+const HAVE_READLINKAT = 1;
+const HAVE_READV = 1;
+const HAVE_REALPATH = 1;
+const HAVE_RECVFROM = 1;
+const HAVE_RENAMEAT = 1;
+const HAVE_RL_APPEND_HISTORY = 1;
+const HAVE_RL_CATCH_SIGNAL = 1;
+const HAVE_RL_COMPDISP_FUNC_T = 1;
+const HAVE_RL_COMPLETION_APPEND_CHARACTER = 1;
+const HAVE_RL_COMPLETION_DISPLAY_MATCHES_HOOK = 1;
+const HAVE_RL_COMPLETION_MATCHES = 1;
+const HAVE_RL_COMPLETION_SUPPRESS_APPEND = 1;
+const HAVE_RL_PRE_INPUT_HOOK = 1;
+const HAVE_RL_RESIZE_TERMINAL = 1;
+const HAVE_SCHED_GET_PRIORITY_MAX = 1;
+const HAVE_SCHED_H = 1;
+const HAVE_SCHED_RR_GET_INTERVAL = 1;
+const HAVE_SCHED_SETAFFINITY = 1;
+const HAVE_SCHED_SETPARAM = 1;
+const HAVE_SCHED_SETSCHEDULER = 1;
+const HAVE_SEM_CLOCKWAIT = 1;
+const HAVE_SEM_GETVALUE = 1;
+const HAVE_SEM_OPEN = 1;
+const HAVE_SEM_TIMEDWAIT = 1;
+const HAVE_SEM_UNLINK = 1;
+const HAVE_SENDFILE = 1;
+const HAVE_SENDTO = 1;
+const HAVE_SETEGID = 1;
+const HAVE_SETEUID = 1;
+const HAVE_SETGID = 1;
+const HAVE_SETGROUPS = 1;
+const HAVE_SETHOSTNAME = 1;
+const HAVE_SETITIMER = 1;
+const HAVE_SETJMP_H = 1;
+const HAVE_SETLOCALE = 1;
+const HAVE_SETNS = 1;
+const HAVE_SETPGID = 1;
+const HAVE_SETPGRP = 1;
+const HAVE_SETPRIORITY = 1;
+const HAVE_SETREGID = 1;
+const HAVE_SETRESGID = 1;
+const HAVE_SETRESUID = 1;
+const HAVE_SETREUID = 1;
+const HAVE_SETSID = 1;
+const HAVE_SETSOCKOPT = 1;
+const HAVE_SETUID = 1;
+const HAVE_SETVBUF = 1;
+const HAVE_SHADOW_H = 1;
+const HAVE_SHM_OPEN = 1;
+const HAVE_SHM_UNLINK = 1;
+const HAVE_SHUTDOWN = 1;
+const HAVE_SIGACTION = 1;
+const HAVE_SIGALTSTACK = 1;
+const HAVE_SIGFILLSET = 1;
+const HAVE_SIGINFO_T_SI_BAND = 1;
+const HAVE_SIGINTERRUPT = 1;
+const HAVE_SIGNAL_H = 1;
+const HAVE_SIGPENDING = 1;
+const HAVE_SIGRELSE = 1;
+const HAVE_SIGTIMEDWAIT = 1;
+const HAVE_SIGWAIT = 1;
+const HAVE_SIGWAITINFO = 1;
+const HAVE_SNPRINTF = 1;
+const HAVE_SOCKADDR_ALG = 1;
+const HAVE_SOCKADDR_STORAGE = 1;
+const HAVE_SOCKET = 1;
+const HAVE_SOCKETPAIR = 1;
+const HAVE_SPAWN_H = 1;
+const HAVE_SPLICE = 1;
+const HAVE_SSIZE_T = 1;
+const HAVE_STATVFS = 1;
+const HAVE_STAT_TV_NSEC = 1;
+const HAVE_STDINT_H = 1;
+const HAVE_STDIO_H = 1;
+const HAVE_STDLIB_H = 1;
+const HAVE_STD_ATOMIC = 1;
+const HAVE_STRFTIME = 1;
+const HAVE_STRINGS_H = 1;
+const HAVE_STRING_H = 1;
+const HAVE_STRLCPY = 1;
+const HAVE_STRSIGNAL = 1;
+const HAVE_STRUCT_PASSWD_PW_GECOS = 1;
+const HAVE_STRUCT_PASSWD_PW_PASSWD = 1;
+const HAVE_STRUCT_STAT_ST_BLKSIZE = 1;
+const HAVE_STRUCT_STAT_ST_BLOCKS = 1;
+const HAVE_STRUCT_STAT_ST_RDEV = 1;
+const HAVE_STRUCT_TM_TM_ZONE = 1;
+const HAVE_SYMLINK = 1;
+const HAVE_SYMLINKAT = 1;
+const HAVE_SYNC = 1;
+const HAVE_SYSCONF = 1;
+const HAVE_SYSEXITS_H = 1;
+const HAVE_SYSLOG_H = 1;
+const HAVE_SYSTEM = 1;
+const HAVE_SYS_AUXV_H = 1;
+const HAVE_SYS_EPOLL_H = 1;
+const HAVE_SYS_EVENTFD_H = 1;
+const HAVE_SYS_FILE_H = 1;
+const HAVE_SYS_IOCTL_H = 1;
+const HAVE_SYS_MMAN_H = 1;
+const HAVE_SYS_PARAM_H = 1;
+const HAVE_SYS_PIDFD_H = 1;
+const HAVE_SYS_POLL_H = 1;
+const HAVE_SYS_RANDOM_H = 1;
+const HAVE_SYS_RESOURCE_H = 1;
+const HAVE_SYS_SELECT_H = 1;
+const HAVE_SYS_SENDFILE_H = 1;
+const HAVE_SYS_SOCKET_H = 1;
+const HAVE_SYS_SOUNDCARD_H = 1;
+const HAVE_SYS_STATVFS_H = 1;
+const HAVE_SYS_STAT_H = 1;
+const HAVE_SYS_SYSCALL_H = 1;
+const HAVE_SYS_SYSMACROS_H = 1;
+const HAVE_SYS_TIMES_H = 1;
+const HAVE_SYS_TIME_H = 1;
+const HAVE_SYS_TYPES_H = 1;
+const HAVE_SYS_UIO_H = 1;
+const HAVE_SYS_UN_H = 1;
+const HAVE_SYS_UTSNAME_H = 1;
+const HAVE_SYS_WAIT_H = 1;
+const HAVE_SYS_XATTR_H = 1;
+const HAVE_TCGETPGRP = 1;
+const HAVE_TCSETPGRP = 1;
+const HAVE_TEMPNAM = 1;
+const HAVE_TERMIOS_H = 1;
+const HAVE_TERM_H = 1;
+const HAVE_TIMEGM = 1;
+const HAVE_TIMES = 1;
+const HAVE_TMPFILE = 1;
+const HAVE_TMPNAM = 1;
+const HAVE_TMPNAM_R = 1;
+const HAVE_TM_ZONE = 1;
+const HAVE_TRUNCATE = 1;
+const HAVE_TTYNAME_R = 1;
+const HAVE_UMASK = 1;
+const HAVE_UNAME = 1;
+const HAVE_UNISTD_H = 1;
+const HAVE_UNLINKAT = 1;
+const HAVE_UNSHARE = 1;
+const HAVE_UTIMENSAT = 1;
+const HAVE_UTIMES = 1;
+const HAVE_UTIME_H = 1;
+const HAVE_UTMP_H = 1;
+const HAVE_UUID_GENERATE_TIME_SAFE = 1;
+const HAVE_UUID_H = 1;
+const HAVE_VFORK = 1;
+const HAVE_WAIT = 1;
+const HAVE_WAIT3 = 1;
+const HAVE_WAIT4 = 1;
+const HAVE_WAITID = 1;
+const HAVE_WAITPID = 1;
+const HAVE_WCHAR_H = 1;
+const HAVE_WCSCOLL = 1;
+const HAVE_WCSFTIME = 1;
+const HAVE_WCSXFRM = 1;
+const HAVE_WMEMCMP = 1;
+const HAVE_WORKING_TZSET = 1;
+const HAVE_WRITEV = 1;
+const HAVE_ZLIB_COPY = 1;
+const MAJOR_IN_SYSMACROS = 1;
+const MVWDELCH_IS_EXPRESSION = 1;
+const PTHREAD_KEY_T_IS_COMPATIBLE_WITH_INT = 1;
+const PTHREAD_SYSTEM_SCHED_SUPPORTED = 1;
+const PY_BUILTIN_HASHLIB_HASHES = "md5,sha1,sha2,sha3,blake2";
+const PY_COERCE_C_LOCALE = 1;
+const PY_HAVE_PERF_TRAMPOLINE = 1;
+const PY_SQLITE_ENABLE_LOAD_EXTENSION = 1;
+const PY_SQLITE_HAVE_SERIALIZE = 1;
+const PY_SSL_DEFAULT_CIPHERS = 1;
+const PY_SUPPORT_TIER = 1;
+const PY_ENABLE_SHARED = 1;
+const RETSIGTYPE = void;
+const SIZEOF_DOUBLE = 8;
+const SIZEOF_FLOAT = 4;
+const SIZEOF_FPOS_T = 16;
+const SIZEOF_INT = 4;
+const SIZEOF_LONG = 8;
+const SIZEOF_LONG_DOUBLE = 16;
+const SIZEOF_LONG_LONG = 8;
+const SIZEOF_OFF_T = 8;
+const SIZEOF_PID_T = 4;
+const SIZEOF_PTHREAD_KEY_T = 4;
+const SIZEOF_PTHREAD_T = 8;
+const SIZEOF_SHORT = 2;
+const SIZEOF_SIZE_T = 8;
+const SIZEOF_TIME_T = 8;
+const SIZEOF_UINTPTR_T = 8;
+const SIZEOF_VOID_P = 8;
+const SIZEOF_WCHAR_T = 4;
+const SIZEOF__BOOL = 1;
+const STDC_HEADERS = 1;
+const SYS_SELECT_WITH_SYS_TIME = 1;
+const WITH_DECIMAL_CONTEXTVAR = 1;
+const WITH_DOC_STRINGS = 1;
+const WITH_FREELISTS = 1;
+const WITH_PYMALLOC = 1;
+const HAVE_LONG_LONG = 1;
+const PY_LONG_LONG = longlong;
+const PY_LLONG_MIN = LLONG_MIN;
+const PY_LLONG_MAX = LLONG_MAX;
+const PY_ULLONG_MAX = ULLONG_MAX;
+const PY_UINT32_T = UINT32_T;
+const PY_UINT64_T = UINT64_T;
+const PY_INT32_T = INT32_T;
+const PY_INT64_T = INT64_T;
+const PYLONG_BITS_IN_DIGIT = 30;
+const PY_SSIZE_T_MAX = SSIZE_MAX;
+const PY_SSIZE_T_MIN = (-PY_SSIZE_T_MAX-1);
+const SIZEOF_PY_HASH_T = SIZEOF_SIZE_T;
+const SIZEOF_PY_UHASH_T = SIZEOF_SIZE_T;
+const PY_SIZE_MAX = SIZE_MAX;
+const PY_FORMAT_SIZE_T = "z";
+
+macro @Py_ARITHMETIC_RIGHT_SHIFT(#type, #i, #j) {}
+
+macro @Py_FORCE_EXPANSION(#x) {}
+
+macro @Py_SAFE_DOWNCAST(#value, #wide, #narrow) {}
+
+macro @Py_DEPRECATED(#version_unused) {}
+
+const PY_ALWAYS_INLINE = __attribute__((ALWAYS_INLINE));
+const PY_NO_INLINE = __attribute__((NOINLINE));
+const PY_IMPORTED_SYMBOL = __attribute__((@visibility("default")));
+const PY_EXPORTED_SYMBOL = __attribute__((@visibility("default")));
+const PY_LOCAL_SYMBOL = __attribute__((@visibility("hidden")));
+
+macro @PyAPI_FUNC(#rtype) {}
+
+macro @PyAPI_DATA(#rtype) {}
+
+const PYMODINIT_FUNC = PY_EXPORTED_SYMBOLPYOBJECT*;
+
+macro @Py_GCC_ATTRIBUTE(#x) {}
+
+macro @Py_ALIGNED(#x) {}
+
+macro @Py_LL(#x) {}
+
+macro @Py_ULL(#x) {}
+
+const PY_VA_COPY = VA_COPY;
+const PY_BIG_ENDIAN = 0;
+const PY_LITTLE_ENDIAN = 1;
+const PY_DWORD_MAX = 4294967295U;
+
+macro @Py_MIN(#x, #y) {}
+
+macro @Py_MAX(#x, #y) {}
+
+macro @Py_ABS(#x) {}
+
+macro @Py_STRINGIFY(#x) {}
+
+macro @Py_MEMBER_SIZE(#type, #member) {}
+
+macro @Py_CHARMASK(#c) {}
+
+macro @Py_BUILD_ASSERT_EXPR(#cond) {}
+
+macro @Py_BUILD_ASSERT(#cond) {}
+
+macro @Py_ARRAY_LENGTH(#array) {}
+
+macro @PyDoc_VAR(#name) {}
+
+macro @PyDoc_STRVAR(#name, #str) {}
+
+macro @PyDoc_STR(#str) {}
+
+macro @Py_UNUSED(#name) {}
+
+macro @Py_UNREACHABLE() {}
+
+const PY_MATH_PIL = 3.1415926535897932384626433832795029L;
+const PY_MATH_PI = 3.14159265358979323846;
+const PY_MATH_EL = 2.7182818284590452353602874713526625L;
+const PY_MATH_E = 2.7182818284590452354;
+const PY_MATH_TAU = 6.2831853071795864769252867665590057683943L;
+
+macro @Py_IS_NAN(#x) {}
+
+macro @Py_IS_INFINITY(#x) {}
+
+macro @Py_IS_FINITE(#x) {}
+
+const PY_INFINITY = ((double)INFINITY);
+const PY_HUGE_VAL = HUGE_VAL;
+const PY_NAN = ((double)NAN);
+
+macro @PyMem_New(#type, #n) {}
+
+macro @PyMem_Resize(#p, #type, #n) {}
+
+macro @PyMem_MALLOC(#n) {}
+
+macro @PyMem_NEW(#type, #n) {}
+
+macro @PyMem_REALLOC(#p, #n) {}
+
+macro @PyMem_RESIZE(#p, #type, #n) {}
+
+macro @PyMem_FREE(#p) {}
+
+macro @PyMem_Del(#p) {}
+
+macro @PyMem_DEL(#p) {}
+
+const PYBUF_MAX_NDIM = 64;
+const PYBUF_SIMPLE = 0;
+const PYBUF_WRITABLE = 0x0001;
+const PYBUF_WRITEABLE = PYBUF_WRITABLE;
+const PYBUF_FORMAT = 0x0004;
+const PYBUF_ND = 0x0008;
+const PYBUF_STRIDES = (0x0010|PYBUF_ND);
+const PYBUF_C_CONTIGUOUS = (0x0020|PYBUF_STRIDES);
+const PYBUF_F_CONTIGUOUS = (0x0040|PYBUF_STRIDES);
+const PYBUF_ANY_CONTIGUOUS = (0x0080|PYBUF_STRIDES);
+const PYBUF_INDIRECT = (0x0100|PYBUF_STRIDES);
+const PYBUF_CONTIG = (PYBUF_ND|PYBUF_WRITABLE);
+const PYBUF_CONTIG_RO = (PYBUF_ND);
+const PYBUF_STRIDED = (PYBUF_STRIDES|PYBUF_WRITABLE);
+const PYBUF_STRIDED_RO = (PYBUF_STRIDES);
+const PYBUF_RECORDS = (PYBUF_STRIDES|PYBUF_WRITABLE|PYBUF_FORMAT);
+const PYBUF_RECORDS_RO = (PYBUF_STRIDES|PYBUF_FORMAT);
+const PYBUF_FULL = (PYBUF_INDIRECT|PYBUF_WRITABLE|PYBUF_FORMAT);
+const PYBUF_FULL_RO = (PYBUF_INDIRECT|PYBUF_FORMAT);
+const PYBUF_READ = 0x100;
+const PYBUF_WRITE = 0x200;
+const PYOBJECT_HEAD = PYOBJECTOB_BASE;;
+
+macro @PyObject_HEAD_INIT(#type) {}
+
+macro @PyVarObject_HEAD_INIT(#type, #size) {}
+
+const PYOBJECT_VAR_HEAD = PYVAROBJECTOB_BASE;;
+const PY_INVALID_SIZE = (PY_SSIZE_T)-1;
+
+macro @Py_Is(#x, #y) {}
+
+macro @Py_REFCNT(#ob) {}
+
+macro @Py_TYPE(#ob) {}
+
+macro @Py_SIZE(#ob) {}
+
+macro @Py_IS_TYPE(#ob, #type) {}
+
+macro @Py_SET_REFCNT(#ob, #refcnt) {}
+
+macro @Py_SET_TYPE(#ob, #type) {}
+
+macro @Py_SET_SIZE(#ob, #size) {}
+
+macro @PyObject_TypeCheck(#ob, #type) {}
+
+const PY_PRINT_RAW = 1;
+const PY_TPFLAGS_MANAGED_WEAKREF = (1<<3);
+const PY_TPFLAGS_MANAGED_DICT = (1<<4);
+const PY_TPFLAGS_PREHEADER = (PY_TPFLAGS_MANAGED_WEAKREF|PY_TPFLAGS_MANAGED_DICT);
+const PY_TPFLAGS_SEQUENCE = (1<<5);
+const PY_TPFLAGS_MAPPING = (1<<6);
+const PY_TPFLAGS_DISALLOW_INSTANTIATION = (1UL<<7);
+const PY_TPFLAGS_IMMUTABLETYPE = (1UL<<8);
+const PY_TPFLAGS_HEAPTYPE = (1UL<<9);
+const PY_TPFLAGS_BASETYPE = (1UL<<10);
+const PY_TPFLAGS_HAVE_VECTORCALL = (1UL<<11);
+const PY_TPFLAGS_READY = (1UL<<12);
+const PY_TPFLAGS_READYING = (1UL<<13);
+const PY_TPFLAGS_HAVE_GC = (1UL<<14);
+const PY_TPFLAGS_HAVE_STACKLESS_EXTENSION = 0;
+const PY_TPFLAGS_METHOD_DESCRIPTOR = (1UL<<17);
+const PY_TPFLAGS_VALID_VERSION_TAG = (1UL<<19);
+const PY_TPFLAGS_IS_ABSTRACT = (1UL<<20);
+const PY_TPFLAGS_ITEMS_AT_END = (1UL<<23);
+const PY_TPFLAGS_LONG_SUBCLASS = (1UL<<24);
+const PY_TPFLAGS_LIST_SUBCLASS = (1UL<<25);
+const PY_TPFLAGS_TUPLE_SUBCLASS = (1UL<<26);
+const PY_TPFLAGS_BYTES_SUBCLASS = (1UL<<27);
+const PY_TPFLAGS_UNICODE_SUBCLASS = (1UL<<28);
+const PY_TPFLAGS_DICT_SUBCLASS = (1UL<<29);
+const PY_TPFLAGS_BASE_EXC_SUBCLASS = (1UL<<30);
+const PY_TPFLAGS_TYPE_SUBCLASS = (1UL<<31);
+const PY_TPFLAGS_DEFAULT = (PY_TPFLAGS_HAVE_STACKLESS_EXTENSION|0);
+const PY_TPFLAGS_HAVE_FINALIZE = (1UL<<0);
+const PY_TPFLAGS_HAVE_VERSION_TAG = (1UL<<18);
+
+macro @Py_INCREF(#op) {}
+
+macro @Py_DECREF(#op) {}
+
+macro @Py_CLEAR(#op) {}
+
+macro @Py_XINCREF(#op) {}
+
+macro @Py_XDECREF(#op) {}
+
+macro @Py_NewRef(#obj) {}
+
+macro @Py_XNewRef(#obj) {}
+
+macro @Py_IsNone(#x) {}
+
+const PY_RETURN_NONE = returnPY_NONE;
+const PY_RETURN_NOTIMPLEMENTED = returnPY_NOTIMPLEMENTED;
+const PY_LT = 0;
+const PY_LE = 1;
+const PY_EQ = 2;
+const PY_NE = 3;
+const PY_GT = 4;
+const PY_GE = 5;
+
+macro @Py_RETURN_RICHCOMPARE(#val1, #val2, #op) {}
+
+macro @Py_SETREF(#dst, #src) {}
+
+macro @Py_XSETREF(#dst, #src) {}
+
+macro @Py_TRASHCAN_BEGIN_CONDITION(#op, #cond) {}
+
+macro @Py_TRASHCAN_BEGIN(#op, #dealloc) {}
+
+macro @Py_TRASHCAN_SAFE_BEGIN(#op) {}
+
+macro @Py_TRASHCAN_SAFE_END(#op) {}
+
+const TYPE_MAX_WATCHERS = 8;
+
+macro @PyType_FastSubclass(#type, #flag) {}
+
+macro @PyType_Check(#op) {}
+
+macro @PyType_CheckExact(#op) {}
+
+const PYOBJECT_MALLOC = PYOBJECT_MALLOC;
+const PYOBJECT_REALLOC = PYOBJECT_REALLOC;
+const PYOBJECT_FREE = PYOBJECT_FREE;
+const PYOBJECT_DEL = PYOBJECT_FREE;
+const PYOBJECT_DEL = PYOBJECT_FREE;
+
+macro @PyObject_INIT(#op, #typeobj) {}
+
+macro @PyObject_INIT_VAR(#op, #typeobj, #size) {}
+
+macro @PyObject_New(#type, #typeobj) {}
+
+macro @PyObject_NEW(#type, #typeobj) {}
+
+macro @PyObject_NewVar(#type, #typeobj, #n) {}
+
+macro @PyObject_NEW_VAR(#type, #typeobj, #n) {}
+
+macro @PyType_IS_GC(#t) {}
+
+macro @PyObject_GC_Resize(#type, #op, #n) {}
+
+macro @PyObject_GC_New(#type, #typeobj) {}
+
+macro @PyObject_GC_NewVar(#type, #typeobj, #n) {}
+
+macro @Py_VISIT(#op) {}
+
+const PY_BF_GETBUFFER = 1;
+const PY_BF_RELEASEBUFFER = 2;
+const PY_MP_ASS_SUBSCRIPT = 3;
+const PY_MP_LENGTH = 4;
+const PY_MP_SUBSCRIPT = 5;
+const PY_NB_ABSOLUTE = 6;
+const PY_NB_ADD = 7;
+const PY_NB_AND = 8;
+const PY_NB_BOOL = 9;
+const PY_NB_DIVMOD = 10;
+const PY_NB_FLOAT = 11;
+const PY_NB_FLOOR_DIVIDE = 12;
+const PY_NB_INDEX = 13;
+const PY_NB_INPLACE_ADD = 14;
+const PY_NB_INPLACE_AND = 15;
+const PY_NB_INPLACE_FLOOR_DIVIDE = 16;
+const PY_NB_INPLACE_LSHIFT = 17;
+const PY_NB_INPLACE_MULTIPLY = 18;
+const PY_NB_INPLACE_OR = 19;
+const PY_NB_INPLACE_POWER = 20;
+const PY_NB_INPLACE_REMAINDER = 21;
+const PY_NB_INPLACE_RSHIFT = 22;
+const PY_NB_INPLACE_SUBTRACT = 23;
+const PY_NB_INPLACE_TRUE_DIVIDE = 24;
+const PY_NB_INPLACE_XOR = 25;
+const PY_NB_INT = 26;
+const PY_NB_INVERT = 27;
+const PY_NB_LSHIFT = 28;
+const PY_NB_MULTIPLY = 29;
+const PY_NB_NEGATIVE = 30;
+const PY_NB_OR = 31;
+const PY_NB_POSITIVE = 32;
+const PY_NB_POWER = 33;
+const PY_NB_REMAINDER = 34;
+const PY_NB_RSHIFT = 35;
+const PY_NB_SUBTRACT = 36;
+const PY_NB_TRUE_DIVIDE = 37;
+const PY_NB_XOR = 38;
+const PY_SQ_ASS_ITEM = 39;
+const PY_SQ_CONCAT = 40;
+const PY_SQ_CONTAINS = 41;
+const PY_SQ_INPLACE_CONCAT = 42;
+const PY_SQ_INPLACE_REPEAT = 43;
+const PY_SQ_ITEM = 44;
+const PY_SQ_LENGTH = 45;
+const PY_SQ_REPEAT = 46;
+const PY_TP_ALLOC = 47;
+const PY_TP_BASE = 48;
+const PY_TP_BASES = 49;
+const PY_TP_CALL = 50;
+const PY_TP_CLEAR = 51;
+const PY_TP_DEALLOC = 52;
+const PY_TP_DEL = 53;
+const PY_TP_DESCR_GET = 54;
+const PY_TP_DESCR_SET = 55;
+const PY_TP_DOC = 56;
+const PY_TP_GETATTR = 57;
+const PY_TP_GETATTRO = 58;
+const PY_TP_HASH = 59;
+const PY_TP_INIT = 60;
+const PY_TP_IS_GC = 61;
+const PY_TP_ITER = 62;
+const PY_TP_ITERNEXT = 63;
+const PY_TP_METHODS = 64;
+const PY_TP_NEW = 65;
+const PY_TP_REPR = 66;
+const PY_TP_RICHCOMPARE = 67;
+const PY_TP_SETATTR = 68;
+const PY_TP_SETATTRO = 69;
+const PY_TP_STR = 70;
+const PY_TP_TRAVERSE = 71;
+const PY_TP_MEMBERS = 72;
+const PY_TP_GETSET = 73;
+const PY_TP_FREE = 74;
+const PY_NB_MATRIX_MULTIPLY = 75;
+const PY_NB_INPLACE_MATRIX_MULTIPLY = 76;
+const PY_AM_AWAIT = 77;
+const PY_AM_AITER = 78;
+const PY_AM_ANEXT = 79;
+const PY_TP_FINALIZE = 80;
+const PY_AM_SEND = 81;
+const PY_HASH_CUTOFF = 0;
+const PY_HASH_EXTERNAL = 0;
+const PY_HASH_SIPHASH24 = 1;
+const PY_HASH_FNV = 2;
+const PY_HASH_SIPHASH13 = 3;
+const PY_HASH_ALGORITHM = PY_HASH_SIPHASH13;
+
+macro @PyByteArray_Check(#self) {}
+
+macro @PyByteArray_CheckExact(#self) {}
+
+macro @PyByteArray_AS_STRING(#self) {}
+
+macro @PyByteArray_GET_SIZE(#self) {}
+
+macro @PyBytes_Check(#op) {}
+
+macro @PyBytes_CheckExact(#op) {}
+
+macro @PyBytes_AS_STRING(#op) {}
+
+macro @PyBytes_GET_SIZE(#self) {}
+
+const PY_UNICODE_SIZE = SIZEOF_WCHAR_T;
+
+macro @PyUnicode_Check(#op) {}
+
+macro @PyUnicode_CheckExact(#op) {}
+
+const PY_UNICODE_REPLACEMENT_CHARACTER = ((PY_UCS4)0xFFFD);
+const PY_UNICODE_TYPE = WCHAR_T;
+const SSTATE_NOT_INTERNED = 0;
+const SSTATE_INTERNED_MORTAL = 1;
+const SSTATE_INTERNED_IMMORTAL = 2;
+const SSTATE_INTERNED_IMMORTAL_STATIC = 3;
+
+macro @PyUnicode_CHECK_INTERNED(#op) {}
+
+macro @PyUnicode_IS_READY(#op) {}
+
+macro @PyUnicode_IS_ASCII(#op) {}
+
+macro @PyUnicode_IS_COMPACT(#op) {}
+
+macro @PyUnicode_IS_COMPACT_ASCII(#op) {}
+
+macro @PyUnicode_KIND(#op) {}
+
+macro @PyUnicode_DATA(#op) {}
+
+macro @PyUnicode_1BYTE_DATA(#op) {}
+
+macro @PyUnicode_2BYTE_DATA(#op) {}
+
+macro @PyUnicode_4BYTE_DATA(#op) {}
+
+macro @PyUnicode_GET_LENGTH(#op) {}
+
+macro @PyUnicode_WRITE(#kind, #data, #index, #value) {}
+
+macro @PyUnicode_READ(#kind, #data, #index) {}
+
+macro @PyUnicode_READ_CHAR(#unicode, #index) {}
+
+macro @PyUnicode_MAX_CHAR_VALUE(#op) {}
+
+macro @PyUnicode_READY(#op) {}
+
+macro @Py_UNICODE_ISLOWER(#ch) {}
+
+macro @Py_UNICODE_ISUPPER(#ch) {}
+
+macro @Py_UNICODE_ISTITLE(#ch) {}
+
+macro @Py_UNICODE_ISLINEBREAK(#ch) {}
+
+macro @Py_UNICODE_TOLOWER(#ch) {}
+
+macro @Py_UNICODE_TOUPPER(#ch) {}
+
+macro @Py_UNICODE_TOTITLE(#ch) {}
+
+macro @Py_UNICODE_ISDECIMAL(#ch) {}
+
+macro @Py_UNICODE_ISDIGIT(#ch) {}
+
+macro @Py_UNICODE_ISNUMERIC(#ch) {}
+
+macro @Py_UNICODE_ISPRINTABLE(#ch) {}
+
+macro @Py_UNICODE_TODECIMAL(#ch) {}
+
+macro @Py_UNICODE_TODIGIT(#ch) {}
+
+macro @Py_UNICODE_TONUMERIC(#ch) {}
+
+macro @Py_UNICODE_ISALPHA(#ch) {}
+
+const MAX_CO_EXTRA_USERS = 255;
+
+macro @PyThreadState_GET() {}
+
+const PY_RTFLAGS_USE_MAIN_OBMALLOC = (1UL<<5);
+const PY_RTFLAGS_MULTI_INTERP_EXTENSIONS = (1UL<<8);
+const PY_RTFLAGS_THREADS = (1UL<<10);
+const PY_RTFLAGS_DAEMON_THREADS = (1UL<<11);
+const PY_RTFLAGS_FORK = (1UL<<15);
+const PY_RTFLAGS_EXEC = (1UL<<16);
+const PYTRACE_CALL = 0;
+const PYTRACE_EXCEPTION = 1;
+const PYTRACE_LINE = 2;
+const PYTRACE_RETURN = 3;
+const PYTRACE_C_CALL = 4;
+const PYTRACE_C_EXCEPTION = 5;
+const PYTRACE_C_RETURN = 6;
+const PYTRACE_OPCODE = 7;
+const C_RECURSION_LIMIT = 10000;
+
+macro @PyExceptionClass_Check(#x) {}
+
+macro @PyExceptionInstance_Check(#x) {}
+
+macro @PyExceptionInstance_Class(#x) {}
+
+macro @PyErr_BadInternalCall() {}
+
+const PYEXCEPTION_HEAD = PYOBJECT_HEADPYOBJECT*DICT;PYOBJECT*ARGS;PYOBJECT*NOTES;PYOBJECT*TRACEBACK;PYOBJECT*CONTEXT;PYOBJECT*CAUSE;charSUPPRESS_CONTEXT;;
+
+macro @Py_FatalError(#message) {}
+
+macro @PyLong_Check(#op) {}
+
+macro @PyLong_CheckExact(#op) {}
+
+macro @PyLong_AS_LONG(#op) {}
+
+const PYLONG_FROMPID = PYLONG_FROMLONG;
+const PYLONG_SHIFT = 30;
+const PYLONG_BASE = ((DIGIT)1<<PYLONG_SHIFT);
+const PYLONG_MASK = ((DIGIT)(PYLONG_BASE-1));
+
+macro @PyBool_Check(#x) {}
+
+macro @Py_IsTrue(#x) {}
+
+macro @Py_IsFalse(#x) {}
+
+const PY_RETURN_TRUE = returnPY_TRUE;
+const PY_RETURN_FALSE = returnPY_FALSE;
+
+macro @PyFloat_Check(#op) {}
+
+macro @PyFloat_CheckExact(#op) {}
+
+const PY_RETURN_NAN = return@PyFloat_FromDouble(PY_NAN);
+
+macro @Py_RETURN_INF(#sign) {}
+
+macro @PyFloat_AS_DOUBLE(#op) {}
+
+macro @PyComplex_Check(#op) {}
+
+macro @PyComplex_CheckExact(#op) {}
+
+macro @PyRange_Check(#op) {}
+
+macro @PyMemoryView_Check(#op) {}
+
+macro @PyMemoryView_GET_BUFFER(#op) {}
+
+macro @PyMemoryView_GET_BASE(#op) {}
+
+macro @PyTuple_Check(#op) {}
+
+macro @PyTuple_CheckExact(#op) {}
+
+macro @PyTuple_GET_SIZE(#op) {}
+
+macro @PyTuple_GET_ITEM(#op, #index) {}
+
+macro @PyTuple_SET_ITEM(#op, #index, #value) {}
+
+macro @PyList_Check(#op) {}
+
+macro @PyList_CheckExact(#op) {}
+
+macro @PyList_GET_SIZE(#op) {}
+
+macro @PyList_GET_ITEM(#op, #index) {}
+
+macro @PyList_SET_ITEM(#op, #index, #value) {}
+
+macro @PyDict_Check(#op) {}
+
+macro @PyDict_CheckExact(#op) {}
+
+macro @PyDictKeys_Check(#op) {}
+
+macro @PyDictValues_Check(#op) {}
+
+macro @PyDictItems_Check(#op) {}
+
+macro @PyDictViewSet_Check(#op) {}
+
+macro @PyDict_GET_SIZE(#op) {}
+
+macro @PY_FOREACH_DICT_EVENT(#v) {}
+
+const PY_DEF_EVENT = (EVENT)PYDICT_EVENT_##EVENT,;
+
+macro @PyODict_Check(#op) {}
+
+macro @PyODict_CheckExact(#op) {}
+
+macro @PyODict_SIZE(#op) {}
+
+macro @PyODict_GetItem(#od, #key) {}
+
+macro @PyODict_GetItemWithError(#od, #key) {}
+
+macro @PyODict_Contains(#od, #key) {}
+
+macro @PyODict_Size(#od) {}
+
+macro @PyODict_GetItemString(#od, #key) {}
+
+macro @PyFrozenSet_CheckExact(#ob) {}
+
+macro @PyFrozenSet_Check(#ob) {}
+
+macro @PyAnySet_CheckExact(#ob) {}
+
+macro @PyAnySet_Check(#ob) {}
+
+macro @PySet_CheckExact(#op) {}
+
+macro @PySet_Check(#ob) {}
+
+const PYSET_MINSIZE = 8;
+
+macro @PySet_GET_SIZE(#so) {}
+
+macro @PyCFunction_CheckExact(#op) {}
+
+macro @PyCFunction_Check(#op) {}
+
+macro @PyCFunction_New(#ml, #self) {}
+
+macro @PyCFunction_NewEx(#ml, #self, #mod) {}
+
+const METH_VARARGS = 0x0001;
+const METH_KEYWORDS = 0x0002;
+const METH_NOARGS = 0x0004;
+const METH_O = 0x0008;
+const METH_CLASS = 0x0010;
+const METH_STATIC = 0x0020;
+const METH_COEXIST = 0x0040;
+const METH_FASTCALL = 0x0080;
+const METH_STACKLESS = 0x0000;
+const METH_METHOD = 0x0200;
+
+macro @PyCMethod_CheckExact(#op) {}
+
+macro @PyCMethod_Check(#op) {}
+
+macro @PyCFunction_GET_FUNCTION(#func) {}
+
+macro @PyCFunction_GET_SELF(#func) {}
+
+macro @PyCFunction_GET_FLAGS(#func) {}
+
+macro @PyCFunction_GET_CLASS(#func) {}
+
+macro @PyModule_Check(#op) {}
+
+macro @PyModule_CheckExact(#op) {}
+
+const PY_MOD_CREATE = 1;
+const PY_MOD_EXEC = 2;
+const PY_MOD_MULTIPLE_INTERPRETERS = 3;
+const PY_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED = ((void*)0);
+const PY_MOD_MULTIPLE_INTERPRETERS_SUPPORTED = ((void*)1);
+const PY_MOD_PER_INTERPRETER_GIL_SUPPORTED = ((void*)2);
+
+macro @PyFunction_Check(#op) {}
+
+macro @PyFunction_GET_CODE(#func) {}
+
+macro @PyFunction_GET_GLOBALS(#func) {}
+
+macro @PyFunction_GET_MODULE(#func) {}
+
+macro @PyFunction_GET_DEFAULTS(#func) {}
+
+macro @PyFunction_GET_KW_DEFAULTS(#func) {}
+
+macro @PyFunction_GET_CLOSURE(#func) {}
+
+macro @PyFunction_GET_ANNOTATIONS(#func) {}
+
+macro @PY_FOREACH_FUNC_EVENT(#v) {}
+
+const PY_DEF_EVENT = (EVENT)PYFUNCTION_EVENT_##EVENT,;
+
+macro @PyMethod_Check(#op) {}
+
+macro @PyMethod_GET_FUNCTION(#meth) {}
+
+macro @PyMethod_GET_SELF(#meth) {}
+
+macro @PyInstanceMethod_Check(#op) {}
+
+macro @PyInstanceMethod_GET_FUNCTION(#meth) {}
+
+const PY_STDIOTEXTMODE = "b";
+
+macro @PyCapsule_CheckExact(#op) {}
+
+const CO_OPTIMIZED = 0x0001;
+const CO_NEWLOCALS = 0x0002;
+const CO_VARARGS = 0x0004;
+const CO_VARKEYWORDS = 0x0008;
+const CO_NESTED = 0x0010;
+const CO_GENERATOR = 0x0020;
+const CO_COROUTINE = 0x0080;
+const CO_ITERABLE_COROUTINE = 0x0100;
+const CO_ASYNC_GENERATOR = 0x0200;
+const CO_FUTURE_DIVISION = 0x20000;
+const CO_FUTURE_ABSOLUTE_IMPORT = 0x40000;
+const CO_FUTURE_WITH_STATEMENT = 0x80000;
+const CO_FUTURE_PRINT_FUNCTION = 0x100000;
+const CO_FUTURE_UNICODE_LITERALS = 0x200000;
+const CO_FUTURE_BARRY_AS_BDFL = 0x400000;
+const CO_FUTURE_GENERATOR_STOP = 0x800000;
+const CO_FUTURE_ANNOTATIONS = 0x1000000;
+const CO_MAXBLOCKS = 21;
+
+macro @PyCode_Check(#op) {}
+
+macro @PY_FOREACH_CODE_EVENT(#v) {}
+
+const PY_DEF_EVENT = (OP)PY_CODE_EVENT_##OP,;
+
+macro @PyFrame_Check(#op) {}
+
+macro @PyTraceBack_Check(#v) {}
+
+macro @PySlice_Check(#op) {}
+
+macro @PySlice_GetIndicesEx(#slice, #length, #start, #stop, #step, #slicelen) {}
+
+macro @PyCell_Check(#op) {}
+
+macro @PyCell_GET(#op) {}
+
+macro @PyCell_SET(#op, #value) {}
+
+macro @PySeqIter_Check(#op) {}
+
+macro @PyCallIter_Check(#op) {}
+
+macro @PyGen_Check(#op) {}
+
+macro @PyGen_CheckExact(#op) {}
+
+macro @PyCoro_CheckExact(#op) {}
+
+macro @PyAsyncGen_CheckExact(#op) {}
+
+macro @PyAsyncGenASend_CheckExact(#op) {}
+
+const PY_T_SHORT = 0;
+const PY_T_INT = 1;
+const PY_T_LONG = 2;
+const PY_T_FLOAT = 3;
+const PY_T_DOUBLE = 4;
+const PY_T_STRING = 5;
+const PY_T_CHAR = 7;
+const PY_T_BYTE = 8;
+const PY_T_UBYTE = 9;
+const PY_T_USHORT = 10;
+const PY_T_UINT = 11;
+const PY_T_ULONG = 12;
+const PY_T_STRING_INPLACE = 13;
+const PY_T_BOOL = 14;
+const PY_T_OBJECT_EX = 16;
+const PY_T_LONGLONG = 17;
+const PY_T_ULONGLONG = 18;
+const PY_T_PYSSIZET = 19;
+const PY_READONLY = 1;
+const PY_AUDIT_READ = 2;
+const PY_RELATIVE_OFFSET = 8;
+const PYWRAPPERFLAG_KEYWORDS = 1;
+const PYDESCR_COMMON = PYDESCROBJECTD_COMMON;
+
+macro @PyDescr_TYPE(#x) {}
+
+macro @PyDescr_NAME(#x) {}
+
+macro @PyErr_Warn(#category, #msg) {}
+
+macro @PyWeakref_CheckRef(#op) {}
+
+macro @PyWeakref_CheckRefExact(#op) {}
+
+macro @PyWeakref_CheckProxy(#op) {}
+
+macro @PyWeakref_Check(#op) {}
+
+macro @PyWeakref_GET_OBJECT(#ref) {}
+
+macro @PyStructSequence_SET_ITEM(#op, #i, #v) {}
+
+macro @PyStructSequence_GET_ITEM(#op, #i) {}
+
+macro @PyPickleBuffer_Check(#op) {}
+
+const WAIT_LOCK = 1;
+const NOWAIT_LOCK = 0;
+const PY_TIMEOUT_T = longlong;
+const PY_TIMEOUT_MAX = (LLONG_MAX/1000);
+const PYTHREAD_INVALID_THREAD_ID = ((unsignedlong)-1);
+const NATIVE_TSS_KEY_T = PTHREAD_KEY_T;
+const PY_TSS_NEEDS_INIT = {0};
+
+macro @PyContext_CheckExact(#o) {}
+
+macro @PyContextVar_CheckExact(#o) {}
+
+macro @PyContextToken_CheckExact(#o) {}
+
+macro @PyModule_AddIntMacro(#m, #c) {}
+
+macro @PyModule_AddStringMacro(#m, #c) {}
+
+const PY_CLEANUP_SUPPORTED = 0x20000;
+const PYTHON_API_VERSION = 1013;
+const PYTHON_API_STRING = "1013";
+const PYTHON_ABI_VERSION = 3;
+const PYTHON_ABI_STRING = "3";
+
+macro @PyModule_Create(#module) {}
+
+macro @PyModule_FromDefAndSpec(#module, #spec) {}
+
+const PY_SINGLE_INPUT = 256;
+const PY_FILE_INPUT = 257;
+const PY_EVAL_INPUT = 258;
+const PY_FUNC_TYPE_INPUT = 345;
+const PYCF_MASK = (CO_FUTURE_DIVISION|CO_FUTURE_ABSOLUTE_IMPORT|CO_FUTURE_WITH_STATEMENT|CO_FUTURE_PRINT_FUNCTION|CO_FUTURE_UNICODE_LITERALS|CO_FUTURE_BARRY_AS_BDFL|CO_FUTURE_GENERATOR_STOP|CO_FUTURE_ANNOTATIONS);
+const PYCF_MASK_OBSOLETE = (CO_NESTED);
+const PYCF_SOURCE_IS_UTF8 = 0x0100;
+const PYCF_DONT_IMPLY_DEDENT = 0x0200;
+const PYCF_ONLY_AST = 0x0400;
+const PYCF_IGNORE_COOKIE = 0x0800;
+const PYCF_TYPE_COMMENTS = 0x1000;
+const PYCF_ALLOW_TOP_LEVEL_AWAIT = 0x2000;
+const PYCF_ALLOW_INCOMPLETE_INPUT = 0x4000;
+const PYCF_COMPILE_MASK = (PYCF_ONLY_AST|PYCF_ALLOW_TOP_LEVEL_AWAIT|PYCF_TYPE_COMMENTS|PYCF_DONT_IMPLY_DEDENT|PYCF_ALLOW_INCOMPLETE_INPUT);
+
+macro @SRC_LOCATION_FROM_AST(#n) {}
+
+const FUTURE_NESTED_SCOPES = "nested_scopes";
+const FUTURE_GENERATORS = "generators";
+const FUTURE_DIVISION = "division";
+const FUTURE_ABSOLUTE_IMPORT = "absolute_import";
+const FUTURE_WITH_STATEMENT = "with_statement";
+const FUTURE_PRINT_FUNCTION = "print_function";
+const FUTURE_UNICODE_LITERALS = "unicode_literals";
+const FUTURE_BARRY_AS_BDFL = "barry_as_FLUFL";
+const FUTURE_GENERATOR_STOP = "generator_stop";
+const FUTURE_ANNOTATIONS = "annotations";
+const PY_INVALID_STACK_EFFECT = INT_MAX;
+const PYOS_STACK_MARGIN = 2048;
+
+macro @Py_CompileString(#str, #p, #s) {}
+
+macro @Py_CompileStringFlags(#str, #p, #s, #f) {}
+
+macro @PyRun_String(#str, #s, #g, #l) {}
+
+macro @PyRun_AnyFile(#fp, #name) {}
+
+macro @PyRun_AnyFileEx(#fp, #name, #closeit) {}
+
+macro @PyRun_AnyFileFlags(#fp, #name, #flags) {}
+
+macro @PyRun_SimpleString(#s) {}
+
+macro @PyRun_SimpleFile(#f, #p) {}
+
+macro @PyRun_SimpleFileEx(#f, #p, #c) {}
+
+macro @PyRun_InteractiveOne(#f, #p) {}
+
+macro @PyRun_InteractiveLoop(#f, #p) {}
+
+macro @PyRun_File(#fp, #p, #s, #g, #l) {}
+
+macro @PyRun_FileEx(#fp, #p, #s, #g, #l, #c) {}
+
+macro @PyRun_FileFlags(#fp, #p, #s, #g, #l, #flags) {}
+
+const PYINTERPRETERCONFIG_DEFAULT_GIL = (0);
+const PYINTERPRETERCONFIG_SHARED_GIL = (1);
+const PYINTERPRETERCONFIG_OWN_GIL = (2);
+
+macro @PyEval_CallObject(#callable, #arg) {}
+
+const FVC_MASK = 0x3;
+const FVC_NONE = 0x0;
+const FVC_STR = 0x1;
+const FVC_REPR = 0x2;
+const FVC_ASCII = 0x3;
+const FVS_MASK = 0x4;
+const FVS_HAVE_SPEC = 0x4;
+
+macro @PyImport_ImportModuleEx(#n, #g, #l, #f) {}
+
+macro @PyObject_DelAttrString(#o, #a) {}
+
+macro @PyObject_DelAttr(#o, #a) {}
+
+const PYOBJECT_LENGTH = PYOBJECT_SIZE;
+const PYSEQUENCE_LENGTH = PYSEQUENCE_SIZE;
+
+macro @PySequence_Fast_GET_SIZE(#o) {}
+
+macro @PySequence_Fast_GET_ITEM(#o, #i) {}
+
+macro @PySequence_Fast_ITEMS(#sf) {}
+
+const PYSEQUENCE_IN = PYSEQUENCE_CONTAINS;
+const PYMAPPING_LENGTH = PYMAPPING_SIZE;
+
+macro @PyMapping_DelItemString(#o, #k) {}
+
+macro @PyMapping_DelItem(#o, #k) {}
+
+macro @PyVectorcall_NARGS(#n) {}
+
+macro @PySequence_ITEM(#o, #i) {}
+
+const PY_ITERSEARCH_COUNT = 1;
+const PY_ITERSEARCH_INDEX = 2;
+const PY_ITERSEARCH_CONTAINS = 3;
+const PY_CTF_LOWER = 0x01;
+const PY_CTF_UPPER = 0x02;
+const PY_CTF_ALPHA = (PY_CTF_LOWER|PY_CTF_UPPER);
+const PY_CTF_DIGIT = 0x04;
+const PY_CTF_ALNUM = (PY_CTF_ALPHA|PY_CTF_DIGIT);
+const PY_CTF_SPACE = 0x08;
+const PY_CTF_XDIGIT = 0x10;
+
+macro @Py_ISLOWER(#c) {}
+
+macro @Py_ISUPPER(#c) {}
+
+macro @Py_ISALPHA(#c) {}
+
+macro @Py_ISDIGIT(#c) {}
+
+macro @Py_ISXDIGIT(#c) {}
+
+macro @Py_ISALNUM(#c) {}
+
+macro @Py_ISSPACE(#c) {}
+
+macro @Py_TOLOWER(#c) {}
+
+macro @Py_TOUPPER(#c) {}
+
+const PY_DTSF_SIGN = 0x01;
+const PY_DTSF_ADD_DOT_0 = 0x02;
+const PY_DTSF_ALT = 0x04;
+const PY_DTSF_NO_NEG_0 = 0x08;
+const PY_DTST_FINITE = 0;
+const PY_DTST_INFINITE = 1;
+const PY_DTST_NAN = 2;
+const PYOS_STRNICMP = PYOS_MYSTRNICMP;
+const PYOS_STRICMP = PYOS_MYSTRICMP;
+
+macro @PyFPE_START_PROTECT(#err_string, #leave_stmt) {}
+
+macro @PyFPE_END_PROTECT(#v) {}
+
+alias Py_uintptr_t = uptr;
+
+alias Py_intptr_t = iptr;
+
+alias Py_ssize_t = ssize_t;
+
+alias Py_hash_t = Py_ssize_t;
+
+alias Py_uhash_t = usz;
+
+alias Py_ssize_clean_t = Py_ssize_t;
+
+fn void* PyMem_Malloc(
+   default, 
+  usz size)
+@extern("PyMem_Malloc");
+
+fn void* PyMem_Calloc(
+   default, 
+  usz nelem, 
+  usz elsize)
+@extern("PyMem_Calloc");
+
+fn void* PyMem_Realloc(
+   default, 
+  void* ptr, 
+  usz new_size)
+@extern("PyMem_Realloc");
+
+fn void PyMem_Free(
+   default, 
+  void* ptr)
+@extern("PyMem_Free");
+
+fn void* PyMem_RawMalloc(
+   default, 
+  usz size)
+@extern("PyMem_RawMalloc");
+
+fn void* PyMem_RawCalloc(
+   default, 
+  usz nelem, 
+  usz elsize)
+@extern("PyMem_RawCalloc");
+
+fn void* PyMem_RawRealloc(
+   default, 
+  void* ptr, 
+  usz new_size)
+@extern("PyMem_RawRealloc");
+
+fn void PyMem_RawFree(
+   default, 
+  void* ptr)
+@extern("PyMem_RawFree");
+
+fn CChar* _PyMem_GetCurrentAllocatorName(
+   default)
+@extern("_PyMem_GetCurrentAllocatorName");
+
+fn CChar* _PyMem_RawStrdup(
+   default, 
+  CChar* str)
+@extern("_PyMem_RawStrdup");
+
+fn CChar* _PyMem_Strdup(
+   default, 
+  CChar* str)
+@extern("_PyMem_Strdup");
+
+fn wchar_t* _PyMem_RawWcsdup(
+   default, 
+  wchar_t* str)
+@extern("_PyMem_RawWcsdup");
+
+typedef PyMemAllocatorDomain = inline CUInt;
+const PyMemAllocatorDomain PYMEM_DOMAIN_RAW = 0;
+const PyMemAllocatorDomain PYMEM_DOMAIN_MEM = 1;
+const PyMemAllocatorDomain PYMEM_DOMAIN_OBJ = 2;
+
+typedef PyMemAllocatorName = inline CUInt;
+const PyMemAllocatorName PYMEM_ALLOCATOR_NOT_SET = 0;
+const PyMemAllocatorName PYMEM_ALLOCATOR_DEFAULT = 1;
+const PyMemAllocatorName PYMEM_ALLOCATOR_DEBUG = 2;
+const PyMemAllocatorName PYMEM_ALLOCATOR_MALLOC = 3;
+const PyMemAllocatorName PYMEM_ALLOCATOR_MALLOC_DEBUG = 4;
+const PyMemAllocatorName PYMEM_ALLOCATOR_PYMALLOC = 5;
+const PyMemAllocatorName PYMEM_ALLOCATOR_PYMALLOC_DEBUG = 6;
+
+alias UnnamedPFN1 @private = fn void*(
+  void* ctx, 
+  usz size);
+
+alias UnnamedPFN2 @private = fn void*(
+  void* ctx, 
+  usz nelem, 
+  usz elsize);
+
+alias UnnamedPFN3 @private = fn void*(
+  void* ctx, 
+  void* ptr, 
+  usz new_size);
+
+alias UnnamedPFN4 @private = fn void(
+  void* ctx, 
+  void* ptr);
+
+struct PyMemAllocatorEx {
+  void* ctx;
+  UnnamedPFN1 malloc;
+  UnnamedPFN2 calloc;
+  UnnamedPFN3 realloc;
+  UnnamedPFN4 free;
+}
+
+fn void PyMem_GetAllocator(
+   default, 
+  PyMemAllocatorDomain domain, 
+  PyMemAllocatorEx* allocator)
+@extern("PyMem_GetAllocator");
+
+fn void PyMem_SetAllocator(
+   default, 
+  PyMemAllocatorDomain domain, 
+  PyMemAllocatorEx* allocator)
+@extern("PyMem_SetAllocator");
+
+fn void PyMem_SetupDebugHooks(
+   default)
+@extern("PyMem_SetupDebugHooks");
+
+typedef PyModuleDef = void;
+
+typedef PyModuleDef_Slot = void;
+
+typedef PyMethodDef = void;
+
+typedef PyGetSetDef = void;
+
+typedef PyMemberDef = void;
+
+typedef _object = void;
+
+alias PyObject = _object;
+
+typedef _longobject = void;
+
+alias PyLongObject = _longobject;
+
+typedef _typeobject = void;
+
+alias PyTypeObject = _typeobject;
+
+typedef PyCodeObject = void;
+
+typedef _frame = void;
+
+alias PyFrameObject = _frame;
+
+typedef _ts = void;
+
+alias PyThreadState = _ts;
+
+typedef _is = void;
+
+alias PyInterpreterState = _is;
+
+struct Py_buffer {
+  void* buf;
+  PyObject* obj;
+  Py_ssize_t len;
+  Py_ssize_t itemsize;
+  CInt readonly;
+  CInt ndim;
+  CChar* format;
+  Py_ssize_t* shape;
+  Py_ssize_t* strides;
+  Py_ssize_t* suboffsets;
+  void* internal;
+}
+
+alias getbufferproc = fn CInt(
+  PyObject*, 
+  Py_buffer*, 
+  CInt);
+
+alias releasebufferproc = fn void(
+  PyObject*, 
+  Py_buffer*);
+
+fn CInt PyObject_CheckBuffer(
+   default, 
+  PyObject* obj)
+@extern("PyObject_CheckBuffer");
+
+fn CInt PyObject_GetBuffer(
+   default, 
+  PyObject* obj, 
+  Py_buffer* view, 
+  CInt flags)
+@extern("PyObject_GetBuffer");
+
+fn void* PyBuffer_GetPointer(
+   default, 
+  Py_buffer* view, 
+  Py_ssize_t* indices)
+@extern("PyBuffer_GetPointer");
+
+fn Py_ssize_t PyBuffer_SizeFromFormat(
+   default, 
+  CChar* format)
+@extern("PyBuffer_SizeFromFormat");
+
+fn CInt PyBuffer_ToContiguous(
+   default, 
+  void* buf, 
+  Py_buffer* view, 
+  Py_ssize_t len, 
+  CChar order)
+@extern("PyBuffer_ToContiguous");
+
+fn CInt PyBuffer_FromContiguous(
+   default, 
+  Py_buffer* view, 
+  void* buf, 
+  Py_ssize_t len, 
+  CChar order)
+@extern("PyBuffer_FromContiguous");
+
+fn CInt PyObject_CopyData(
+   default, 
+  PyObject* dest, 
+  PyObject* src)
+@extern("PyObject_CopyData");
+
+fn CInt PyBuffer_IsContiguous(
+   default, 
+  Py_buffer* view, 
+  CChar fort)
+@extern("PyBuffer_IsContiguous");
+
+fn void PyBuffer_FillContiguousStrides(
+   default, 
+  CInt ndims, 
+  Py_ssize_t* shape, 
+  Py_ssize_t* strides, 
+  CInt itemsize, 
+  CChar fort)
+@extern("PyBuffer_FillContiguousStrides");
+
+fn CInt PyBuffer_FillInfo(
+   default, 
+  Py_buffer* view, 
+  PyObject* o, 
+  void* buf, 
+  Py_ssize_t len, 
+  CInt readonly, 
+  CInt flags)
+@extern("PyBuffer_FillInfo");
+
+fn void PyBuffer_Release(
+   default, 
+  Py_buffer* view)
+@extern("PyBuffer_Release");
+
+struct _object {
+  union {
+    Py_ssize_t ob_refcnt;
+    uint[2] ob_refcnt_split;
+  }
+  PyTypeObject* ob_type;
+}
+
+struct PyVarObject {
+  PyObject ob_base;
+  Py_ssize_t ob_size;
+}
+
+fn CInt Py_Is(
+   default, 
+  PyObject* x, 
+  PyObject* y)
+@extern("Py_Is");
+
+fn Py_ssize_t Py_REFCNT(
+  PyObject* ob)
+@extern("Py_REFCNT");
+
+fn PyTypeObject* Py_TYPE(
+  PyObject* ob)
+@extern("Py_TYPE");
+
+PyTypeObject pylong_type;
+
+PyTypeObject pybool_type;
+
+fn Py_ssize_t Py_SIZE(
+  PyObject* ob)
+@extern("Py_SIZE");
+
+fn CInt _Py_IsImmortal(
+   , 
+  PyObject* op)
+@extern("_Py_IsImmortal");
+
+fn CInt Py_IS_TYPE(
+  PyObject* ob, 
+  PyTypeObject* type)
+@extern("Py_IS_TYPE");
+
+fn void Py_SET_REFCNT(
+  PyObject* ob, 
+  Py_ssize_t refcnt)
+@extern("Py_SET_REFCNT");
+
+fn void Py_SET_TYPE(
+  PyObject* ob, 
+  PyTypeObject* type)
+@extern("Py_SET_TYPE");
+
+fn void Py_SET_SIZE(
+  PyVarObject* ob, 
+  Py_ssize_t size)
+@extern("Py_SET_SIZE");
+
+alias unaryfunc = fn PyObject*(
+  PyObject*);
+
+alias binaryfunc = fn PyObject*(
+  PyObject*, 
+  PyObject*);
+
+alias ternaryfunc = fn PyObject*(
+  PyObject*, 
+  PyObject*, 
+  PyObject*);
+
+alias inquiry = fn CInt(
+  PyObject*);
+
+alias lenfunc = fn Py_ssize_t(
+  PyObject*);
+
+alias ssizeargfunc = fn PyObject*(
+  PyObject*, 
+  Py_ssize_t);
+
+alias ssizessizeargfunc = fn PyObject*(
+  PyObject*, 
+  Py_ssize_t, 
+  Py_ssize_t);
+
+alias ssizeobjargproc = fn CInt(
+  PyObject*, 
+  Py_ssize_t, 
+  PyObject*);
+
+alias ssizessizeobjargproc = fn CInt(
+  PyObject*, 
+  Py_ssize_t, 
+  Py_ssize_t, 
+  PyObject*);
+
+alias objobjargproc = fn CInt(
+  PyObject*, 
+  PyObject*, 
+  PyObject*);
+
+alias objobjproc = fn CInt(
+  PyObject*, 
+  PyObject*);
+
+alias visitproc = fn CInt(
+  PyObject*, 
+  void*);
+
+alias traverseproc = fn CInt(
+  PyObject*, 
+  visitproc, 
+  void*);
+
+alias freefunc = fn void(
+  void*);
+
+alias destructor = fn void(
+  PyObject*);
+
+alias getattrfunc = fn PyObject*(
+  PyObject*, 
+  CChar*);
+
+alias getattrofunc = fn PyObject*(
+  PyObject*, 
+  PyObject*);
+
+alias setattrfunc = fn CInt(
+  PyObject*, 
+  CChar*, 
+  PyObject*);
+
+alias setattrofunc = fn CInt(
+  PyObject*, 
+  PyObject*, 
+  PyObject*);
+
+alias reprfunc = fn PyObject*(
+  PyObject*);
+
+alias hashfunc = fn Py_hash_t(
+  PyObject*);
+
+alias richcmpfunc = fn PyObject*(
+  PyObject*, 
+  PyObject*, 
+  CInt);
+
+alias getiterfunc = fn PyObject*(
+  PyObject*);
+
+alias iternextfunc = fn PyObject*(
+  PyObject*);
+
+alias descrgetfunc = fn PyObject*(
+  PyObject*, 
+  PyObject*, 
+  PyObject*);
+
+alias descrsetfunc = fn CInt(
+  PyObject*, 
+  PyObject*, 
+  PyObject*);
+
+alias initproc = fn CInt(
+  PyObject*, 
+  PyObject*, 
+  PyObject*);
+
+alias newfunc = fn PyObject*(
+  PyTypeObject*, 
+  PyObject*, 
+  PyObject*);
+
+alias allocfunc = fn PyObject*(
+  PyTypeObject*, 
+  Py_ssize_t);
+
+alias vectorcallfunc = fn PyObject*(
+  PyObject* callable, 
+  PyObject** args, 
+  usz nargsf, 
+  PyObject* kwnames);
+
+struct PyType_Slot {
+  CInt slot;
+  void* pfunc;
+}
+
+struct PyType_Spec {
+  CChar* name;
+  CInt basicsize;
+  CInt itemsize;
+  CUInt flags;
+  PyType_Slot* slots;
+}
+
+fn PyObject* PyType_FromSpec(
+   default, 
+  PyType_Spec* )
+@extern("PyType_FromSpec");
+
+fn PyObject* PyType_FromSpecWithBases(
+   default, 
+  PyType_Spec* , 
+  PyObject* )
+@extern("PyType_FromSpecWithBases");
+
+fn void* PyType_GetSlot(
+   default, 
+  PyTypeObject* , 
+  CInt )
+@extern("PyType_GetSlot");
+
+fn PyObject* PyType_FromModuleAndSpec(
+   default, 
+  PyObject* , 
+  PyType_Spec* , 
+  PyObject* )
+@extern("PyType_FromModuleAndSpec");
+
+fn PyObject* PyType_GetModule(
+   default, 
+  PyTypeObject* )
+@extern("PyType_GetModule");
+
+fn void* PyType_GetModuleState(
+   default, 
+  PyTypeObject* )
+@extern("PyType_GetModuleState");
+
+fn PyObject* PyType_GetName(
+   default, 
+  PyTypeObject* )
+@extern("PyType_GetName");
+
+fn PyObject* PyType_GetQualName(
+   default, 
+  PyTypeObject* )
+@extern("PyType_GetQualName");
+
+fn PyObject* PyType_FromMetaclass(
+   default, 
+  PyTypeObject* , 
+  PyObject* , 
+  PyType_Spec* , 
+  PyObject* )
+@extern("PyType_FromMetaclass");
+
+fn void* PyObject_GetTypeData(
+   default, 
+  PyObject* obj, 
+  PyTypeObject* cls)
+@extern("PyObject_GetTypeData");
+
+fn Py_ssize_t PyType_GetTypeDataSize(
+   default, 
+  PyTypeObject* cls)
+@extern("PyType_GetTypeDataSize");
+
+fn CInt PyType_IsSubtype(
+   default, 
+  PyTypeObject* , 
+  PyTypeObject* )
+@extern("PyType_IsSubtype");
+
+fn CInt PyObject_TypeCheck(
+  PyObject* ob, 
+  PyTypeObject* type)
+@extern("PyObject_TypeCheck");
+
+PyTypeObject pytype_type;
+
+PyTypeObject pybaseobject_type;
+
+PyTypeObject pysuper_type;
+
+fn CULong PyType_GetFlags(
+   default, 
+  PyTypeObject* )
+@extern("PyType_GetFlags");
+
+fn CInt PyType_Ready(
+   default, 
+  PyTypeObject* )
+@extern("PyType_Ready");
+
+fn PyObject* PyType_GenericAlloc(
+   default, 
+  PyTypeObject* , 
+  Py_ssize_t )
+@extern("PyType_GenericAlloc");
+
+fn PyObject* PyType_GenericNew(
+   default, 
+  PyTypeObject* , 
+  PyObject* , 
+  PyObject* )
+@extern("PyType_GenericNew");
+
+fn CUInt PyType_ClearCache(
+   default)
+@extern("PyType_ClearCache");
+
+fn void PyType_Modified(
+   default, 
+  PyTypeObject* )
+@extern("PyType_Modified");
+
+fn PyObject* PyObject_Repr(
+   default, 
+  PyObject* )
+@extern("PyObject_Repr");
+
+fn PyObject* PyObject_Str(
+   default, 
+  PyObject* )
+@extern("PyObject_Str");
+
+fn PyObject* PyObject_ASCII(
+   default, 
+  PyObject* )
+@extern("PyObject_ASCII");
+
+fn PyObject* PyObject_Bytes(
+   default, 
+  PyObject* )
+@extern("PyObject_Bytes");
+
+fn PyObject* PyObject_RichCompare(
+   default, 
+  PyObject* , 
+  PyObject* , 
+  CInt )
+@extern("PyObject_RichCompare");
+
+fn CInt PyObject_RichCompareBool(
+   default, 
+  PyObject* , 
+  PyObject* , 
+  CInt )
+@extern("PyObject_RichCompareBool");
+
+fn PyObject* PyObject_GetAttrString(
+   default, 
+  PyObject* , 
+  CChar* )
+@extern("PyObject_GetAttrString");
+
+fn CInt PyObject_SetAttrString(
+   default, 
+  PyObject* , 
+  CChar* , 
+  PyObject* )
+@extern("PyObject_SetAttrString");
+
+fn CInt PyObject_HasAttrString(
+   default, 
+  PyObject* , 
+  CChar* )
+@extern("PyObject_HasAttrString");
+
+fn PyObject* PyObject_GetAttr(
+   default, 
+  PyObject* , 
+  PyObject* )
+@extern("PyObject_GetAttr");
+
+fn CInt PyObject_SetAttr(
+   default, 
+  PyObject* , 
+  PyObject* , 
+  PyObject* )
+@extern("PyObject_SetAttr");
+
+fn CInt PyObject_HasAttr(
+   default, 
+  PyObject* , 
+  PyObject* )
+@extern("PyObject_HasAttr");
+
+fn PyObject* PyObject_SelfIter(
+   default, 
+  PyObject* )
+@extern("PyObject_SelfIter");
+
+fn PyObject* PyObject_GenericGetAttr(
+   default, 
+  PyObject* , 
+  PyObject* )
+@extern("PyObject_GenericGetAttr");
+
+fn CInt PyObject_GenericSetAttr(
+   default, 
+  PyObject* , 
+  PyObject* , 
+  PyObject* )
+@extern("PyObject_GenericSetAttr");
+
+fn CInt PyObject_GenericSetDict(
+   default, 
+  PyObject* , 
+  PyObject* , 
+  void* )
+@extern("PyObject_GenericSetDict");
+
+fn Py_hash_t PyObject_Hash(
+   default, 
+  PyObject* )
+@extern("PyObject_Hash");
+
+fn Py_hash_t PyObject_HashNotImplemented(
+   default, 
+  PyObject* )
+@extern("PyObject_HashNotImplemented");
+
+fn CInt PyObject_IsTrue(
+   default, 
+  PyObject* )
+@extern("PyObject_IsTrue");
+
+fn CInt PyObject_Not(
+   default, 
+  PyObject* )
+@extern("PyObject_Not");
+
+fn CInt PyCallable_Check(
+   default, 
+  PyObject* )
+@extern("PyCallable_Check");
+
+fn void PyObject_ClearWeakRefs(
+   default, 
+  PyObject* )
+@extern("PyObject_ClearWeakRefs");
+
+fn PyObject* PyObject_Dir(
+   default, 
+  PyObject* )
+@extern("PyObject_Dir");
+
+fn PyObject* _PyObject_GetState(
+   default, 
+  PyObject* )
+@extern("_PyObject_GetState");
+
+fn CInt Py_ReprEnter(
+   default, 
+  PyObject* )
+@extern("Py_ReprEnter");
+
+fn void Py_ReprLeave(
+   default, 
+  PyObject* )
+@extern("Py_ReprLeave");
+
+fn void _Py_Dealloc(
+   default, 
+  PyObject* )
+@extern("_Py_Dealloc");
+
+fn void Py_IncRef(
+   default, 
+  PyObject* )
+@extern("Py_IncRef");
+
+fn void Py_DecRef(
+   default, 
+  PyObject* )
+@extern("Py_DecRef");
+
+fn void _Py_IncRef(
+   default, 
+  PyObject* )
+@extern("_Py_IncRef");
+
+fn void _Py_DecRef(
+   default, 
+  PyObject* )
+@extern("_Py_DecRef");
+
+fn void Py_INCREF(
+   , 
+  PyObject* op)
+@extern("Py_INCREF");
+
+fn void Py_DECREF(
+   , 
+  PyObject* op)
+@extern("Py_DECREF");
+
+fn void Py_XINCREF(
+  PyObject* op)
+@extern("Py_XINCREF");
+
+fn void Py_XDECREF(
+  PyObject* op)
+@extern("Py_XDECREF");
+
+fn PyObject* Py_NewRef(
+   default, 
+  PyObject* obj)
+@extern("Py_NewRef");
+
+fn PyObject* Py_XNewRef(
+   default, 
+  PyObject* obj)
+@extern("Py_XNewRef");
+
+fn PyObject* _Py_NewRef(
+  PyObject* obj)
+@extern("_Py_NewRef");
+
+fn PyObject* _Py_XNewRef(
+  PyObject* obj)
+@extern("_Py_XNewRef");
+
+PyObject _py_nonestruct;
+
+fn CInt Py_IsNone(
+   default, 
+  PyObject* x)
+@extern("Py_IsNone");
+
+PyObject _py_notimplementedstruct;
+
+typedef PySendResult = inline CInt;
+const PySendResult PYGEN_RETURN = 0;
+const PySendResult PYGEN_ERROR = -1;
+const PySendResult PYGEN_NEXT = 1;
+
+fn void _Py_NewReference(
+   default, 
+  PyObject* op)
+@extern("_Py_NewReference");
+
+fn void _Py_NewReferenceNoTotal(
+   default, 
+  PyObject* op)
+@extern("_Py_NewReferenceNoTotal");
+
+struct _Py_Identifier {
+  CChar* string;
+  Py_ssize_t index;
+}
+
+struct PyNumberMethods {
+  binaryfunc nb_add;
+  binaryfunc nb_subtract;
+  binaryfunc nb_multiply;
+  binaryfunc nb_remainder;
+  binaryfunc nb_divmod;
+  ternaryfunc nb_power;
+  unaryfunc nb_negative;
+  unaryfunc nb_positive;
+  unaryfunc nb_absolute;
+  inquiry nb_bool;
+  unaryfunc nb_invert;
+  binaryfunc nb_lshift;
+  binaryfunc nb_rshift;
+  binaryfunc nb_and;
+  binaryfunc nb_xor;
+  binaryfunc nb_or;
+  unaryfunc nb_int;
+  void* nb_reserved;
+  unaryfunc nb_float;
+  binaryfunc nb_inplace_add;
+  binaryfunc nb_inplace_subtract;
+  binaryfunc nb_inplace_multiply;
+  binaryfunc nb_inplace_remainder;
+  ternaryfunc nb_inplace_power;
+  binaryfunc nb_inplace_lshift;
+  binaryfunc nb_inplace_rshift;
+  binaryfunc nb_inplace_and;
+  binaryfunc nb_inplace_xor;
+  binaryfunc nb_inplace_or;
+  binaryfunc nb_floor_divide;
+  binaryfunc nb_true_divide;
+  binaryfunc nb_inplace_floor_divide;
+  binaryfunc nb_inplace_true_divide;
+  unaryfunc nb_index;
+  binaryfunc nb_matrix_multiply;
+  binaryfunc nb_inplace_matrix_multiply;
+}
+
+struct PySequenceMethods {
+  lenfunc sq_length;
+  binaryfunc sq_concat;
+  ssizeargfunc sq_repeat;
+  ssizeargfunc sq_item;
+  void* was_sq_slice;
+  ssizeobjargproc sq_ass_item;
+  void* was_sq_ass_slice;
+  objobjproc sq_contains;
+  binaryfunc sq_inplace_concat;
+  ssizeargfunc sq_inplace_repeat;
+}
+
+struct PyMappingMethods {
+  lenfunc mp_length;
+  binaryfunc mp_subscript;
+  objobjargproc mp_ass_subscript;
+}
+
+alias sendfunc = fn PySendResult(
+  PyObject* iter, 
+  PyObject* value, 
+  PyObject** result);
+
+struct PyAsyncMethods {
+  unaryfunc am_await;
+  unaryfunc am_aiter;
+  unaryfunc am_anext;
+  sendfunc am_send;
+}
+
+struct PyBufferProcs {
+  getbufferproc bf_getbuffer;
+  releasebufferproc bf_releasebuffer;
+}
+
+alias printfunc = Py_ssize_t;
+
+struct _typeobject {
+  PyVarObject ob_base;
+  CChar* tp_name;
+  Py_ssize_t tp_basicsize;
+  Py_ssize_t tp_itemsize;
+  destructor tp_dealloc;
+  Py_ssize_t tp_vectorcall_offset;
+  getattrfunc tp_getattr;
+  setattrfunc tp_setattr;
+  PyAsyncMethods* tp_as_async;
+  reprfunc tp_repr;
+  PyNumberMethods* tp_as_number;
+  PySequenceMethods* tp_as_sequence;
+  PyMappingMethods* tp_as_mapping;
+  hashfunc tp_hash;
+  ternaryfunc tp_call;
+  reprfunc tp_str;
+  getattrofunc tp_getattro;
+  setattrofunc tp_setattro;
+  PyBufferProcs* tp_as_buffer;
+  CULong tp_flags;
+  CChar* tp_doc;
+  traverseproc tp_traverse;
+  inquiry tp_clear;
+  richcmpfunc tp_richcompare;
+  Py_ssize_t tp_weaklistoffset;
+  getiterfunc tp_iter;
+  iternextfunc tp_iternext;
+  PyMethodDef* tp_methods;
+  PyMemberDef* tp_members;
+  PyGetSetDef* tp_getset;
+  PyTypeObject* tp_base;
+  PyObject* tp_dict;
+  descrgetfunc tp_descr_get;
+  descrsetfunc tp_descr_set;
+  Py_ssize_t tp_dictoffset;
+  initproc tp_init;
+  allocfunc tp_alloc;
+  newfunc tp_new;
+  freefunc tp_free;
+  inquiry tp_is_gc;
+  PyObject* tp_bases;
+  PyObject* tp_mro;
+  PyObject* tp_cache;
+  void* tp_subclasses;
+  PyObject* tp_weaklist;
+  destructor tp_del;
+  CUInt tp_version_tag;
+  destructor tp_finalize;
+  vectorcallfunc tp_vectorcall;
+  char tp_watched;
+}
+
+struct _specialization_cache {
+  PyObject* getitem;
+  uint getitem_version;
+}
+
+typedef _dictkeysobject @private = void;
+
+struct _heaptypeobject {
+  PyTypeObject ht_type;
+  PyAsyncMethods as_async;
+  PyNumberMethods as_number;
+  PyMappingMethods as_mapping;
+  PySequenceMethods as_sequence;
+  PyBufferProcs as_buffer;
+  PyObject* ht_name;
+  PyObject* ht_slots;
+  PyObject* ht_qualname;
+  _dictkeysobject* ht_cached_keys;
+  PyObject* ht_module;
+  CChar* _ht_tpname;
+  _specialization_cache _spec_cache;
+}
+
+alias PyHeapTypeObject = _heaptypeobject;
+
+fn CChar* _PyType_Name(
+   default, 
+  PyTypeObject* )
+@extern("_PyType_Name");
+
+fn PyObject* _PyType_Lookup(
+   default, 
+  PyTypeObject* , 
+  PyObject* )
+@extern("_PyType_Lookup");
+
+fn PyObject* _PyType_LookupId(
+   default, 
+  PyTypeObject* , 
+  _Py_Identifier* )
+@extern("_PyType_LookupId");
+
+fn PyObject* _PyObject_LookupSpecialId(
+   default, 
+  PyObject* , 
+  _Py_Identifier* )
+@extern("_PyObject_LookupSpecialId");
+
+fn PyTypeObject* _PyType_CalculateMetaclass(
+   default, 
+  PyTypeObject* , 
+  PyObject* )
+@extern("_PyType_CalculateMetaclass");
+
+fn PyObject* _PyType_GetDocFromInternalDoc(
+   default, 
+  CChar* , 
+  CChar* )
+@extern("_PyType_GetDocFromInternalDoc");
+
+fn PyObject* _PyType_GetTextSignatureFromInternalDoc(
+   default, 
+  CChar* , 
+  CChar* )
+@extern("_PyType_GetTextSignatureFromInternalDoc");
+
+fn PyObject* PyType_GetModuleByDef(
+   default, 
+  PyTypeObject* , 
+  PyModuleDef* )
+@extern("PyType_GetModuleByDef");
+
+fn PyObject* PyType_GetDict(
+   default, 
+  PyTypeObject* )
+@extern("PyType_GetDict");
+
+fn CInt PyObject_Print(
+   default, 
+  PyObject* , 
+  FILE* , 
+  CInt )
+@extern("PyObject_Print");
+
+fn void _Py_BreakPoint(
+   default)
+@extern("_Py_BreakPoint");
+
+fn void _PyObject_Dump(
+   default, 
+  PyObject* )
+@extern("_PyObject_Dump");
+
+fn CInt _PyObject_IsFreed(
+   default, 
+  PyObject* )
+@extern("_PyObject_IsFreed");
+
+fn CInt _PyObject_IsAbstract(
+   default, 
+  PyObject* )
+@extern("_PyObject_IsAbstract");
+
+fn PyObject* _PyObject_GetAttrId(
+   default, 
+  PyObject* , 
+  _Py_Identifier* )
+@extern("_PyObject_GetAttrId");
+
+fn CInt _PyObject_SetAttrId(
+   default, 
+  PyObject* , 
+  _Py_Identifier* , 
+  PyObject* )
+@extern("_PyObject_SetAttrId");
+
+fn CInt _PyObject_LookupAttr(
+   default, 
+  PyObject* , 
+  PyObject* , 
+  PyObject** )
+@extern("_PyObject_LookupAttr");
+
+fn CInt _PyObject_LookupAttrId(
+   default, 
+  PyObject* , 
+  _Py_Identifier* , 
+  PyObject** )
+@extern("_PyObject_LookupAttrId");
+
+fn CInt _PyObject_GetMethod(
+   default, 
+  PyObject* obj, 
+  PyObject* name, 
+  PyObject** method)
+@extern("_PyObject_GetMethod");
+
+fn PyObject** _PyObject_GetDictPtr(
+   default, 
+  PyObject* )
+@extern("_PyObject_GetDictPtr");
+
+fn PyObject* _PyObject_NextNotImplemented(
+   default, 
+  PyObject* )
+@extern("_PyObject_NextNotImplemented");
+
+fn void PyObject_CallFinalizer(
+   default, 
+  PyObject* )
+@extern("PyObject_CallFinalizer");
+
+fn CInt PyObject_CallFinalizerFromDealloc(
+   default, 
+  PyObject* )
+@extern("PyObject_CallFinalizerFromDealloc");
+
+fn PyObject* _PyObject_GenericGetAttrWithDict(
+   default, 
+  PyObject* , 
+  PyObject* , 
+  PyObject* , 
+  CInt )
+@extern("_PyObject_GenericGetAttrWithDict");
+
+fn CInt _PyObject_GenericSetAttrWithDict(
+   default, 
+  PyObject* , 
+  PyObject* , 
+  PyObject* , 
+  PyObject* )
+@extern("_PyObject_GenericSetAttrWithDict");
+
+fn PyObject* _PyObject_FunctionStr(
+   default, 
+  PyObject* )
+@extern("_PyObject_FunctionStr");
+
+PyTypeObject _pynone_type;
+
+PyTypeObject _pynotimplemented_type;
+
+CInt* _py_swappedop;
+
+fn void _PyDebugAllocatorStats(
+   default, 
+  FILE* out, 
+  CChar* block_name, 
+  CInt num_blocks, 
+  usz sizeof_block)
+@extern("_PyDebugAllocatorStats");
+
+fn void _PyObject_DebugTypeStats(
+   default, 
+  FILE* out)
+@extern("_PyObject_DebugTypeStats");
+
+fn void _PyObject_AssertFailed(
+   default, 
+  PyObject* obj, 
+  CChar* expr, 
+  CChar* msg, 
+  CChar* file, 
+  CInt line, 
+  CChar* function)
+@extern("_PyObject_AssertFailed");
+
+fn CInt _PyObject_CheckConsistency(
+   default, 
+  PyObject* op, 
+  CInt check_content)
+@extern("_PyObject_CheckConsistency");
+
+fn CInt _PyTrash_begin(
+   default, 
+  PyThreadState* tstate, 
+  PyObject* op)
+@extern("_PyTrash_begin");
+
+fn void _PyTrash_end(
+   default, 
+  PyThreadState* tstate)
+@extern("_PyTrash_end");
+
+fn CInt _PyTrash_cond(
+   default, 
+  PyObject* op, 
+  destructor dealloc)
+@extern("_PyTrash_cond");
+
+alias UsingDeprecatedTrashcanMacro = CInt;
+
+fn void* PyObject_GetItemData(
+   default, 
+  PyObject* obj)
+@extern("PyObject_GetItemData");
+
+fn CInt _PyObject_VisitManagedDict(
+   default, 
+  PyObject* obj, 
+  visitproc visit, 
+  void* arg)
+@extern("_PyObject_VisitManagedDict");
+
+fn void _PyObject_ClearManagedDict(
+   default, 
+  PyObject* obj)
+@extern("_PyObject_ClearManagedDict");
+
+alias PyType_WatchCallback = fn CInt(
+  PyTypeObject*);
+
+fn CInt PyType_AddWatcher(
+   default, 
+  PyType_WatchCallback callback)
+@extern("PyType_AddWatcher");
+
+fn CInt PyType_ClearWatcher(
+   default, 
+  CInt watcher_id)
+@extern("PyType_ClearWatcher");
+
+fn CInt PyType_Watch(
+   default, 
+  CInt watcher_id, 
+  PyObject* type)
+@extern("PyType_Watch");
+
+fn CInt PyType_Unwatch(
+   default, 
+  CInt watcher_id, 
+  PyObject* type)
+@extern("PyType_Unwatch");
+
+fn CInt PyUnstable_Type_AssignVersionTag(
+   default, 
+  PyTypeObject* type)
+@extern("PyUnstable_Type_AssignVersionTag");
+
+fn CInt PyType_HasFeature(
+  PyTypeObject* type, 
+  CULong feature)
+@extern("PyType_HasFeature");
+
+fn CInt PyType_Check(
+  PyObject* op)
+@extern("PyType_Check");
+
+fn CInt PyType_CheckExact(
+  PyObject* op)
+@extern("PyType_CheckExact");
+
+fn void* PyObject_Malloc(
+   default, 
+  usz size)
+@extern("PyObject_Malloc");
+
+fn void* PyObject_Calloc(
+   default, 
+  usz nelem, 
+  usz elsize)
+@extern("PyObject_Calloc");
+
+fn void* PyObject_Realloc(
+   default, 
+  void* ptr, 
+  usz new_size)
+@extern("PyObject_Realloc");
+
+fn void PyObject_Free(
+   default, 
+  void* ptr)
+@extern("PyObject_Free");
+
+fn PyObject* PyObject_Init(
+   default, 
+  PyObject* , 
+  PyTypeObject* )
+@extern("PyObject_Init");
+
+fn PyVarObject* PyObject_InitVar(
+   default, 
+  PyVarObject* , 
+  PyTypeObject* , 
+  Py_ssize_t )
+@extern("PyObject_InitVar");
+
+fn PyObject* _PyObject_New(
+   default, 
+  PyTypeObject* )
+@extern("_PyObject_New");
+
+fn PyVarObject* _PyObject_NewVar(
+   default, 
+  PyTypeObject* , 
+  Py_ssize_t )
+@extern("_PyObject_NewVar");
+
+fn Py_ssize_t PyGC_Collect(
+   default)
+@extern("PyGC_Collect");
+
+fn CInt PyGC_Enable(
+   default)
+@extern("PyGC_Enable");
+
+fn CInt PyGC_Disable(
+   default)
+@extern("PyGC_Disable");
+
+fn CInt PyGC_IsEnabled(
+   default)
+@extern("PyGC_IsEnabled");
+
+alias gcvisitobjects_t = fn CInt(
+  PyObject*, 
+  void*);
+
+fn void PyUnstable_GC_VisitObjects(
+   default, 
+  gcvisitobjects_t callback, 
+  void* arg)
+@extern("PyUnstable_GC_VisitObjects");
+
+fn PyVarObject* _PyObject_GC_Resize(
+   default, 
+  PyVarObject* , 
+  Py_ssize_t )
+@extern("_PyObject_GC_Resize");
+
+fn PyObject* _PyObject_GC_New(
+   default, 
+  PyTypeObject* )
+@extern("_PyObject_GC_New");
+
+fn PyVarObject* _PyObject_GC_NewVar(
+   default, 
+  PyTypeObject* , 
+  Py_ssize_t )
+@extern("_PyObject_GC_NewVar");
+
+fn void PyObject_GC_Track(
+   default, 
+  void* )
+@extern("PyObject_GC_Track");
+
+fn void PyObject_GC_UnTrack(
+   default, 
+  void* )
+@extern("PyObject_GC_UnTrack");
+
+fn void PyObject_GC_Del(
+   default, 
+  void* )
+@extern("PyObject_GC_Del");
+
+fn CInt PyObject_GC_IsTracked(
+   default, 
+  PyObject* )
+@extern("PyObject_GC_IsTracked");
+
+fn CInt PyObject_GC_IsFinalized(
+   default, 
+  PyObject* )
+@extern("PyObject_GC_IsFinalized");
+
+fn usz _PyObject_SIZE(
+  PyTypeObject* type)
+@extern("_PyObject_SIZE");
+
+fn usz _PyObject_VAR_SIZE(
+  PyTypeObject* type, 
+  Py_ssize_t nitems)
+@extern("_PyObject_VAR_SIZE");
+
+alias UnnamedPFN5 @private = fn void(
+  void* ctx, 
+  void* ptr, 
+  usz size);
+
+struct PyObjectArenaAllocator {
+  void* ctx;
+  UnnamedPFN1 alloc;
+  UnnamedPFN5 free;
+}
+
+fn void PyObject_GetArenaAllocator(
+   default, 
+  PyObjectArenaAllocator* allocator)
+@extern("PyObject_GetArenaAllocator");
+
+fn void PyObject_SetArenaAllocator(
+   default, 
+  PyObjectArenaAllocator* allocator)
+@extern("PyObject_SetArenaAllocator");
+
+fn CInt PyObject_IS_GC(
+   default, 
+  PyObject* obj)
+@extern("PyObject_IS_GC");
+
+fn CInt PyType_SUPPORTS_WEAKREFS(
+   default, 
+  PyTypeObject* type)
+@extern("PyType_SUPPORTS_WEAKREFS");
+
+fn PyObject** PyObject_GET_WEAKREFS_LISTPTR(
+   default, 
+  PyObject* op)
+@extern("PyObject_GET_WEAKREFS_LISTPTR");
+
+fn PyObject* PyUnstable_Object_GC_NewWithExtraData(
+   default, 
+  PyTypeObject* , 
+  usz )
+@extern("PyUnstable_Object_GC_NewWithExtraData");
+
+fn Py_hash_t _Py_HashDouble(
+   default, 
+  PyObject* , 
+  double )
+@extern("_Py_HashDouble");
+
+fn Py_hash_t _Py_HashPointer(
+   default, 
+  void* )
+@extern("_Py_HashPointer");
+
+fn Py_hash_t _Py_HashPointerRaw(
+   default, 
+  void* )
+@extern("_Py_HashPointerRaw");
+
+fn Py_hash_t _Py_HashBytes(
+   default, 
+  void* , 
+  Py_ssize_t )
+@extern("_Py_HashBytes");
+
+union _Py_HashSecret_t {
+  char[24] uc;
+  struct fnv {
+    Py_hash_t prefix;
+    Py_hash_t suffix;
+  }
+  struct siphash {
+    ulong k0;
+    ulong k1;
+  }
+  struct djbx33a {
+    char[16] padding;
+    Py_hash_t suffix;
+  }
+  struct expat {
+    char[16] padding;
+    Py_hash_t hashsalt;
+  }
+}
+
+_Py_HashSecret_t _py_hashsecret;
+
+alias UnnamedPFN6 @private = fn Py_hash_t(
+  void*, 
+  Py_ssize_t);
+
+struct PyHash_FuncDef {
+  UnnamedPFN6 hash;
+  CChar* name;
+  CInt hash_bits;
+  CInt seed_bits;
+}
+
+fn PyHash_FuncDef* PyHash_GetFuncDef(
+   default)
+@extern("PyHash_GetFuncDef");
+
+CInt py_debugflag;
+
+CInt py_verboseflag;
+
+CInt py_quietflag;
+
+CInt py_interactiveflag;
+
+CInt py_inspectflag;
+
+CInt py_optimizeflag;
+
+CInt py_nositeflag;
+
+CInt py_byteswarningflag;
+
+CInt py_frozenflag;
+
+CInt py_ignoreenvironmentflag;
+
+CInt py_dontwritebytecodeflag;
+
+CInt py_nousersitedirectory;
+
+CInt py_unbufferedstdioflag;
+
+CInt py_hashrandomizationflag;
+
+CInt py_isolatedflag;
+
+fn CChar* Py_GETENV(
+   default, 
+  CChar* name)
+@extern("Py_GETENV");
+
+PyTypeObject pybytearray_type;
+
+PyTypeObject pybytearrayiter_type;
+
+fn PyObject* PyByteArray_FromObject(
+   default, 
+  PyObject* )
+@extern("PyByteArray_FromObject");
+
+fn PyObject* PyByteArray_Concat(
+   default, 
+  PyObject* , 
+  PyObject* )
+@extern("PyByteArray_Concat");
+
+fn PyObject* PyByteArray_FromStringAndSize(
+   default, 
+  CChar* , 
+  Py_ssize_t )
+@extern("PyByteArray_FromStringAndSize");
+
+fn Py_ssize_t PyByteArray_Size(
+   default, 
+  PyObject* )
+@extern("PyByteArray_Size");
+
+fn CChar* PyByteArray_AsString(
+   default, 
+  PyObject* )
+@extern("PyByteArray_AsString");
+
+fn CInt PyByteArray_Resize(
+   default, 
+  PyObject* , 
+  Py_ssize_t )
+@extern("PyByteArray_Resize");
+
+struct PyByteArrayObject {
+  PyVarObject ob_base;
+  Py_ssize_t ob_alloc;
+  CChar* ob_bytes;
+  CChar* ob_start;
+  Py_ssize_t ob_exports;
+}
+
+CChar* _pybytearray_empty_string;
+
+fn CChar* PyByteArray_AS_STRING(
+  PyObject* op)
+@extern("PyByteArray_AS_STRING");
+
+fn Py_ssize_t PyByteArray_GET_SIZE(
+  PyObject* op)
+@extern("PyByteArray_GET_SIZE");
+
+PyTypeObject pybytes_type;
+
+PyTypeObject pybytesiter_type;
+
+fn PyObject* PyBytes_FromStringAndSize(
+   default, 
+  CChar* , 
+  Py_ssize_t )
+@extern("PyBytes_FromStringAndSize");
+
+fn PyObject* PyBytes_FromString(
+   default, 
+  CChar* )
+@extern("PyBytes_FromString");
+
+fn PyObject* PyBytes_FromObject(
+   default, 
+  PyObject* )
+@extern("PyBytes_FromObject");
+
+fn PyObject* PyBytes_FromFormatV(
+   default, 
+   , 
+  CChar* , 
+  void* )
+@extern("PyBytes_FromFormatV");
+
+fn PyObject* PyBytes_FromFormat(
+   default, 
+   , 
+  CChar* )
+@extern("PyBytes_FromFormat");
+
+fn Py_ssize_t PyBytes_Size(
+   default, 
+  PyObject* )
+@extern("PyBytes_Size");
+
+fn CChar* PyBytes_AsString(
+   default, 
+  PyObject* )
+@extern("PyBytes_AsString");
+
+fn PyObject* PyBytes_Repr(
+   default, 
+  PyObject* , 
+  CInt )
+@extern("PyBytes_Repr");
+
+fn void PyBytes_Concat(
+   default, 
+  PyObject** , 
+  PyObject* )
+@extern("PyBytes_Concat");
+
+fn void PyBytes_ConcatAndDel(
+   default, 
+  PyObject** , 
+  PyObject* )
+@extern("PyBytes_ConcatAndDel");
+
+fn PyObject* PyBytes_DecodeEscape(
+   default, 
+  CChar* , 
+  Py_ssize_t , 
+  CChar* , 
+  Py_ssize_t , 
+  CChar* )
+@extern("PyBytes_DecodeEscape");
+
+fn CInt PyBytes_AsStringAndSize(
+   default, 
+  PyObject* obj, 
+  CChar** s, 
+  Py_ssize_t* len)
+@extern("PyBytes_AsStringAndSize");
+
+struct PyBytesObject {
+  PyVarObject ob_base;
+  Py_hash_t ob_shash;
+  CChar[1] ob_sval;
+}
+
+fn CInt _PyBytes_Resize(
+   default, 
+  PyObject** , 
+  Py_ssize_t )
+@extern("_PyBytes_Resize");
+
+fn PyObject* _PyBytes_FormatEx(
+   default, 
+  CChar* format, 
+  Py_ssize_t format_len, 
+  PyObject* args, 
+  CInt use_bytearray)
+@extern("_PyBytes_FormatEx");
+
+fn PyObject* _PyBytes_FromHex(
+   default, 
+  PyObject* string, 
+  CInt use_bytearray)
+@extern("_PyBytes_FromHex");
+
+fn PyObject* _PyBytes_DecodeEscape(
+   default, 
+  CChar* , 
+  Py_ssize_t , 
+  CChar* , 
+  CChar** )
+@extern("_PyBytes_DecodeEscape");
+
+fn CChar* PyBytes_AS_STRING(
+  PyObject* op)
+@extern("PyBytes_AS_STRING");
+
+fn Py_ssize_t PyBytes_GET_SIZE(
+  PyObject* op)
+@extern("PyBytes_GET_SIZE");
+
+fn PyObject* _PyBytes_Join(
+   default, 
+  PyObject* sep, 
+  PyObject* x)
+@extern("_PyBytes_Join");
+
+struct _PyBytesWriter {
+  PyObject* buffer;
+  Py_ssize_t allocated;
+  Py_ssize_t min_size;
+  CInt use_bytearray;
+  CInt overallocate;
+  CInt use_small_buffer;
+  CChar[512] small_buffer;
+}
+
+fn void _PyBytesWriter_Init(
+   default, 
+  _PyBytesWriter* writer)
+@extern("_PyBytesWriter_Init");
+
+fn PyObject* _PyBytesWriter_Finish(
+   default, 
+  _PyBytesWriter* writer, 
+  void* str)
+@extern("_PyBytesWriter_Finish");
+
+fn void _PyBytesWriter_Dealloc(
+   default, 
+  _PyBytesWriter* writer)
+@extern("_PyBytesWriter_Dealloc");
+
+fn void* _PyBytesWriter_Alloc(
+   default, 
+  _PyBytesWriter* writer, 
+  Py_ssize_t size)
+@extern("_PyBytesWriter_Alloc");
+
+fn void* _PyBytesWriter_Prepare(
+   default, 
+  _PyBytesWriter* writer, 
+  void* str, 
+  Py_ssize_t size)
+@extern("_PyBytesWriter_Prepare");
+
+fn void* _PyBytesWriter_Resize(
+   default, 
+  _PyBytesWriter* writer, 
+  void* str, 
+  Py_ssize_t size)
+@extern("_PyBytesWriter_Resize");
+
+fn void* _PyBytesWriter_WriteBytes(
+   default, 
+  _PyBytesWriter* writer, 
+  void* str, 
+  void* bytes, 
+  Py_ssize_t size)
+@extern("_PyBytesWriter_WriteBytes");
+
+alias Py_UCS4 = uint;
+
+alias Py_UCS2 = ushort;
+
+alias Py_UCS1 = char;
+
+PyTypeObject pyunicode_type;
+
+PyTypeObject pyunicodeiter_type;
+
+fn PyObject* PyUnicode_FromStringAndSize(
+   default, 
+  CChar* u, 
+  Py_ssize_t size)
+@extern("PyUnicode_FromStringAndSize");
+
+fn PyObject* PyUnicode_FromString(
+   default, 
+  CChar* u)
+@extern("PyUnicode_FromString");
+
+fn PyObject* PyUnicode_Substring(
+   default, 
+  PyObject* str, 
+  Py_ssize_t start, 
+  Py_ssize_t end)
+@extern("PyUnicode_Substring");
+
+fn Py_UCS4* PyUnicode_AsUCS4(
+   default, 
+  PyObject* unicode, 
+  Py_UCS4* buffer, 
+  Py_ssize_t buflen, 
+  CInt copy_null)
+@extern("PyUnicode_AsUCS4");
+
+fn Py_UCS4* PyUnicode_AsUCS4Copy(
+   default, 
+  PyObject* unicode)
+@extern("PyUnicode_AsUCS4Copy");
+
+fn Py_ssize_t PyUnicode_GetLength(
+   default, 
+  PyObject* unicode)
+@extern("PyUnicode_GetLength");
+
+fn Py_UCS4 PyUnicode_ReadChar(
+   default, 
+  PyObject* unicode, 
+  Py_ssize_t index)
+@extern("PyUnicode_ReadChar");
+
+fn CInt PyUnicode_WriteChar(
+   default, 
+  PyObject* unicode, 
+  Py_ssize_t index, 
+  Py_UCS4 character)
+@extern("PyUnicode_WriteChar");
+
+fn CInt PyUnicode_Resize(
+   default, 
+  PyObject** unicode, 
+  Py_ssize_t length)
+@extern("PyUnicode_Resize");
+
+fn PyObject* PyUnicode_FromEncodedObject(
+   default, 
+  PyObject* obj, 
+  CChar* encoding, 
+  CChar* errors)
+@extern("PyUnicode_FromEncodedObject");
+
+fn PyObject* PyUnicode_FromObject(
+   default, 
+  PyObject* obj)
+@extern("PyUnicode_FromObject");
+
+fn PyObject* PyUnicode_FromFormatV(
+   default, 
+  CChar* format, 
+  void* vargs)
+@extern("PyUnicode_FromFormatV");
+
+fn PyObject* PyUnicode_FromFormat(
+   default, 
+  CChar* format)
+@extern("PyUnicode_FromFormat");
+
+fn void PyUnicode_InternInPlace(
+   default, 
+  PyObject** )
+@extern("PyUnicode_InternInPlace");
+
+fn PyObject* PyUnicode_InternFromString(
+   default, 
+  CChar* u)
+@extern("PyUnicode_InternFromString");
+
+fn PyObject* PyUnicode_FromWideChar(
+   default, 
+  wchar_t* w, 
+  Py_ssize_t size)
+@extern("PyUnicode_FromWideChar");
+
+fn Py_ssize_t PyUnicode_AsWideChar(
+   default, 
+  PyObject* unicode, 
+  wchar_t* w, 
+  Py_ssize_t size)
+@extern("PyUnicode_AsWideChar");
+
+fn wchar_t* PyUnicode_AsWideCharString(
+   default, 
+  PyObject* unicode, 
+  Py_ssize_t* size)
+@extern("PyUnicode_AsWideCharString");
+
+fn PyObject* PyUnicode_FromOrdinal(
+   default, 
+  CInt ordinal)
+@extern("PyUnicode_FromOrdinal");
+
+fn CChar* PyUnicode_GetDefaultEncoding(
+   default)
+@extern("PyUnicode_GetDefaultEncoding");
+
+fn PyObject* PyUnicode_Decode(
+   default, 
+  CChar* s, 
+  Py_ssize_t size, 
+  CChar* encoding, 
+  CChar* errors)
+@extern("PyUnicode_Decode");
+
+fn PyObject* PyUnicode_AsDecodedObject(
+   , 
+   default, 
+  PyObject* unicode, 
+  CChar* encoding, 
+  CChar* errors)
+@extern("PyUnicode_AsDecodedObject");
+
+fn PyObject* PyUnicode_AsDecodedUnicode(
+   , 
+   default, 
+  PyObject* unicode, 
+  CChar* encoding, 
+  CChar* errors)
+@extern("PyUnicode_AsDecodedUnicode");
+
+fn PyObject* PyUnicode_AsEncodedObject(
+   , 
+   default, 
+  PyObject* unicode, 
+  CChar* encoding, 
+  CChar* errors)
+@extern("PyUnicode_AsEncodedObject");
+
+fn PyObject* PyUnicode_AsEncodedString(
+   default, 
+  PyObject* unicode, 
+  CChar* encoding, 
+  CChar* errors)
+@extern("PyUnicode_AsEncodedString");
+
+fn PyObject* PyUnicode_AsEncodedUnicode(
+   , 
+   default, 
+  PyObject* unicode, 
+  CChar* encoding, 
+  CChar* errors)
+@extern("PyUnicode_AsEncodedUnicode");
+
+fn PyObject* PyUnicode_BuildEncodingMap(
+   default, 
+  PyObject* string)
+@extern("PyUnicode_BuildEncodingMap");
+
+fn PyObject* PyUnicode_DecodeUTF7(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors)
+@extern("PyUnicode_DecodeUTF7");
+
+fn PyObject* PyUnicode_DecodeUTF7Stateful(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors, 
+  Py_ssize_t* consumed)
+@extern("PyUnicode_DecodeUTF7Stateful");
+
+fn PyObject* PyUnicode_DecodeUTF8(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors)
+@extern("PyUnicode_DecodeUTF8");
+
+fn PyObject* PyUnicode_DecodeUTF8Stateful(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors, 
+  Py_ssize_t* consumed)
+@extern("PyUnicode_DecodeUTF8Stateful");
+
+fn PyObject* PyUnicode_AsUTF8String(
+   default, 
+  PyObject* unicode)
+@extern("PyUnicode_AsUTF8String");
+
+fn CChar* PyUnicode_AsUTF8AndSize(
+   default, 
+  PyObject* unicode, 
+  Py_ssize_t* size)
+@extern("PyUnicode_AsUTF8AndSize");
+
+fn PyObject* PyUnicode_DecodeUTF32(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors, 
+  CInt* byteorder)
+@extern("PyUnicode_DecodeUTF32");
+
+fn PyObject* PyUnicode_DecodeUTF32Stateful(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors, 
+  CInt* byteorder, 
+  Py_ssize_t* consumed)
+@extern("PyUnicode_DecodeUTF32Stateful");
+
+fn PyObject* PyUnicode_AsUTF32String(
+   default, 
+  PyObject* unicode)
+@extern("PyUnicode_AsUTF32String");
+
+fn PyObject* PyUnicode_DecodeUTF16(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors, 
+  CInt* byteorder)
+@extern("PyUnicode_DecodeUTF16");
+
+fn PyObject* PyUnicode_DecodeUTF16Stateful(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors, 
+  CInt* byteorder, 
+  Py_ssize_t* consumed)
+@extern("PyUnicode_DecodeUTF16Stateful");
+
+fn PyObject* PyUnicode_AsUTF16String(
+   default, 
+  PyObject* unicode)
+@extern("PyUnicode_AsUTF16String");
+
+fn PyObject* PyUnicode_DecodeUnicodeEscape(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors)
+@extern("PyUnicode_DecodeUnicodeEscape");
+
+fn PyObject* PyUnicode_AsUnicodeEscapeString(
+   default, 
+  PyObject* unicode)
+@extern("PyUnicode_AsUnicodeEscapeString");
+
+fn PyObject* PyUnicode_DecodeRawUnicodeEscape(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors)
+@extern("PyUnicode_DecodeRawUnicodeEscape");
+
+fn PyObject* PyUnicode_AsRawUnicodeEscapeString(
+   default, 
+  PyObject* unicode)
+@extern("PyUnicode_AsRawUnicodeEscapeString");
+
+fn PyObject* PyUnicode_DecodeLatin1(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors)
+@extern("PyUnicode_DecodeLatin1");
+
+fn PyObject* PyUnicode_AsLatin1String(
+   default, 
+  PyObject* unicode)
+@extern("PyUnicode_AsLatin1String");
+
+fn PyObject* PyUnicode_DecodeASCII(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors)
+@extern("PyUnicode_DecodeASCII");
+
+fn PyObject* PyUnicode_AsASCIIString(
+   default, 
+  PyObject* unicode)
+@extern("PyUnicode_AsASCIIString");
+
+fn PyObject* PyUnicode_DecodeCharmap(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  PyObject* mapping, 
+  CChar* errors)
+@extern("PyUnicode_DecodeCharmap");
+
+fn PyObject* PyUnicode_AsCharmapString(
+   default, 
+  PyObject* unicode, 
+  PyObject* mapping)
+@extern("PyUnicode_AsCharmapString");
+
+fn PyObject* PyUnicode_DecodeLocaleAndSize(
+   default, 
+  CChar* str, 
+  Py_ssize_t len, 
+  CChar* errors)
+@extern("PyUnicode_DecodeLocaleAndSize");
+
+fn PyObject* PyUnicode_DecodeLocale(
+   default, 
+  CChar* str, 
+  CChar* errors)
+@extern("PyUnicode_DecodeLocale");
+
+fn PyObject* PyUnicode_EncodeLocale(
+   default, 
+  PyObject* unicode, 
+  CChar* errors)
+@extern("PyUnicode_EncodeLocale");
+
+fn CInt PyUnicode_FSConverter(
+   default, 
+  PyObject* , 
+  void* )
+@extern("PyUnicode_FSConverter");
+
+fn CInt PyUnicode_FSDecoder(
+   default, 
+  PyObject* , 
+  void* )
+@extern("PyUnicode_FSDecoder");
+
+fn PyObject* PyUnicode_DecodeFSDefault(
+   default, 
+  CChar* s)
+@extern("PyUnicode_DecodeFSDefault");
+
+fn PyObject* PyUnicode_DecodeFSDefaultAndSize(
+   default, 
+  CChar* s, 
+  Py_ssize_t size)
+@extern("PyUnicode_DecodeFSDefaultAndSize");
+
+fn PyObject* PyUnicode_EncodeFSDefault(
+   default, 
+  PyObject* unicode)
+@extern("PyUnicode_EncodeFSDefault");
+
+fn PyObject* PyUnicode_Concat(
+   default, 
+  PyObject* left, 
+  PyObject* right)
+@extern("PyUnicode_Concat");
+
+fn void PyUnicode_Append(
+   default, 
+  PyObject** pleft, 
+  PyObject* right)
+@extern("PyUnicode_Append");
+
+fn void PyUnicode_AppendAndDel(
+   default, 
+  PyObject** pleft, 
+  PyObject* right)
+@extern("PyUnicode_AppendAndDel");
+
+fn PyObject* PyUnicode_Split(
+   default, 
+  PyObject* s, 
+  PyObject* sep, 
+  Py_ssize_t maxsplit)
+@extern("PyUnicode_Split");
+
+fn PyObject* PyUnicode_Splitlines(
+   default, 
+  PyObject* s, 
+  CInt keepends)
+@extern("PyUnicode_Splitlines");
+
+fn PyObject* PyUnicode_Partition(
+   default, 
+  PyObject* s, 
+  PyObject* sep)
+@extern("PyUnicode_Partition");
+
+fn PyObject* PyUnicode_RPartition(
+   default, 
+  PyObject* s, 
+  PyObject* sep)
+@extern("PyUnicode_RPartition");
+
+fn PyObject* PyUnicode_RSplit(
+   default, 
+  PyObject* s, 
+  PyObject* sep, 
+  Py_ssize_t maxsplit)
+@extern("PyUnicode_RSplit");
+
+fn PyObject* PyUnicode_Translate(
+   default, 
+  PyObject* str, 
+  PyObject* table, 
+  CChar* errors)
+@extern("PyUnicode_Translate");
+
+fn PyObject* PyUnicode_Join(
+   default, 
+  PyObject* separator, 
+  PyObject* seq)
+@extern("PyUnicode_Join");
+
+fn Py_ssize_t PyUnicode_Tailmatch(
+   default, 
+  PyObject* str, 
+  PyObject* substr, 
+  Py_ssize_t start, 
+  Py_ssize_t end, 
+  CInt direction)
+@extern("PyUnicode_Tailmatch");
+
+fn Py_ssize_t PyUnicode_Find(
+   default, 
+  PyObject* str, 
+  PyObject* substr, 
+  Py_ssize_t start, 
+  Py_ssize_t end, 
+  CInt direction)
+@extern("PyUnicode_Find");
+
+fn Py_ssize_t PyUnicode_FindChar(
+   default, 
+  PyObject* str, 
+  Py_UCS4 ch, 
+  Py_ssize_t start, 
+  Py_ssize_t end, 
+  CInt direction)
+@extern("PyUnicode_FindChar");
+
+fn Py_ssize_t PyUnicode_Count(
+   default, 
+  PyObject* str, 
+  PyObject* substr, 
+  Py_ssize_t start, 
+  Py_ssize_t end)
+@extern("PyUnicode_Count");
+
+fn PyObject* PyUnicode_Replace(
+   default, 
+  PyObject* str, 
+  PyObject* substr, 
+  PyObject* replstr, 
+  Py_ssize_t maxcount)
+@extern("PyUnicode_Replace");
+
+fn CInt PyUnicode_Compare(
+   default, 
+  PyObject* left, 
+  PyObject* right)
+@extern("PyUnicode_Compare");
+
+fn CInt PyUnicode_CompareWithASCIIString(
+   default, 
+  PyObject* left, 
+  CChar* right)
+@extern("PyUnicode_CompareWithASCIIString");
+
+fn PyObject* PyUnicode_RichCompare(
+   default, 
+  PyObject* left, 
+  PyObject* right, 
+  CInt op)
+@extern("PyUnicode_RichCompare");
+
+fn PyObject* PyUnicode_Format(
+   default, 
+  PyObject* format, 
+  PyObject* args)
+@extern("PyUnicode_Format");
+
+fn CInt PyUnicode_Contains(
+   default, 
+  PyObject* container, 
+  PyObject* element)
+@extern("PyUnicode_Contains");
+
+fn CInt PyUnicode_IsIdentifier(
+   default, 
+  PyObject* s)
+@extern("PyUnicode_IsIdentifier");
+
+alias Py_UNICODE = wchar_t;
+
+fn CInt Py_UNICODE_IS_SURROGATE(
+  Py_UCS4 ch)
+@extern("Py_UNICODE_IS_SURROGATE");
+
+fn CInt Py_UNICODE_IS_HIGH_SURROGATE(
+  Py_UCS4 ch)
+@extern("Py_UNICODE_IS_HIGH_SURROGATE");
+
+fn CInt Py_UNICODE_IS_LOW_SURROGATE(
+  Py_UCS4 ch)
+@extern("Py_UNICODE_IS_LOW_SURROGATE");
+
+fn Py_UCS4 Py_UNICODE_JOIN_SURROGATES(
+  Py_UCS4 high, 
+  Py_UCS4 low)
+@extern("Py_UNICODE_JOIN_SURROGATES");
+
+fn Py_UCS4 Py_UNICODE_HIGH_SURROGATE(
+  Py_UCS4 ch)
+@extern("Py_UNICODE_HIGH_SURROGATE");
+
+fn Py_UCS4 Py_UNICODE_LOW_SURROGATE(
+  Py_UCS4 ch)
+@extern("Py_UNICODE_LOW_SURROGATE");
+
+struct PyASCIIObject {
+  PyObject ob_base;
+  Py_ssize_t length;
+  Py_hash_t hash;
+  struct state {
+    bitstruct : uint {
+      CUInt interned : 0..1;
+      CUInt kind : 2..4;
+      CUInt compact : 5..5;
+      CUInt ascii : 6..6;
+      CUInt statically_allocated : 7..7;
+      CUInt  : 8..31;
+    }
+  }
+}
+
+struct PyCompactUnicodeObject {
+  PyASCIIObject _base;
+  Py_ssize_t utf8_length;
+  CChar* utf8;
+}
+
+struct PyUnicodeObject {
+  PyCompactUnicodeObject _base;
+  union data {
+    void* any;
+    Py_UCS1* latin1;
+    Py_UCS2* ucs2;
+    Py_UCS4* ucs4;
+  }
+}
+
+fn CInt _PyUnicode_CheckConsistency(
+   default, 
+  PyObject* op, 
+  CInt check_content)
+@extern("_PyUnicode_CheckConsistency");
+
+fn CUInt PyUnicode_CHECK_INTERNED(
+  PyObject* op)
+@extern("PyUnicode_CHECK_INTERNED");
+
+fn CUInt PyUnicode_IS_READY(
+  PyObject* _unused_op)
+@extern("PyUnicode_IS_READY");
+
+fn CUInt PyUnicode_IS_ASCII(
+  PyObject* op)
+@extern("PyUnicode_IS_ASCII");
+
+fn CUInt PyUnicode_IS_COMPACT(
+  PyObject* op)
+@extern("PyUnicode_IS_COMPACT");
+
+fn CInt PyUnicode_IS_COMPACT_ASCII(
+  PyObject* op)
+@extern("PyUnicode_IS_COMPACT_ASCII");
+
+typedef PyUnicode_Kind = inline CUInt;
+const PyUnicode_Kind PYUNICODE_1BYTE_KIND = 1;
+const PyUnicode_Kind PYUNICODE_2BYTE_KIND = 2;
+const PyUnicode_Kind PYUNICODE_4BYTE_KIND = 4;
+
+fn void* _PyUnicode_COMPACT_DATA(
+  PyObject* op)
+@extern("_PyUnicode_COMPACT_DATA");
+
+fn void* _PyUnicode_NONCOMPACT_DATA(
+  PyObject* op)
+@extern("_PyUnicode_NONCOMPACT_DATA");
+
+fn void* PyUnicode_DATA(
+  PyObject* op)
+@extern("PyUnicode_DATA");
+
+fn Py_ssize_t PyUnicode_GET_LENGTH(
+  PyObject* op)
+@extern("PyUnicode_GET_LENGTH");
+
+fn void PyUnicode_WRITE(
+  CInt kind, 
+  void* data, 
+  Py_ssize_t index, 
+  Py_UCS4 value)
+@extern("PyUnicode_WRITE");
+
+fn Py_UCS4 PyUnicode_READ(
+  CInt kind, 
+  void* data, 
+  Py_ssize_t index)
+@extern("PyUnicode_READ");
+
+fn Py_UCS4 PyUnicode_READ_CHAR(
+  PyObject* unicode, 
+  Py_ssize_t index)
+@extern("PyUnicode_READ_CHAR");
+
+fn Py_UCS4 PyUnicode_MAX_CHAR_VALUE(
+  PyObject* op)
+@extern("PyUnicode_MAX_CHAR_VALUE");
+
+fn PyObject* PyUnicode_New(
+   default, 
+  Py_ssize_t size, 
+  Py_UCS4 maxchar)
+@extern("PyUnicode_New");
+
+fn CInt PyUnicode_READY(
+  PyObject* _unused_op)
+@extern("PyUnicode_READY");
+
+fn PyObject* _PyUnicode_Copy(
+   default, 
+  PyObject* unicode)
+@extern("_PyUnicode_Copy");
+
+fn Py_ssize_t PyUnicode_CopyCharacters(
+   default, 
+  PyObject* to, 
+  Py_ssize_t to_start, 
+  PyObject* from, 
+  Py_ssize_t from_start, 
+  Py_ssize_t how_many)
+@extern("PyUnicode_CopyCharacters");
+
+fn void _PyUnicode_FastCopyCharacters(
+   default, 
+  PyObject* to, 
+  Py_ssize_t to_start, 
+  PyObject* from, 
+  Py_ssize_t from_start, 
+  Py_ssize_t how_many)
+@extern("_PyUnicode_FastCopyCharacters");
+
+fn Py_ssize_t PyUnicode_Fill(
+   default, 
+  PyObject* unicode, 
+  Py_ssize_t start, 
+  Py_ssize_t length, 
+  Py_UCS4 fill_char)
+@extern("PyUnicode_Fill");
+
+fn void _PyUnicode_FastFill(
+   default, 
+  PyObject* unicode, 
+  Py_ssize_t start, 
+  Py_ssize_t length, 
+  Py_UCS4 fill_char)
+@extern("_PyUnicode_FastFill");
+
+fn PyObject* PyUnicode_FromKindAndData(
+   default, 
+  CInt kind, 
+  void* buffer, 
+  Py_ssize_t size)
+@extern("PyUnicode_FromKindAndData");
+
+fn PyObject* _PyUnicode_FromASCII(
+   default, 
+  CChar* buffer, 
+  Py_ssize_t size)
+@extern("_PyUnicode_FromASCII");
+
+fn Py_UCS4 _PyUnicode_FindMaxChar(
+   default, 
+  PyObject* unicode, 
+  Py_ssize_t start, 
+  Py_ssize_t end)
+@extern("_PyUnicode_FindMaxChar");
+
+struct _PyUnicodeWriter {
+  PyObject* buffer;
+  void* data;
+  CInt kind;
+  Py_UCS4 maxchar;
+  Py_ssize_t size;
+  Py_ssize_t pos;
+  Py_ssize_t min_length;
+  Py_UCS4 min_char;
+  char overallocate;
+  char readonly;
+}
+
+fn void _PyUnicodeWriter_Init(
+   default, 
+  _PyUnicodeWriter* writer)
+@extern("_PyUnicodeWriter_Init");
+
+fn CInt _PyUnicodeWriter_PrepareInternal(
+   default, 
+  _PyUnicodeWriter* writer, 
+  Py_ssize_t length, 
+  Py_UCS4 maxchar)
+@extern("_PyUnicodeWriter_PrepareInternal");
+
+fn CInt _PyUnicodeWriter_PrepareKindInternal(
+   default, 
+  _PyUnicodeWriter* writer, 
+  CInt kind)
+@extern("_PyUnicodeWriter_PrepareKindInternal");
+
+fn CInt _PyUnicodeWriter_WriteChar(
+   default, 
+  _PyUnicodeWriter* writer, 
+  Py_UCS4 ch)
+@extern("_PyUnicodeWriter_WriteChar");
+
+fn CInt _PyUnicodeWriter_WriteStr(
+   default, 
+  _PyUnicodeWriter* writer, 
+  PyObject* str)
+@extern("_PyUnicodeWriter_WriteStr");
+
+fn CInt _PyUnicodeWriter_WriteSubstring(
+   default, 
+  _PyUnicodeWriter* writer, 
+  PyObject* str, 
+  Py_ssize_t start, 
+  Py_ssize_t end)
+@extern("_PyUnicodeWriter_WriteSubstring");
+
+fn CInt _PyUnicodeWriter_WriteASCIIString(
+   default, 
+  _PyUnicodeWriter* writer, 
+  CChar* str, 
+  Py_ssize_t len)
+@extern("_PyUnicodeWriter_WriteASCIIString");
+
+fn CInt _PyUnicodeWriter_WriteLatin1String(
+   default, 
+  _PyUnicodeWriter* writer, 
+  CChar* str, 
+  Py_ssize_t len)
+@extern("_PyUnicodeWriter_WriteLatin1String");
+
+fn PyObject* _PyUnicodeWriter_Finish(
+   default, 
+  _PyUnicodeWriter* writer)
+@extern("_PyUnicodeWriter_Finish");
+
+fn void _PyUnicodeWriter_Dealloc(
+   default, 
+  _PyUnicodeWriter* writer)
+@extern("_PyUnicodeWriter_Dealloc");
+
+fn CInt _PyUnicode_FormatAdvancedWriter(
+   default, 
+  _PyUnicodeWriter* writer, 
+  PyObject* obj, 
+  PyObject* format_spec, 
+  Py_ssize_t start, 
+  Py_ssize_t end)
+@extern("_PyUnicode_FormatAdvancedWriter");
+
+fn CChar* PyUnicode_AsUTF8(
+   default, 
+  PyObject* unicode)
+@extern("PyUnicode_AsUTF8");
+
+fn PyObject* _PyUnicode_EncodeUTF7(
+   default, 
+  PyObject* unicode, 
+  CInt base64seto, 
+  CInt base64whitespace, 
+  CChar* errors)
+@extern("_PyUnicode_EncodeUTF7");
+
+fn PyObject* _PyUnicode_AsUTF8String(
+   default, 
+  PyObject* unicode, 
+  CChar* errors)
+@extern("_PyUnicode_AsUTF8String");
+
+fn PyObject* _PyUnicode_EncodeUTF32(
+   default, 
+  PyObject* object, 
+  CChar* errors, 
+  CInt byteorder)
+@extern("_PyUnicode_EncodeUTF32");
+
+fn PyObject* _PyUnicode_EncodeUTF16(
+   default, 
+  PyObject* unicode, 
+  CChar* errors, 
+  CInt byteorder)
+@extern("_PyUnicode_EncodeUTF16");
+
+fn PyObject* _PyUnicode_DecodeUnicodeEscapeStateful(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors, 
+  Py_ssize_t* consumed)
+@extern("_PyUnicode_DecodeUnicodeEscapeStateful");
+
+fn PyObject* _PyUnicode_DecodeUnicodeEscapeInternal(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors, 
+  Py_ssize_t* consumed, 
+  CChar** first_invalid_escape)
+@extern("_PyUnicode_DecodeUnicodeEscapeInternal");
+
+fn PyObject* _PyUnicode_DecodeRawUnicodeEscapeStateful(
+   default, 
+  CChar* string, 
+  Py_ssize_t length, 
+  CChar* errors, 
+  Py_ssize_t* consumed)
+@extern("_PyUnicode_DecodeRawUnicodeEscapeStateful");
+
+fn PyObject* _PyUnicode_AsLatin1String(
+   default, 
+  PyObject* unicode, 
+  CChar* errors)
+@extern("_PyUnicode_AsLatin1String");
+
+fn PyObject* _PyUnicode_AsASCIIString(
+   default, 
+  PyObject* unicode, 
+  CChar* errors)
+@extern("_PyUnicode_AsASCIIString");
+
+fn PyObject* _PyUnicode_EncodeCharmap(
+   default, 
+  PyObject* unicode, 
+  PyObject* mapping, 
+  CChar* errors)
+@extern("_PyUnicode_EncodeCharmap");
+
+fn PyObject* _PyUnicode_TransformDecimalAndSpaceToASCII(
+   default, 
+  PyObject* unicode)
+@extern("_PyUnicode_TransformDecimalAndSpaceToASCII");
+
+fn PyObject* _PyUnicode_JoinArray(
+   default, 
+  PyObject* separator, 
+  PyObject** items, 
+  Py_ssize_t seqlen)
+@extern("_PyUnicode_JoinArray");
+
+fn CInt _PyUnicode_EqualToASCIIId(
+   default, 
+  PyObject* left, 
+  _Py_Identifier* right)
+@extern("_PyUnicode_EqualToASCIIId");
+
+fn CInt _PyUnicode_EqualToASCIIString(
+   default, 
+  PyObject* left, 
+  CChar* right)
+@extern("_PyUnicode_EqualToASCIIString");
+
+fn PyObject* _PyUnicode_XStrip(
+   default, 
+  PyObject* self, 
+  CInt striptype, 
+  PyObject* sepobj)
+@extern("_PyUnicode_XStrip");
+
+fn Py_ssize_t _PyUnicode_InsertThousandsGrouping(
+   default, 
+  _PyUnicodeWriter* writer, 
+  Py_ssize_t n_buffer, 
+  PyObject* digits, 
+  Py_ssize_t d_pos, 
+  Py_ssize_t n_digits, 
+  Py_ssize_t min_width, 
+  CChar* grouping, 
+  PyObject* thousands_sep, 
+  Py_UCS4* maxchar)
+@extern("_PyUnicode_InsertThousandsGrouping");
+
+fn CInt _PyUnicode_IsLowercase(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsLowercase");
+
+fn CInt _PyUnicode_IsUppercase(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsUppercase");
+
+fn CInt _PyUnicode_IsTitlecase(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsTitlecase");
+
+fn CInt _PyUnicode_IsXidStart(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsXidStart");
+
+fn CInt _PyUnicode_IsXidContinue(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsXidContinue");
+
+fn CInt _PyUnicode_IsWhitespace(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsWhitespace");
+
+fn CInt _PyUnicode_IsLinebreak(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsLinebreak");
+
+fn Py_UCS4 _PyUnicode_ToLowercase(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_ToLowercase");
+
+fn Py_UCS4 _PyUnicode_ToUppercase(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_ToUppercase");
+
+fn Py_UCS4 _PyUnicode_ToTitlecase(
+   , 
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_ToTitlecase");
+
+fn CInt _PyUnicode_ToLowerFull(
+   default, 
+  Py_UCS4 ch, 
+  Py_UCS4* res)
+@extern("_PyUnicode_ToLowerFull");
+
+fn CInt _PyUnicode_ToTitleFull(
+   default, 
+  Py_UCS4 ch, 
+  Py_UCS4* res)
+@extern("_PyUnicode_ToTitleFull");
+
+fn CInt _PyUnicode_ToUpperFull(
+   default, 
+  Py_UCS4 ch, 
+  Py_UCS4* res)
+@extern("_PyUnicode_ToUpperFull");
+
+fn CInt _PyUnicode_ToFoldedFull(
+   default, 
+  Py_UCS4 ch, 
+  Py_UCS4* res)
+@extern("_PyUnicode_ToFoldedFull");
+
+fn CInt _PyUnicode_IsCaseIgnorable(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsCaseIgnorable");
+
+fn CInt _PyUnicode_IsCased(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsCased");
+
+fn CInt _PyUnicode_ToDecimalDigit(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_ToDecimalDigit");
+
+fn CInt _PyUnicode_ToDigit(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_ToDigit");
+
+fn double _PyUnicode_ToNumeric(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_ToNumeric");
+
+fn CInt _PyUnicode_IsDecimalDigit(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsDecimalDigit");
+
+fn CInt _PyUnicode_IsDigit(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsDigit");
+
+fn CInt _PyUnicode_IsNumeric(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsNumeric");
+
+fn CInt _PyUnicode_IsPrintable(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsPrintable");
+
+fn CInt _PyUnicode_IsAlpha(
+   default, 
+  Py_UCS4 ch)
+@extern("_PyUnicode_IsAlpha");
+
+char* _py_ascii_whitespace;
+
+fn CInt Py_UNICODE_ISSPACE(
+  Py_UCS4 ch)
+@extern("Py_UNICODE_ISSPACE");
+
+fn CInt Py_UNICODE_ISALNUM(
+  Py_UCS4 ch)
+@extern("Py_UNICODE_ISALNUM");
+
+fn PyObject* _PyUnicode_FormatLong(
+   default, 
+  PyObject* , 
+  CInt , 
+  CInt , 
+  CInt )
+@extern("_PyUnicode_FormatLong");
+
+fn PyObject* _PyUnicode_FromId(
+   default, 
+  _Py_Identifier* )
+@extern("_PyUnicode_FromId");
+
+fn CInt _PyUnicode_EQ(
+   default, 
+  PyObject* , 
+  PyObject* )
+@extern("_PyUnicode_EQ");
+
+fn CInt _PyUnicode_Equal(
+   default, 
+  PyObject* , 
+  PyObject* )
+@extern("_PyUnicode_Equal");
+
+fn CInt _PyUnicode_WideCharString_Converter(
+   default, 
+  PyObject* , 
+  void* )
+@extern("_PyUnicode_WideCharString_Converter");
+
+fn CInt _PyUnicode_WideCharString_Opt_Converter(
+   default, 
+  PyObject* , 
+  void* )
+@extern("_PyUnicode_WideCharString_Opt_Converter");
+
+fn Py_ssize_t _PyUnicode_ScanIdentifier(
+   default, 
+  PyObject* )
+@extern("_PyUnicode_ScanIdentifier");

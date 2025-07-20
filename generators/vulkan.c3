@@ -1,7 +1,74 @@
 
-module gen @local;
+module gen;
 import bindgen;
 import std::io;
+
+fn void main(String[] args)
+{
+  @generate(&vulkan, "vulkan", "vulkan/vulkan.h");
+}
+
+fn void vulkan(String src, String out) @public
+{
+  BGTransCallbacks transfns = {
+    .func = fn String(String name, Allocator alloc) =>
+      name.strip("vk").pascal_to_camel(alloc),
+
+    .type = &trans_type,
+
+    .variable = fn String(String name, Allocator alloc) =>
+      name == "module" ? "mod" : name.pascal_to_camel(alloc),
+      
+    .constant = fn String(String name, Allocator alloc) =>
+      is_const_ignored(name) ? "" : 
+      name.strip("VK_").snake_to_screaming(alloc),
+
+    .func_macro = fn String(String name, Allocator alloc) =>
+      is_func_macro_ignored(name) ? "" : 
+      name.strip("VK_").screaming_to_camel(alloc),
+  };
+
+  BGGenCallbacks genfns = {
+    .func_macro = fn String(String name, Allocator alloc) =>
+      get_func_macro_body(name).copy(alloc),
+
+    .constant = fn String(String name, Allocator alloc) =>
+      get_const_rhs(name).copy(alloc),
+
+    .if_condition = fn String(String name, Allocator alloc) =>
+      get_if_condition(name).copy(alloc),
+  };
+
+  BGOptions opts = {
+    .out_name = out,
+    .clang_args = {
+      "-I./headers",
+      "-DVK_USE_PLATFORM_ANDROID_KHR",
+      "-DVK_USE_PLATFORM_FUCHSIA",
+      "-DVK_USE_PLATFORM_IOS_MVK",
+      "-DVK_USE_PLATFORM_MACOS_MVK",
+      "-DVK_USE_PLATFORM_METAL_EXT",
+      "-DVK_USE_PLATFORM_VI_NN",
+      "-DVK_USE_PLATFORM_WAYLAND_KHR",
+      "-DVK_USE_PLATFORM_MIR_KHR",
+      "-DVK_USE_PLATFORM_WIN32_KHR",
+      "-DVK_USE_PLATFORM_XCB_KHR",
+      "-DVK_USE_PLATFORM_XLIB_KHR",
+      "-DVK_USE_PLATFORM_DIRECTFB_EXT",
+      "-DVK_USE_PLATFORM_XLIB_XRANDR_KHR",
+      "-DVK_USE_PLATFORM_GGP",
+      "-DVK_USE_PLATFORM_SCREEN_QNX",
+      // "VK_USE_PLATFORM_SCI",
+      "-DVK_ENABLE_BETA_EXTENSIONS",
+    },
+    .module_name = "vulkan::vk",
+    .skip_errors = false,
+    .no_verbose = true,
+    .include_file = fn bool(String path) => path.contains("vulkan_"),
+  };
+
+  bg::translate_header(src, opts, transfns, genfns)!!;
+}
 
 macro String @get_platform_condition(String $platform)
 {
@@ -186,68 +253,6 @@ fn String trans_type(String name, Allocator alloc)
     default:
       return name.camel_to_pascal(alloc);
   }
-}
-
-fn void vulkan(String src, String out) @public
-{
-  BGTransCallbacks transfns = {
-    .func = fn String(String name, Allocator alloc) =>
-      name.strip("vk").pascal_to_camel(alloc),
-
-    .type = &trans_type,
-
-    .variable = fn String(String name, Allocator alloc) =>
-      name == "module" ? "mod" : name.pascal_to_camel(alloc),
-      
-    .constant = fn String(String name, Allocator alloc) =>
-      is_const_ignored(name) ? "" : 
-      name.strip("VK_").snake_to_screaming(alloc),
-
-    .func_macro = fn String(String name, Allocator alloc) =>
-      is_func_macro_ignored(name) ? "" : 
-      name.strip("VK_").screaming_to_camel(alloc),
-  };
-
-  BGGenCallbacks genfns = {
-    .func_macro = fn String(String name, Allocator alloc) =>
-      get_func_macro_body(name).copy(alloc),
-
-    .constant = fn String(String name, Allocator alloc) =>
-      get_const_rhs(name).copy(alloc),
-
-    .if_condition = fn String(String name, Allocator alloc) =>
-      get_if_condition(name).copy(alloc),
-  };
-
-  BGOptions opts = {
-    .out_name = out,
-    .clang_args = {
-      "-I./headers",
-      "-DVK_USE_PLATFORM_ANDROID_KHR",
-      "-DVK_USE_PLATFORM_FUCHSIA",
-      "-DVK_USE_PLATFORM_IOS_MVK",
-      "-DVK_USE_PLATFORM_MACOS_MVK",
-      "-DVK_USE_PLATFORM_METAL_EXT",
-      "-DVK_USE_PLATFORM_VI_NN",
-      "-DVK_USE_PLATFORM_WAYLAND_KHR",
-      "-DVK_USE_PLATFORM_MIR_KHR",
-      "-DVK_USE_PLATFORM_WIN32_KHR",
-      "-DVK_USE_PLATFORM_XCB_KHR",
-      "-DVK_USE_PLATFORM_XLIB_KHR",
-      "-DVK_USE_PLATFORM_DIRECTFB_EXT",
-      "-DVK_USE_PLATFORM_XLIB_XRANDR_KHR",
-      "-DVK_USE_PLATFORM_GGP",
-      "-DVK_USE_PLATFORM_SCREEN_QNX",
-      // "VK_USE_PLATFORM_SCI",
-      "-DVK_ENABLE_BETA_EXTENSIONS",
-    },
-    .module_name = "vulkan::vk",
-    .skip_errors = false,
-    .no_verbose = true,
-    .include_file = fn bool(String path) => path.contains("vulkan_"),
-  };
-
-  bg::translate_header(src, transfns, opts, genfns)!!;
 }
 
 
