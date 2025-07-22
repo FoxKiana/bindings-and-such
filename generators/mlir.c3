@@ -4,21 +4,25 @@ import bindgen, std::io;
 
 fn void main()
 {
-    @generate(&llvm, "llvm", "llvm-c/Entrance.h");
+    @generate(&mlir, "mlir", "mlir-c/Entrance.h");
 }
 
-fn void llvm(String src, String out)
+fn void mlir(String src, String out)
 {
     BGTransCallbacks transfns =
     {
         .func = fn (name, alloc)
         {
+            /*
             name = name.strip("LLVM").strip("llvm_");
             return name.pascal_to_snake(alloc);
+            */
+            return name;
         },
 
         .constant = fn (name, alloc)
         {
+            /*
             switch (name) {
                 case "LLVM_C_STRICT_PROTOTYPES_BEGIN":
                 case "LLVM_C_STRICT_PROTOTYPES_END":
@@ -50,10 +54,13 @@ fn void llvm(String src, String out)
                 // return name.copy(alloc);
                 return name.pascal_to_screaming(alloc);
             }
+            */
+            return name;
         },
 
         .func_macro = fn (name, alloc)
         {
+            /*
             switch (name)
             {
                 case "LLVM_ATTRIBUTE_C_DEPRECATED":
@@ -63,10 +70,13 @@ fn void llvm(String src, String out)
             }
 
             return name.strip("LLVM_").screaming_to_snake(alloc);
+            */
+            return name;
         },
 
         .variable = fn (name, alloc)
         {
+            /*
             switch (name)
             {
                 case "Fn": return "fn_";
@@ -80,38 +90,35 @@ fn void llvm(String src, String out)
                 case "Var": return "var_";
             }
             return name.camel_to_snake(alloc);
+            */
+            return name;
         },
 
         .type = fn (name, alloc)
         {
+            /*
             switch (name)
             {
                 case "off_t": return "isz";
             }
             return name.copy(alloc).snake_to_pascal(alloc);
+            */
+            return name;
         }
     };
 
     BGOptions opts =
     {
         .out_name = out,
-        .module_name = "llvm",
-        .include_file = fn (path) => path.contains("llvm-c"),
+        .module_name = "mlir",
+        .include_file = fn (path) => path.contains("mlir-c"),
         .clang_args = {
             "-I./headers",
         },
     };
 
-    bg::translate_header(src, opts, transfns)!!; 
+    if (catch err = bg::translate_header(src, opts, transfns))
+    {
+        io::printn(err);
+    }
 }
-
-macro bool String.is_snake(String name) @local =>
-    name.starts_with("lto") 
-    || name.starts_with("thinlto")
-    || name.starts_with("blake3")
-    || name.starts_with("llvm_blake3");
-
-macro bool String.is_screaming(String name) @local =>
-    name.starts_with("BLAKE3")
-    || name.starts_with("LTO")
-    || name.starts_with("REMARKS");
