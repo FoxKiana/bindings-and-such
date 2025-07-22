@@ -23,7 +23,8 @@
 #include "mlir-c/Rewrite.h"
 #include "mlir-c/Support.h"
 #include "mlir-c/Transforms.h"
-#include "mlir-c/Bindings/Python/Interop.h"
+// #include "mlir-c/Bindings/Python/Interop.h"
+
 #include "mlir-c/Dialect/AMDGPU.h"
 #include "mlir-c/Dialect/Arith.h"
 #include "mlir-c/Dialect/Async.h"

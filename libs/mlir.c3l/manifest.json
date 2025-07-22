@@ -1,0 +1,34 @@
+{
+  "provides": "llvm",
+  "targets" : {
+    "macos-x64" : {
+      "linked-libraries" : []
+    },
+    "macos-aarch64" : {
+      "linked-libraries" : []
+    },
+    "linux-aarch64" : {
+      "linked-libraries" : [ "mlir" ]
+    },
+    "linux-riscv32" : {
+      "linked-libraries" : [ "mlir" ]
+    },
+    "linux-riscv64" : {
+      "linked-libraries" : [ "mlir" ]
+    },
+    "linux-x86" : {
+      "linked-libraries" : [ "mlir" ]
+    },
+    "linux-x64" : {
+      "linked-libraries" : [ "mlir" ]
+    },
+    "freebsd-x64" : {
+      "link-args" : [ "-L /usr/local/lib" ],
+      "linked-libraries" : [ "mlir" ]
+    },
+    "windows-x64" : {
+      "linked-libraries" : []
+    }
+  }
+}
+

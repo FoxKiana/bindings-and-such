@@ -1,0 +1,4699 @@
+
+module mlir;
+
+const MLI_R__CAP_I__EXPORTED = __attribute__((@visibility("default")));
+const MLIR_ENABLE_EXPENSIVE_PATTERN_API_CHECKS = 0;
+const MLIR_ENABLE_PDL_IN_PATTERNMATCH = 1;
+const MLIR_ENABLE_NVPTXCOMPILER = 0;
+const MLIR_ENABLE_ROCM_CONVERSIONS = 1;
+const MLIR_CAPI_DWARF_ADDRESS_SPACE_NULL = -1;
+
+struct MLIRLlvmThreadPool {
+  void* ptr;
+}
+
+struct MLIRTypeID {
+  void* ptr;
+}
+
+struct MLIRTypeIDAllocator {
+  void* ptr;
+}
+
+struct MLIRStringRef {
+  CChar* data;
+  usz length;
+}
+
+fn MLIRStringRef string_ref_create(
+  CChar* str, 
+  usz length)
+@extern("mlirStringRefCreate");
+
+fn MLIRStringRef string_ref_create_from_c_string(
+  CChar* str)
+@extern("mlirStringRefCreateFromCString");
+
+fn bool string_ref_equal(
+  MLIRStringRef string, 
+  MLIRStringRef other)
+@extern("mlirStringRefEqual");
+
+alias MLIRStringCallback = fn void(
+  MLIRStringRef, 
+  void*);
+
+struct MLIRLogicalResult {
+  ichar value;
+}
+
+fn bool logical_result_is_success(
+  MLIRLogicalResult res)
+@extern("mlirLogicalResultIsSuccess");
+
+fn bool logical_result_is_failure(
+  MLIRLogicalResult res)
+@extern("mlirLogicalResultIsFailure");
+
+fn MLIRLogicalResult logical_result_success()
+@extern("mlirLogicalResultSuccess");
+
+fn MLIRLogicalResult logical_result_failure()
+@extern("mlirLogicalResultFailure");
+
+fn MLIRLlvmThreadPool llvm_thread_pool_create()
+@extern("mlirLlvmThreadPoolCreate");
+
+fn void llvm_thread_pool_destroy(
+  MLIRLlvmThreadPool pool)
+@extern("mlirLlvmThreadPoolDestroy");
+
+fn MLIRTypeID type_id_create(
+  void* ptr)
+@extern("mlirTypeIDCreate");
+
+fn bool type_id_is_null(
+  MLIRTypeID type_id)
+@extern("mlirTypeIDIsNull");
+
+fn bool type_id_equal(
+  MLIRTypeID type_i_d_1, 
+  MLIRTypeID type_i_d_2)
+@extern("mlirTypeIDEqual");
+
+fn usz type_id_hash_value(
+  MLIRTypeID type_id)
+@extern("mlirTypeIDHashValue");
+
+fn MLIRTypeIDAllocator type_id_allocator_create()
+@extern("mlirTypeIDAllocatorCreate");
+
+fn void type_id_allocator_destroy(
+  MLIRTypeIDAllocator allocator)
+@extern("mlirTypeIDAllocatorDestroy");
+
+fn MLIRTypeID type_id_allocator_allocate_type_id(
+  MLIRTypeIDAllocator allocator)
+@extern("mlirTypeIDAllocatorAllocateTypeID");
+
+struct MLIRAsmState {
+  void* ptr;
+}
+
+struct MLIRBytecodeWriterConfig {
+  void* ptr;
+}
+
+struct MLIRContext {
+  void* ptr;
+}
+
+struct MLIRDialect {
+  void* ptr;
+}
+
+struct MLIRDialectRegistry {
+  void* ptr;
+}
+
+struct MLIROperation {
+  void* ptr;
+}
+
+struct MLIROpOperand {
+  void* ptr;
+}
+
+struct MLIROpPrintingFlags {
+  void* ptr;
+}
+
+struct MLIRBlock {
+  void* ptr;
+}
+
+struct MLIRRegion {
+  void* ptr;
+}
+
+struct MLIRSymbolTable {
+  void* ptr;
+}
+
+struct MLIRAttribute {
+  void* ptr;
+}
+
+struct MLIRIdentifier {
+  void* ptr;
+}
+
+struct MLIRLocation {
+  void* ptr;
+}
+
+struct MLIRModule {
+  void* ptr;
+}
+
+struct MLIRType {
+  void* ptr;
+}
+
+struct MLIRValue {
+  void* ptr;
+}
+
+struct MLIRNamedAttribute {
+  MLIRIdentifier name;
+  MLIRAttribute attribute;
+}
+
+fn MLIRContext context_create()
+@extern("mlirContextCreate");
+
+fn MLIRContext context_create_with_threading(
+  bool threading_enabled)
+@extern("mlirContextCreateWithThreading");
+
+fn MLIRContext context_create_with_registry(
+  MLIRDialectRegistry registry, 
+  bool threading_enabled)
+@extern("mlirContextCreateWithRegistry");
+
+fn bool context_equal(
+  MLIRContext ctx_1, 
+  MLIRContext ctx_2)
+@extern("mlirContextEqual");
+
+fn bool context_is_null(
+  MLIRContext context)
+@extern("mlirContextIsNull");
+
+fn void context_destroy(
+  MLIRContext context)
+@extern("mlirContextDestroy");
+
+fn void context_set_allow_unregistered_dialects(
+  MLIRContext context, 
+  bool allow)
+@extern("mlirContextSetAllowUnregisteredDialects");
+
+fn bool context_get_allow_unregistered_dialects(
+  MLIRContext context)
+@extern("mlirContextGetAllowUnregisteredDialects");
+
+fn iptr context_get_num_registered_dialects(
+  MLIRContext context)
+@extern("mlirContextGetNumRegisteredDialects");
+
+fn void context_append_dialect_registry(
+  MLIRContext ctx, 
+  MLIRDialectRegistry registry)
+@extern("mlirContextAppendDialectRegistry");
+
+fn iptr context_get_num_loaded_dialects(
+  MLIRContext context)
+@extern("mlirContextGetNumLoadedDialects");
+
+fn MLIRDialect context_get_or_load_dialect(
+  MLIRContext context, 
+  MLIRStringRef name)
+@extern("mlirContextGetOrLoadDialect");
+
+fn void context_enable_multithreading(
+  MLIRContext context, 
+  bool enable)
+@extern("mlirContextEnableMultithreading");
+
+fn void context_load_all_available_dialects(
+  MLIRContext context)
+@extern("mlirContextLoadAllAvailableDialects");
+
+fn bool context_is_registered_operation(
+  MLIRContext context, 
+  MLIRStringRef name)
+@extern("mlirContextIsRegisteredOperation");
+
+fn void context_set_thread_pool(
+  MLIRContext context, 
+  MLIRLlvmThreadPool thread_pool)
+@extern("mlirContextSetThreadPool");
+
+fn MLIRContext dialect_get_context(
+  MLIRDialect dialect)
+@extern("mlirDialectGetContext");
+
+fn bool dialect_is_null(
+  MLIRDialect dialect)
+@extern("mlirDialectIsNull");
+
+fn bool dialect_equal(
+  MLIRDialect dialect_1, 
+  MLIRDialect dialect_2)
+@extern("mlirDialectEqual");
+
+fn MLIRStringRef dialect_get_namespace(
+  MLIRDialect dialect)
+@extern("mlirDialectGetNamespace");
+
+struct MLIRDialectHandle {
+  void* ptr;
+}
+
+fn MLIRStringRef dialect_handle_get_namespace(
+  MLIRDialectHandle)
+@extern("mlirDialectHandleGetNamespace");
+
+fn void dialect_handle_insert_dialect(
+  MLIRDialectHandle, 
+  MLIRDialectRegistry)
+@extern("mlirDialectHandleInsertDialect");
+
+fn void dialect_handle_register_dialect(
+  MLIRDialectHandle, 
+  MLIRContext)
+@extern("mlirDialectHandleRegisterDialect");
+
+fn MLIRDialect dialect_handle_load_dialect(
+  MLIRDialectHandle, 
+  MLIRContext)
+@extern("mlirDialectHandleLoadDialect");
+
+fn MLIRDialectRegistry dialect_registry_create()
+@extern("mlirDialectRegistryCreate");
+
+fn bool dialect_registry_is_null(
+  MLIRDialectRegistry registry)
+@extern("mlirDialectRegistryIsNull");
+
+fn void dialect_registry_destroy(
+  MLIRDialectRegistry registry)
+@extern("mlirDialectRegistryDestroy");
+
+fn MLIRAttribute location_get_attribute(
+  MLIRLocation location)
+@extern("mlirLocationGetAttribute");
+
+fn MLIRLocation location_from_attribute(
+  MLIRAttribute attribute)
+@extern("mlirLocationFromAttribute");
+
+fn MLIRLocation location_file_line_col_get(
+  MLIRContext context, 
+  MLIRStringRef filename, 
+  CUInt line, 
+  CUInt col)
+@extern("mlirLocationFileLineColGet");
+
+fn MLIRLocation location_file_line_col_range_get(
+  MLIRContext context, 
+  MLIRStringRef filename, 
+  CUInt start_line, 
+  CUInt start_col, 
+  CUInt end_line, 
+  CUInt end_col)
+@extern("mlirLocationFileLineColRangeGet");
+
+fn MLIRLocation location_call_site_get(
+  MLIRLocation callee, 
+  MLIRLocation caller)
+@extern("mlirLocationCallSiteGet");
+
+fn MLIRLocation location_fused_get(
+  MLIRContext ctx, 
+  iptr n_locations, 
+  MLIRLocation* locations, 
+  MLIRAttribute metadata)
+@extern("mlirLocationFusedGet");
+
+fn MLIRLocation location_name_get(
+  MLIRContext context, 
+  MLIRStringRef name, 
+  MLIRLocation child_loc)
+@extern("mlirLocationNameGet");
+
+fn MLIRLocation location_unknown_get(
+  MLIRContext context)
+@extern("mlirLocationUnknownGet");
+
+fn MLIRContext location_get_context(
+  MLIRLocation location)
+@extern("mlirLocationGetContext");
+
+fn bool location_is_null(
+  MLIRLocation location)
+@extern("mlirLocationIsNull");
+
+fn bool location_equal(
+  MLIRLocation l_1, 
+  MLIRLocation l_2)
+@extern("mlirLocationEqual");
+
+fn void location_print(
+  MLIRLocation location, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirLocationPrint");
+
+fn MLIRModule module_create_empty(
+  MLIRLocation location)
+@extern("mlirModuleCreateEmpty");
+
+fn MLIRModule module_create_parse(
+  MLIRContext context, 
+  MLIRStringRef module_)
+@extern("mlirModuleCreateParse");
+
+fn MLIRContext module_get_context(
+  MLIRModule module_)
+@extern("mlirModuleGetContext");
+
+fn MLIRBlock module_get_body(
+  MLIRModule module_)
+@extern("mlirModuleGetBody");
+
+fn bool module_is_null(
+  MLIRModule module_)
+@extern("mlirModuleIsNull");
+
+fn void module_destroy(
+  MLIRModule module_)
+@extern("mlirModuleDestroy");
+
+fn MLIROperation module_get_operation(
+  MLIRModule module_)
+@extern("mlirModuleGetOperation");
+
+fn MLIRModule module_from_operation(
+  MLIROperation op)
+@extern("mlirModuleFromOperation");
+
+struct MLIROperationState {
+  MLIRStringRef name;
+  MLIRLocation location;
+  iptr n_results;
+  MLIRType* results;
+  iptr n_operands;
+  MLIRValue* operands;
+  iptr n_regions;
+  MLIRRegion* regions;
+  iptr n_successors;
+  MLIRBlock* successors;
+  iptr n_attributes;
+  MLIRNamedAttribute* attributes;
+  bool enable_result_type_inference;
+}
+
+fn MLIROperationState operation_state_get(
+  MLIRStringRef name, 
+  MLIRLocation loc)
+@extern("mlirOperationStateGet");
+
+fn void operation_state_add_results(
+  MLIROperationState* state, 
+  iptr n, 
+  MLIRType* results)
+@extern("mlirOperationStateAddResults");
+
+fn void operation_state_add_operands(
+  MLIROperationState* state, 
+  iptr n, 
+  MLIRValue* operands)
+@extern("mlirOperationStateAddOperands");
+
+fn void operation_state_add_owned_regions(
+  MLIROperationState* state, 
+  iptr n, 
+  MLIRRegion* regions)
+@extern("mlirOperationStateAddOwnedRegions");
+
+fn void operation_state_add_successors(
+  MLIROperationState* state, 
+  iptr n, 
+  MLIRBlock* successors)
+@extern("mlirOperationStateAddSuccessors");
+
+fn void operation_state_add_attributes(
+  MLIROperationState* state, 
+  iptr n, 
+  MLIRNamedAttribute* attributes)
+@extern("mlirOperationStateAddAttributes");
+
+fn void operation_state_enable_result_type_inference(
+  MLIROperationState* state)
+@extern("mlirOperationStateEnableResultTypeInference");
+
+fn MLIRAsmState asm_state_create_for_operation(
+  MLIROperation op, 
+  MLIROpPrintingFlags flags)
+@extern("mlirAsmStateCreateForOperation");
+
+fn MLIRAsmState asm_state_create_for_value(
+  MLIRValue value, 
+  MLIROpPrintingFlags flags)
+@extern("mlirAsmStateCreateForValue");
+
+fn void asm_state_destroy(
+  MLIRAsmState state)
+@extern("mlirAsmStateDestroy");
+
+fn MLIROpPrintingFlags op_printing_flags_create()
+@extern("mlirOpPrintingFlagsCreate");
+
+fn void op_printing_flags_destroy(
+  MLIROpPrintingFlags flags)
+@extern("mlirOpPrintingFlagsDestroy");
+
+fn void op_printing_flags_elide_large_elements_attrs(
+  MLIROpPrintingFlags flags, 
+  iptr large_element_limit)
+@extern("mlirOpPrintingFlagsElideLargeElementsAttrs");
+
+fn void op_printing_flags_elide_large_resource_string(
+  MLIROpPrintingFlags flags, 
+  iptr large_resource_limit)
+@extern("mlirOpPrintingFlagsElideLargeResourceString");
+
+fn void op_printing_flags_enable_debug_info(
+  MLIROpPrintingFlags flags, 
+  bool enable, 
+  bool pretty_form)
+@extern("mlirOpPrintingFlagsEnableDebugInfo");
+
+fn void op_printing_flags_print_generic_op_form(
+  MLIROpPrintingFlags flags)
+@extern("mlirOpPrintingFlagsPrintGenericOpForm");
+
+fn void op_printing_flags_use_local_scope(
+  MLIROpPrintingFlags flags)
+@extern("mlirOpPrintingFlagsUseLocalScope");
+
+fn void op_printing_flags_assume_verified(
+  MLIROpPrintingFlags flags)
+@extern("mlirOpPrintingFlagsAssumeVerified");
+
+fn void op_printing_flags_skip_regions(
+  MLIROpPrintingFlags flags)
+@extern("mlirOpPrintingFlagsSkipRegions");
+
+fn MLIRBytecodeWriterConfig bytecode_writer_config_create()
+@extern("mlirBytecodeWriterConfigCreate");
+
+fn void bytecode_writer_config_destroy(
+  MLIRBytecodeWriterConfig config)
+@extern("mlirBytecodeWriterConfigDestroy");
+
+fn void bytecode_writer_config_desired_emit_version(
+  MLIRBytecodeWriterConfig flags, 
+  long version)
+@extern("mlirBytecodeWriterConfigDesiredEmitVersion");
+
+fn MLIROperation operation_create(
+  MLIROperationState* state)
+@extern("mlirOperationCreate");
+
+fn MLIROperation operation_create_parse(
+  MLIRContext context, 
+  MLIRStringRef source_str, 
+  MLIRStringRef source_name)
+@extern("mlirOperationCreateParse");
+
+fn MLIROperation operation_clone(
+  MLIROperation op)
+@extern("mlirOperationClone");
+
+fn void operation_destroy(
+  MLIROperation op)
+@extern("mlirOperationDestroy");
+
+fn void operation_remove_from_parent(
+  MLIROperation op)
+@extern("mlirOperationRemoveFromParent");
+
+fn bool operation_is_null(
+  MLIROperation op)
+@extern("mlirOperationIsNull");
+
+fn bool operation_equal(
+  MLIROperation op, 
+  MLIROperation other)
+@extern("mlirOperationEqual");
+
+fn MLIRContext operation_get_context(
+  MLIROperation op)
+@extern("mlirOperationGetContext");
+
+fn MLIRLocation operation_get_location(
+  MLIROperation op)
+@extern("mlirOperationGetLocation");
+
+fn MLIRTypeID operation_get_type_id(
+  MLIROperation op)
+@extern("mlirOperationGetTypeID");
+
+fn MLIRIdentifier operation_get_name(
+  MLIROperation op)
+@extern("mlirOperationGetName");
+
+fn MLIRBlock operation_get_block(
+  MLIROperation op)
+@extern("mlirOperationGetBlock");
+
+fn MLIROperation operation_get_parent_operation(
+  MLIROperation op)
+@extern("mlirOperationGetParentOperation");
+
+fn iptr operation_get_num_regions(
+  MLIROperation op)
+@extern("mlirOperationGetNumRegions");
+
+fn MLIRRegion operation_get_region(
+  MLIROperation op, 
+  iptr pos)
+@extern("mlirOperationGetRegion");
+
+fn MLIROperation operation_get_next_in_block(
+  MLIROperation op)
+@extern("mlirOperationGetNextInBlock");
+
+fn iptr operation_get_num_operands(
+  MLIROperation op)
+@extern("mlirOperationGetNumOperands");
+
+fn MLIRValue operation_get_operand(
+  MLIROperation op, 
+  iptr pos)
+@extern("mlirOperationGetOperand");
+
+fn void operation_set_operand(
+  MLIROperation op, 
+  iptr pos, 
+  MLIRValue new_value)
+@extern("mlirOperationSetOperand");
+
+fn void operation_set_operands(
+  MLIROperation op, 
+  iptr n_operands, 
+  MLIRValue* operands)
+@extern("mlirOperationSetOperands");
+
+fn iptr operation_get_num_results(
+  MLIROperation op)
+@extern("mlirOperationGetNumResults");
+
+fn MLIRValue operation_get_result(
+  MLIROperation op, 
+  iptr pos)
+@extern("mlirOperationGetResult");
+
+fn iptr operation_get_num_successors(
+  MLIROperation op)
+@extern("mlirOperationGetNumSuccessors");
+
+fn MLIRBlock operation_get_successor(
+  MLIROperation op, 
+  iptr pos)
+@extern("mlirOperationGetSuccessor");
+
+fn void operation_set_successor(
+  MLIROperation op, 
+  iptr pos, 
+  MLIRBlock block)
+@extern("mlirOperationSetSuccessor");
+
+fn bool operation_has_inherent_attribute_by_name(
+  MLIROperation op, 
+  MLIRStringRef name)
+@extern("mlirOperationHasInherentAttributeByName");
+
+fn MLIRAttribute operation_get_inherent_attribute_by_name(
+  MLIROperation op, 
+  MLIRStringRef name)
+@extern("mlirOperationGetInherentAttributeByName");
+
+fn void operation_set_inherent_attribute_by_name(
+  MLIROperation op, 
+  MLIRStringRef name, 
+  MLIRAttribute attr)
+@extern("mlirOperationSetInherentAttributeByName");
+
+fn iptr operation_get_num_discardable_attributes(
+  MLIROperation op)
+@extern("mlirOperationGetNumDiscardableAttributes");
+
+fn MLIRNamedAttribute operation_get_discardable_attribute(
+  MLIROperation op, 
+  iptr pos)
+@extern("mlirOperationGetDiscardableAttribute");
+
+fn MLIRAttribute operation_get_discardable_attribute_by_name(
+  MLIROperation op, 
+  MLIRStringRef name)
+@extern("mlirOperationGetDiscardableAttributeByName");
+
+fn void operation_set_discardable_attribute_by_name(
+  MLIROperation op, 
+  MLIRStringRef name, 
+  MLIRAttribute attr)
+@extern("mlirOperationSetDiscardableAttributeByName");
+
+fn bool operation_remove_discardable_attribute_by_name(
+  MLIROperation op, 
+  MLIRStringRef name)
+@extern("mlirOperationRemoveDiscardableAttributeByName");
+
+fn iptr operation_get_num_attributes(
+  MLIROperation op)
+@extern("mlirOperationGetNumAttributes");
+
+fn MLIRNamedAttribute operation_get_attribute(
+  MLIROperation op, 
+  iptr pos)
+@extern("mlirOperationGetAttribute");
+
+fn MLIRAttribute operation_get_attribute_by_name(
+  MLIROperation op, 
+  MLIRStringRef name)
+@extern("mlirOperationGetAttributeByName");
+
+fn void operation_set_attribute_by_name(
+  MLIROperation op, 
+  MLIRStringRef name, 
+  MLIRAttribute attr)
+@extern("mlirOperationSetAttributeByName");
+
+fn bool operation_remove_attribute_by_name(
+  MLIROperation op, 
+  MLIRStringRef name)
+@extern("mlirOperationRemoveAttributeByName");
+
+fn void operation_print(
+  MLIROperation op, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirOperationPrint");
+
+fn void operation_print_with_flags(
+  MLIROperation op, 
+  MLIROpPrintingFlags flags, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirOperationPrintWithFlags");
+
+fn void operation_print_with_state(
+  MLIROperation op, 
+  MLIRAsmState state, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirOperationPrintWithState");
+
+fn void operation_write_bytecode(
+  MLIROperation op, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirOperationWriteBytecode");
+
+fn MLIRLogicalResult operation_write_bytecode_with_config(
+  MLIROperation op, 
+  MLIRBytecodeWriterConfig config, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirOperationWriteBytecodeWithConfig");
+
+fn void operation_dump(
+  MLIROperation op)
+@extern("mlirOperationDump");
+
+fn bool operation_verify(
+  MLIROperation op)
+@extern("mlirOperationVerify");
+
+fn void operation_move_after(
+  MLIROperation op, 
+  MLIROperation other)
+@extern("mlirOperationMoveAfter");
+
+fn void operation_move_before(
+  MLIROperation op, 
+  MLIROperation other)
+@extern("mlirOperationMoveBefore");
+
+typedef MLIRWalkResult = inline CUInt;
+const MLIRWalkResult WALK_RESULT_ADVANCE = 0;
+const MLIRWalkResult WALK_RESULT_INTERRUPT = 1;
+const MLIRWalkResult WALK_RESULT_SKIP = 2;
+
+typedef MLIRWalkOrder = inline CUInt;
+const MLIRWalkOrder WALK_PRE_ORDER = 0;
+const MLIRWalkOrder WALK_POST_ORDER = 1;
+
+alias MLIROperationWalkCallback = fn MLIRWalkResult(
+  MLIROperation, 
+  void* user_data);
+
+fn void operation_walk(
+  MLIROperation op, 
+  MLIROperationWalkCallback callback, 
+  void* user_data, 
+  MLIRWalkOrder walk_order)
+@extern("mlirOperationWalk");
+
+fn MLIRRegion region_create()
+@extern("mlirRegionCreate");
+
+fn void region_destroy(
+  MLIRRegion region)
+@extern("mlirRegionDestroy");
+
+fn bool region_is_null(
+  MLIRRegion region)
+@extern("mlirRegionIsNull");
+
+fn bool region_equal(
+  MLIRRegion region, 
+  MLIRRegion other)
+@extern("mlirRegionEqual");
+
+fn MLIRBlock region_get_first_block(
+  MLIRRegion region)
+@extern("mlirRegionGetFirstBlock");
+
+fn void region_append_owned_block(
+  MLIRRegion region, 
+  MLIRBlock block)
+@extern("mlirRegionAppendOwnedBlock");
+
+fn void region_insert_owned_block(
+  MLIRRegion region, 
+  iptr pos, 
+  MLIRBlock block)
+@extern("mlirRegionInsertOwnedBlock");
+
+fn void region_insert_owned_block_after(
+  MLIRRegion region, 
+  MLIRBlock reference, 
+  MLIRBlock block)
+@extern("mlirRegionInsertOwnedBlockAfter");
+
+fn void region_insert_owned_block_before(
+  MLIRRegion region, 
+  MLIRBlock reference, 
+  MLIRBlock block)
+@extern("mlirRegionInsertOwnedBlockBefore");
+
+fn MLIRRegion operation_get_first_region(
+  MLIROperation op)
+@extern("mlirOperationGetFirstRegion");
+
+fn MLIRRegion region_get_next_in_operation(
+  MLIRRegion region)
+@extern("mlirRegionGetNextInOperation");
+
+fn void region_take_body(
+  MLIRRegion target, 
+  MLIRRegion source)
+@extern("mlirRegionTakeBody");
+
+fn MLIRBlock block_create(
+  iptr n_args, 
+  MLIRType* args, 
+  MLIRLocation* locs)
+@extern("mlirBlockCreate");
+
+fn void block_destroy(
+  MLIRBlock block)
+@extern("mlirBlockDestroy");
+
+fn void block_detach(
+  MLIRBlock block)
+@extern("mlirBlockDetach");
+
+fn bool block_is_null(
+  MLIRBlock block)
+@extern("mlirBlockIsNull");
+
+fn bool block_equal(
+  MLIRBlock block, 
+  MLIRBlock other)
+@extern("mlirBlockEqual");
+
+fn MLIROperation block_get_parent_operation(
+  MLIRBlock)
+@extern("mlirBlockGetParentOperation");
+
+fn MLIRRegion block_get_parent_region(
+  MLIRBlock block)
+@extern("mlirBlockGetParentRegion");
+
+fn MLIRBlock block_get_next_in_region(
+  MLIRBlock block)
+@extern("mlirBlockGetNextInRegion");
+
+fn MLIROperation block_get_first_operation(
+  MLIRBlock block)
+@extern("mlirBlockGetFirstOperation");
+
+fn MLIROperation block_get_terminator(
+  MLIRBlock block)
+@extern("mlirBlockGetTerminator");
+
+fn void block_append_owned_operation(
+  MLIRBlock block, 
+  MLIROperation operation)
+@extern("mlirBlockAppendOwnedOperation");
+
+fn void block_insert_owned_operation(
+  MLIRBlock block, 
+  iptr pos, 
+  MLIROperation operation)
+@extern("mlirBlockInsertOwnedOperation");
+
+fn void block_insert_owned_operation_after(
+  MLIRBlock block, 
+  MLIROperation reference, 
+  MLIROperation operation)
+@extern("mlirBlockInsertOwnedOperationAfter");
+
+fn void block_insert_owned_operation_before(
+  MLIRBlock block, 
+  MLIROperation reference, 
+  MLIROperation operation)
+@extern("mlirBlockInsertOwnedOperationBefore");
+
+fn iptr block_get_num_arguments(
+  MLIRBlock block)
+@extern("mlirBlockGetNumArguments");
+
+fn MLIRValue block_add_argument(
+  MLIRBlock block, 
+  MLIRType type, 
+  MLIRLocation loc)
+@extern("mlirBlockAddArgument");
+
+fn void block_erase_argument(
+  MLIRBlock block, 
+  CUInt index)
+@extern("mlirBlockEraseArgument");
+
+fn MLIRValue block_insert_argument(
+  MLIRBlock block, 
+  iptr pos, 
+  MLIRType type, 
+  MLIRLocation loc)
+@extern("mlirBlockInsertArgument");
+
+fn MLIRValue block_get_argument(
+  MLIRBlock block, 
+  iptr pos)
+@extern("mlirBlockGetArgument");
+
+fn void block_print(
+  MLIRBlock block, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirBlockPrint");
+
+fn bool value_is_null(
+  MLIRValue value)
+@extern("mlirValueIsNull");
+
+fn bool value_equal(
+  MLIRValue value_1, 
+  MLIRValue value_2)
+@extern("mlirValueEqual");
+
+fn bool value_is_a_block_argument(
+  MLIRValue value)
+@extern("mlirValueIsABlockArgument");
+
+fn bool value_is_a_op_result(
+  MLIRValue value)
+@extern("mlirValueIsAOpResult");
+
+fn MLIRBlock block_argument_get_owner(
+  MLIRValue value)
+@extern("mlirBlockArgumentGetOwner");
+
+fn iptr block_argument_get_arg_number(
+  MLIRValue value)
+@extern("mlirBlockArgumentGetArgNumber");
+
+fn void block_argument_set_type(
+  MLIRValue value, 
+  MLIRType type)
+@extern("mlirBlockArgumentSetType");
+
+fn MLIROperation op_result_get_owner(
+  MLIRValue value)
+@extern("mlirOpResultGetOwner");
+
+fn iptr op_result_get_result_number(
+  MLIRValue value)
+@extern("mlirOpResultGetResultNumber");
+
+fn MLIRType value_get_type(
+  MLIRValue value)
+@extern("mlirValueGetType");
+
+fn void value_set_type(
+  MLIRValue value, 
+  MLIRType type)
+@extern("mlirValueSetType");
+
+fn void value_dump(
+  MLIRValue value)
+@extern("mlirValueDump");
+
+fn void value_print(
+  MLIRValue value, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirValuePrint");
+
+fn void value_print_as_operand(
+  MLIRValue value, 
+  MLIRAsmState state, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirValuePrintAsOperand");
+
+fn MLIROpOperand value_get_first_use(
+  MLIRValue value)
+@extern("mlirValueGetFirstUse");
+
+fn void value_replace_all_uses_of_with(
+  MLIRValue of, 
+  MLIRValue with)
+@extern("mlirValueReplaceAllUsesOfWith");
+
+fn void value_replace_all_uses_except(
+  MLIRValue of, 
+  MLIRValue with, 
+  iptr num_exceptions, 
+  MLIROperation* exceptions)
+@extern("mlirValueReplaceAllUsesExcept");
+
+fn bool op_operand_is_null(
+  MLIROpOperand op_operand)
+@extern("mlirOpOperandIsNull");
+
+fn MLIRValue op_operand_get_value(
+  MLIROpOperand op_operand)
+@extern("mlirOpOperandGetValue");
+
+fn MLIROperation op_operand_get_owner(
+  MLIROpOperand op_operand)
+@extern("mlirOpOperandGetOwner");
+
+fn CUInt op_operand_get_operand_number(
+  MLIROpOperand op_operand)
+@extern("mlirOpOperandGetOperandNumber");
+
+fn MLIROpOperand op_operand_get_next_use(
+  MLIROpOperand op_operand)
+@extern("mlirOpOperandGetNextUse");
+
+fn MLIRType type_parse_get(
+  MLIRContext context, 
+  MLIRStringRef type)
+@extern("mlirTypeParseGet");
+
+fn MLIRContext type_get_context(
+  MLIRType type)
+@extern("mlirTypeGetContext");
+
+fn MLIRTypeID type_get_type_id(
+  MLIRType type)
+@extern("mlirTypeGetTypeID");
+
+fn MLIRDialect type_get_dialect(
+  MLIRType type)
+@extern("mlirTypeGetDialect");
+
+fn bool type_is_null(
+  MLIRType type)
+@extern("mlirTypeIsNull");
+
+fn bool type_equal(
+  MLIRType t_1, 
+  MLIRType t_2)
+@extern("mlirTypeEqual");
+
+fn void type_print(
+  MLIRType type, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirTypePrint");
+
+fn void type_dump(
+  MLIRType type)
+@extern("mlirTypeDump");
+
+fn MLIRAttribute attribute_parse_get(
+  MLIRContext context, 
+  MLIRStringRef attr)
+@extern("mlirAttributeParseGet");
+
+fn MLIRContext attribute_get_context(
+  MLIRAttribute attribute)
+@extern("mlirAttributeGetContext");
+
+fn MLIRType attribute_get_type(
+  MLIRAttribute attribute)
+@extern("mlirAttributeGetType");
+
+fn MLIRTypeID attribute_get_type_id(
+  MLIRAttribute attribute)
+@extern("mlirAttributeGetTypeID");
+
+fn MLIRDialect attribute_get_dialect(
+  MLIRAttribute attribute)
+@extern("mlirAttributeGetDialect");
+
+fn bool attribute_is_null(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsNull");
+
+fn bool attribute_equal(
+  MLIRAttribute a_1, 
+  MLIRAttribute a_2)
+@extern("mlirAttributeEqual");
+
+fn void attribute_print(
+  MLIRAttribute attr, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirAttributePrint");
+
+fn void attribute_dump(
+  MLIRAttribute attr)
+@extern("mlirAttributeDump");
+
+fn MLIRNamedAttribute named_attribute_get(
+  MLIRIdentifier name, 
+  MLIRAttribute attr)
+@extern("mlirNamedAttributeGet");
+
+fn MLIRIdentifier identifier_get(
+  MLIRContext context, 
+  MLIRStringRef str)
+@extern("mlirIdentifierGet");
+
+fn MLIRContext identifier_get_context(
+  MLIRIdentifier)
+@extern("mlirIdentifierGetContext");
+
+fn bool identifier_equal(
+  MLIRIdentifier ident, 
+  MLIRIdentifier other)
+@extern("mlirIdentifierEqual");
+
+fn MLIRStringRef identifier_str(
+  MLIRIdentifier ident)
+@extern("mlirIdentifierStr");
+
+fn MLIRStringRef symbol_table_get_symbol_attribute_name()
+@extern("mlirSymbolTableGetSymbolAttributeName");
+
+fn MLIRStringRef symbol_table_get_visibility_attribute_name()
+@extern("mlirSymbolTableGetVisibilityAttributeName");
+
+fn MLIRSymbolTable symbol_table_create(
+  MLIROperation operation)
+@extern("mlirSymbolTableCreate");
+
+fn bool symbol_table_is_null(
+  MLIRSymbolTable symbol_table)
+@extern("mlirSymbolTableIsNull");
+
+fn void symbol_table_destroy(
+  MLIRSymbolTable symbol_table)
+@extern("mlirSymbolTableDestroy");
+
+fn MLIROperation symbol_table_lookup(
+  MLIRSymbolTable symbol_table, 
+  MLIRStringRef name)
+@extern("mlirSymbolTableLookup");
+
+fn MLIRAttribute symbol_table_insert(
+  MLIRSymbolTable symbol_table, 
+  MLIROperation operation)
+@extern("mlirSymbolTableInsert");
+
+fn void symbol_table_erase(
+  MLIRSymbolTable symbol_table, 
+  MLIROperation operation)
+@extern("mlirSymbolTableErase");
+
+fn MLIRLogicalResult symbol_table_replace_all_symbol_uses(
+  MLIRStringRef old_symbol, 
+  MLIRStringRef new_symbol, 
+  MLIROperation from)
+@extern("mlirSymbolTableReplaceAllSymbolUses");
+
+alias UnnamedPFN1 @private = fn void(
+  MLIROperation, 
+  bool, 
+  void* user_data);
+
+fn void symbol_table_walk_symbol_tables(
+  MLIROperation from, 
+  bool all_sym_uses_visible, 
+  UnnamedPFN1 callback, 
+  void* user_data)
+@extern("mlirSymbolTableWalkSymbolTables");
+
+struct MLIRAffineExpr {
+  void* ptr;
+}
+
+typedef MLIRAffineMap = void;
+
+fn MLIRContext affine_expr_get_context(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprGetContext");
+
+fn bool affine_expr_equal(
+  MLIRAffineExpr lhs, 
+  MLIRAffineExpr rhs)
+@extern("mlirAffineExprEqual");
+
+fn bool affine_expr_is_null(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprIsNull");
+
+fn void affine_expr_print(
+  MLIRAffineExpr affine_expr, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirAffineExprPrint");
+
+fn void affine_expr_dump(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprDump");
+
+fn bool affine_expr_is_symbolic_or_constant(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprIsSymbolicOrConstant");
+
+fn bool affine_expr_is_pure_affine(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprIsPureAffine");
+
+fn long affine_expr_get_largest_known_divisor(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprGetLargestKnownDivisor");
+
+fn bool affine_expr_is_multiple_of(
+  MLIRAffineExpr affine_expr, 
+  long factor)
+@extern("mlirAffineExprIsMultipleOf");
+
+fn bool affine_expr_is_function_of_dim(
+  MLIRAffineExpr affine_expr, 
+  iptr position)
+@extern("mlirAffineExprIsFunctionOfDim");
+
+fn MLIRAffineExpr affine_expr_compose(
+  MLIRAffineExpr affine_expr, 
+  MLIRAffineMap affine_map)
+@extern("mlirAffineExprCompose");
+
+fn bool affine_expr_is_a_dim(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprIsADim");
+
+fn MLIRAffineExpr affine_dim_expr_get(
+  MLIRContext ctx, 
+  iptr position)
+@extern("mlirAffineDimExprGet");
+
+fn iptr affine_dim_expr_get_position(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineDimExprGetPosition");
+
+fn bool affine_expr_is_a_symbol(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprIsASymbol");
+
+fn MLIRAffineExpr affine_symbol_expr_get(
+  MLIRContext ctx, 
+  iptr position)
+@extern("mlirAffineSymbolExprGet");
+
+fn iptr affine_symbol_expr_get_position(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineSymbolExprGetPosition");
+
+fn bool affine_expr_is_a_constant(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprIsAConstant");
+
+fn MLIRAffineExpr affine_constant_expr_get(
+  MLIRContext ctx, 
+  long constant)
+@extern("mlirAffineConstantExprGet");
+
+fn long affine_constant_expr_get_value(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineConstantExprGetValue");
+
+fn bool affine_expr_is_a_add(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprIsAAdd");
+
+fn MLIRAffineExpr affine_add_expr_get(
+  MLIRAffineExpr lhs, 
+  MLIRAffineExpr rhs)
+@extern("mlirAffineAddExprGet");
+
+fn bool affine_expr_is_a_mul(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprIsAMul");
+
+fn MLIRAffineExpr affine_mul_expr_get(
+  MLIRAffineExpr lhs, 
+  MLIRAffineExpr rhs)
+@extern("mlirAffineMulExprGet");
+
+fn bool affine_expr_is_a_mod(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprIsAMod");
+
+fn MLIRAffineExpr affine_mod_expr_get(
+  MLIRAffineExpr lhs, 
+  MLIRAffineExpr rhs)
+@extern("mlirAffineModExprGet");
+
+fn bool affine_expr_is_a_floor_div(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprIsAFloorDiv");
+
+fn MLIRAffineExpr affine_floor_div_expr_get(
+  MLIRAffineExpr lhs, 
+  MLIRAffineExpr rhs)
+@extern("mlirAffineFloorDivExprGet");
+
+fn bool affine_expr_is_a_ceil_div(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprIsACeilDiv");
+
+fn MLIRAffineExpr affine_ceil_div_expr_get(
+  MLIRAffineExpr lhs, 
+  MLIRAffineExpr rhs)
+@extern("mlirAffineCeilDivExprGet");
+
+fn bool affine_expr_is_a_binary(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineExprIsABinary");
+
+fn MLIRAffineExpr affine_binary_op_expr_get_lhs(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineBinaryOpExprGetLHS");
+
+fn MLIRAffineExpr affine_binary_op_expr_get_rhs(
+  MLIRAffineExpr affine_expr)
+@extern("mlirAffineBinaryOpExprGetRHS");
+
+struct MLIRAffineMap {
+  void* ptr;
+}
+
+fn MLIRContext affine_map_get_context(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapGetContext");
+
+fn bool affine_map_is_null(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapIsNull");
+
+fn bool affine_map_equal(
+  MLIRAffineMap a_1, 
+  MLIRAffineMap a_2)
+@extern("mlirAffineMapEqual");
+
+fn void affine_map_print(
+  MLIRAffineMap affine_map, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirAffineMapPrint");
+
+fn void affine_map_dump(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapDump");
+
+fn MLIRAffineMap affine_map_empty_get(
+  MLIRContext ctx)
+@extern("mlirAffineMapEmptyGet");
+
+fn MLIRAffineMap affine_map_zero_result_get(
+  MLIRContext ctx, 
+  iptr dim_count, 
+  iptr symbol_count)
+@extern("mlirAffineMapZeroResultGet");
+
+fn MLIRAffineMap affine_map_get(
+  MLIRContext ctx, 
+  iptr dim_count, 
+  iptr symbol_count, 
+  iptr n_affine_exprs, 
+  MLIRAffineExpr* affine_exprs)
+@extern("mlirAffineMapGet");
+
+fn MLIRAffineMap affine_map_constant_get(
+  MLIRContext ctx, 
+  long val)
+@extern("mlirAffineMapConstantGet");
+
+fn MLIRAffineMap affine_map_multi_dim_identity_get(
+  MLIRContext ctx, 
+  iptr num_dims)
+@extern("mlirAffineMapMultiDimIdentityGet");
+
+fn MLIRAffineMap affine_map_minor_identity_get(
+  MLIRContext ctx, 
+  iptr dims, 
+  iptr results)
+@extern("mlirAffineMapMinorIdentityGet");
+
+fn MLIRAffineMap affine_map_permutation_get(
+  MLIRContext ctx, 
+  iptr size, 
+  CUInt* permutation)
+@extern("mlirAffineMapPermutationGet");
+
+fn bool affine_map_is_identity(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapIsIdentity");
+
+fn bool affine_map_is_minor_identity(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapIsMinorIdentity");
+
+fn bool affine_map_is_empty(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapIsEmpty");
+
+fn bool affine_map_is_single_constant(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapIsSingleConstant");
+
+fn long affine_map_get_single_constant_result(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapGetSingleConstantResult");
+
+fn iptr affine_map_get_num_dims(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapGetNumDims");
+
+fn iptr affine_map_get_num_symbols(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapGetNumSymbols");
+
+fn iptr affine_map_get_num_results(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapGetNumResults");
+
+fn MLIRAffineExpr affine_map_get_result(
+  MLIRAffineMap affine_map, 
+  iptr pos)
+@extern("mlirAffineMapGetResult");
+
+fn iptr affine_map_get_num_inputs(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapGetNumInputs");
+
+fn bool affine_map_is_projected_permutation(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapIsProjectedPermutation");
+
+fn bool affine_map_is_permutation(
+  MLIRAffineMap affine_map)
+@extern("mlirAffineMapIsPermutation");
+
+fn MLIRAffineMap affine_map_get_sub_map(
+  MLIRAffineMap affine_map, 
+  iptr size, 
+  iptr* result_pos)
+@extern("mlirAffineMapGetSubMap");
+
+fn MLIRAffineMap affine_map_get_major_sub_map(
+  MLIRAffineMap affine_map, 
+  iptr num_results)
+@extern("mlirAffineMapGetMajorSubMap");
+
+fn MLIRAffineMap affine_map_get_minor_sub_map(
+  MLIRAffineMap affine_map, 
+  iptr num_results)
+@extern("mlirAffineMapGetMinorSubMap");
+
+fn MLIRAffineMap affine_map_replace(
+  MLIRAffineMap affine_map, 
+  MLIRAffineExpr expression, 
+  MLIRAffineExpr replacement, 
+  iptr num_result_dims, 
+  iptr num_result_syms)
+@extern("mlirAffineMapReplace");
+
+alias UnnamedPFN2 @private = fn void(
+  void* res, 
+  iptr idx, 
+  MLIRAffineMap m);
+
+fn void affine_map_compress_unused_symbols(
+  MLIRAffineMap* affine_maps, 
+  iptr size, 
+  void* result, 
+  UnnamedPFN2 populate_result)
+@extern("mlirAffineMapCompressUnusedSymbols");
+
+struct MLIRIntegerSet {
+  void* ptr;
+}
+
+fn MLIRContext integer_set_get_context(
+  MLIRIntegerSet set)
+@extern("mlirIntegerSetGetContext");
+
+fn bool integer_set_is_null(
+  MLIRIntegerSet set)
+@extern("mlirIntegerSetIsNull");
+
+fn bool integer_set_equal(
+  MLIRIntegerSet s_1, 
+  MLIRIntegerSet s_2)
+@extern("mlirIntegerSetEqual");
+
+fn void integer_set_print(
+  MLIRIntegerSet set, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirIntegerSetPrint");
+
+fn void integer_set_dump(
+  MLIRIntegerSet set)
+@extern("mlirIntegerSetDump");
+
+fn MLIRIntegerSet integer_set_empty_get(
+  MLIRContext context, 
+  iptr num_dims, 
+  iptr num_symbols)
+@extern("mlirIntegerSetEmptyGet");
+
+fn MLIRIntegerSet integer_set_get(
+  MLIRContext context, 
+  iptr num_dims, 
+  iptr num_symbols, 
+  iptr num_constraints, 
+  MLIRAffineExpr* constraints, 
+  bool* eq_flags)
+@extern("mlirIntegerSetGet");
+
+fn MLIRIntegerSet integer_set_replace_get(
+  MLIRIntegerSet set, 
+  MLIRAffineExpr* dim_replacements, 
+  MLIRAffineExpr* symbol_replacements, 
+  iptr num_result_dims, 
+  iptr num_result_symbols)
+@extern("mlirIntegerSetReplaceGet");
+
+fn bool integer_set_is_canonical_empty(
+  MLIRIntegerSet set)
+@extern("mlirIntegerSetIsCanonicalEmpty");
+
+fn iptr integer_set_get_num_dims(
+  MLIRIntegerSet set)
+@extern("mlirIntegerSetGetNumDims");
+
+fn iptr integer_set_get_num_symbols(
+  MLIRIntegerSet set)
+@extern("mlirIntegerSetGetNumSymbols");
+
+fn iptr integer_set_get_num_inputs(
+  MLIRIntegerSet set)
+@extern("mlirIntegerSetGetNumInputs");
+
+fn iptr integer_set_get_num_constraints(
+  MLIRIntegerSet set)
+@extern("mlirIntegerSetGetNumConstraints");
+
+fn iptr integer_set_get_num_equalities(
+  MLIRIntegerSet set)
+@extern("mlirIntegerSetGetNumEqualities");
+
+fn iptr integer_set_get_num_inequalities(
+  MLIRIntegerSet set)
+@extern("mlirIntegerSetGetNumInequalities");
+
+fn MLIRAffineExpr integer_set_get_constraint(
+  MLIRIntegerSet set, 
+  iptr pos)
+@extern("mlirIntegerSetGetConstraint");
+
+fn bool integer_set_is_constraint_eq(
+  MLIRIntegerSet set, 
+  iptr pos)
+@extern("mlirIntegerSetIsConstraintEq");
+
+fn MLIRAttribute attribute_get_null()
+@extern("mlirAttributeGetNull");
+
+fn bool attribute_is_a_location(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsALocation");
+
+fn bool attribute_is_a_affine_map(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAAffineMap");
+
+fn MLIRAttribute affine_map_attr_get(
+  MLIRAffineMap map)
+@extern("mlirAffineMapAttrGet");
+
+fn MLIRAffineMap affine_map_attr_get_value(
+  MLIRAttribute attr)
+@extern("mlirAffineMapAttrGetValue");
+
+fn MLIRTypeID affine_map_attr_get_type_id()
+@extern("mlirAffineMapAttrGetTypeID");
+
+fn bool attribute_is_a_array(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAArray");
+
+fn MLIRAttribute array_attr_get(
+  MLIRContext ctx, 
+  iptr num_elements, 
+  MLIRAttribute* elements)
+@extern("mlirArrayAttrGet");
+
+fn iptr array_attr_get_num_elements(
+  MLIRAttribute attr)
+@extern("mlirArrayAttrGetNumElements");
+
+fn MLIRAttribute array_attr_get_element(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirArrayAttrGetElement");
+
+fn MLIRTypeID array_attr_get_type_id()
+@extern("mlirArrayAttrGetTypeID");
+
+fn bool attribute_is_a_dictionary(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsADictionary");
+
+fn MLIRAttribute dictionary_attr_get(
+  MLIRContext ctx, 
+  iptr num_elements, 
+  MLIRNamedAttribute* elements)
+@extern("mlirDictionaryAttrGet");
+
+fn iptr dictionary_attr_get_num_elements(
+  MLIRAttribute attr)
+@extern("mlirDictionaryAttrGetNumElements");
+
+fn MLIRNamedAttribute dictionary_attr_get_element(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDictionaryAttrGetElement");
+
+fn MLIRAttribute dictionary_attr_get_element_by_name(
+  MLIRAttribute attr, 
+  MLIRStringRef name)
+@extern("mlirDictionaryAttrGetElementByName");
+
+fn MLIRTypeID dictionary_attr_get_type_id()
+@extern("mlirDictionaryAttrGetTypeID");
+
+fn bool attribute_is_a_float(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAFloat");
+
+fn MLIRAttribute float_attr_double_get(
+  MLIRContext ctx, 
+  MLIRType type, 
+  double value)
+@extern("mlirFloatAttrDoubleGet");
+
+fn MLIRAttribute float_attr_double_get_checked(
+  MLIRLocation loc, 
+  MLIRType type, 
+  double value)
+@extern("mlirFloatAttrDoubleGetChecked");
+
+fn double float_attr_get_value_double(
+  MLIRAttribute attr)
+@extern("mlirFloatAttrGetValueDouble");
+
+fn MLIRTypeID float_attr_get_type_id()
+@extern("mlirFloatAttrGetTypeID");
+
+fn bool attribute_is_a_integer(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAInteger");
+
+fn MLIRAttribute integer_attr_get(
+  MLIRType type, 
+  long value)
+@extern("mlirIntegerAttrGet");
+
+fn long integer_attr_get_value_int(
+  MLIRAttribute attr)
+@extern("mlirIntegerAttrGetValueInt");
+
+fn long integer_attr_get_value_s_int(
+  MLIRAttribute attr)
+@extern("mlirIntegerAttrGetValueSInt");
+
+fn ulong integer_attr_get_value_u_int(
+  MLIRAttribute attr)
+@extern("mlirIntegerAttrGetValueUInt");
+
+fn MLIRTypeID integer_attr_get_type_id()
+@extern("mlirIntegerAttrGetTypeID");
+
+fn bool attribute_is_a_bool(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsABool");
+
+fn MLIRAttribute bool_attr_get(
+  MLIRContext ctx, 
+  CInt value)
+@extern("mlirBoolAttrGet");
+
+fn bool bool_attr_get_value(
+  MLIRAttribute attr)
+@extern("mlirBoolAttrGetValue");
+
+fn bool attribute_is_a_integer_set(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAIntegerSet");
+
+fn MLIRAttribute integer_set_attr_get(
+  MLIRIntegerSet set)
+@extern("mlirIntegerSetAttrGet");
+
+fn MLIRIntegerSet integer_set_attr_get_value(
+  MLIRAttribute attr)
+@extern("mlirIntegerSetAttrGetValue");
+
+fn MLIRTypeID integer_set_attr_get_type_id()
+@extern("mlirIntegerSetAttrGetTypeID");
+
+fn bool attribute_is_a_opaque(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAOpaque");
+
+fn MLIRAttribute opaque_attr_get(
+  MLIRContext ctx, 
+  MLIRStringRef dialect_namespace, 
+  iptr data_length, 
+  CChar* data, 
+  MLIRType type)
+@extern("mlirOpaqueAttrGet");
+
+fn MLIRStringRef opaque_attr_get_dialect_namespace(
+  MLIRAttribute attr)
+@extern("mlirOpaqueAttrGetDialectNamespace");
+
+fn MLIRStringRef opaque_attr_get_data(
+  MLIRAttribute attr)
+@extern("mlirOpaqueAttrGetData");
+
+fn MLIRTypeID opaque_attr_get_type_id()
+@extern("mlirOpaqueAttrGetTypeID");
+
+fn bool attribute_is_a_string(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAString");
+
+fn MLIRAttribute string_attr_get(
+  MLIRContext ctx, 
+  MLIRStringRef str)
+@extern("mlirStringAttrGet");
+
+fn MLIRAttribute string_attr_typed_get(
+  MLIRType type, 
+  MLIRStringRef str)
+@extern("mlirStringAttrTypedGet");
+
+fn MLIRStringRef string_attr_get_value(
+  MLIRAttribute attr)
+@extern("mlirStringAttrGetValue");
+
+fn MLIRTypeID string_attr_get_type_id()
+@extern("mlirStringAttrGetTypeID");
+
+fn bool attribute_is_a_symbol_ref(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsASymbolRef");
+
+fn MLIRAttribute symbol_ref_attr_get(
+  MLIRContext ctx, 
+  MLIRStringRef symbol, 
+  iptr num_references, 
+  MLIRAttribute* references)
+@extern("mlirSymbolRefAttrGet");
+
+fn MLIRStringRef symbol_ref_attr_get_root_reference(
+  MLIRAttribute attr)
+@extern("mlirSymbolRefAttrGetRootReference");
+
+fn MLIRStringRef symbol_ref_attr_get_leaf_reference(
+  MLIRAttribute attr)
+@extern("mlirSymbolRefAttrGetLeafReference");
+
+fn iptr symbol_ref_attr_get_num_nested_references(
+  MLIRAttribute attr)
+@extern("mlirSymbolRefAttrGetNumNestedReferences");
+
+fn MLIRAttribute symbol_ref_attr_get_nested_reference(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirSymbolRefAttrGetNestedReference");
+
+fn MLIRTypeID symbol_ref_attr_get_type_id()
+@extern("mlirSymbolRefAttrGetTypeID");
+
+fn MLIRAttribute disctinct_attr_create(
+  MLIRAttribute referenced_attr)
+@extern("mlirDisctinctAttrCreate");
+
+fn bool attribute_is_a_flat_symbol_ref(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAFlatSymbolRef");
+
+fn MLIRAttribute flat_symbol_ref_attr_get(
+  MLIRContext ctx, 
+  MLIRStringRef symbol)
+@extern("mlirFlatSymbolRefAttrGet");
+
+fn MLIRStringRef flat_symbol_ref_attr_get_value(
+  MLIRAttribute attr)
+@extern("mlirFlatSymbolRefAttrGetValue");
+
+fn bool attribute_is_a_type(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAType");
+
+fn MLIRAttribute type_attr_get(
+  MLIRType type)
+@extern("mlirTypeAttrGet");
+
+fn MLIRType type_attr_get_value(
+  MLIRAttribute attr)
+@extern("mlirTypeAttrGetValue");
+
+fn MLIRTypeID type_attr_get_type_id()
+@extern("mlirTypeAttrGetTypeID");
+
+fn bool attribute_is_a_unit(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAUnit");
+
+fn MLIRAttribute unit_attr_get(
+  MLIRContext ctx)
+@extern("mlirUnitAttrGet");
+
+fn MLIRTypeID unit_attr_get_type_id()
+@extern("mlirUnitAttrGetTypeID");
+
+fn bool attribute_is_a_elements(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAElements");
+
+fn MLIRAttribute elements_attr_get_value(
+  MLIRAttribute attr, 
+  iptr rank, 
+  ulong* idxs)
+@extern("mlirElementsAttrGetValue");
+
+fn bool elements_attr_is_valid_index(
+  MLIRAttribute attr, 
+  iptr rank, 
+  ulong* idxs)
+@extern("mlirElementsAttrIsValidIndex");
+
+fn long elements_attr_get_num_elements(
+  MLIRAttribute attr)
+@extern("mlirElementsAttrGetNumElements");
+
+fn MLIRTypeID dense_array_attr_get_type_id()
+@extern("mlirDenseArrayAttrGetTypeID");
+
+fn bool attribute_is_a_dense_bool_array(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsADenseBoolArray");
+
+fn bool attribute_is_a_dense_i_8_array(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsADenseI8Array");
+
+fn bool attribute_is_a_dense_i_16_array(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsADenseI16Array");
+
+fn bool attribute_is_a_dense_i_32_array(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsADenseI32Array");
+
+fn bool attribute_is_a_dense_i_64_array(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsADenseI64Array");
+
+fn bool attribute_is_a_dense_f_32_array(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsADenseF32Array");
+
+fn bool attribute_is_a_dense_f_64_array(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsADenseF64Array");
+
+fn MLIRAttribute dense_bool_array_get(
+  MLIRContext ctx, 
+  iptr size, 
+  CInt* values)
+@extern("mlirDenseBoolArrayGet");
+
+fn MLIRAttribute dense_i_8_array_get(
+  MLIRContext ctx, 
+  iptr size, 
+  ichar* values)
+@extern("mlirDenseI8ArrayGet");
+
+fn MLIRAttribute dense_i_16_array_get(
+  MLIRContext ctx, 
+  iptr size, 
+  short* values)
+@extern("mlirDenseI16ArrayGet");
+
+fn MLIRAttribute dense_i_32_array_get(
+  MLIRContext ctx, 
+  iptr size, 
+  int* values)
+@extern("mlirDenseI32ArrayGet");
+
+fn MLIRAttribute dense_i_64_array_get(
+  MLIRContext ctx, 
+  iptr size, 
+  long* values)
+@extern("mlirDenseI64ArrayGet");
+
+fn MLIRAttribute dense_f_32_array_get(
+  MLIRContext ctx, 
+  iptr size, 
+  float* values)
+@extern("mlirDenseF32ArrayGet");
+
+fn MLIRAttribute dense_f_64_array_get(
+  MLIRContext ctx, 
+  iptr size, 
+  double* values)
+@extern("mlirDenseF64ArrayGet");
+
+fn iptr dense_array_get_num_elements(
+  MLIRAttribute attr)
+@extern("mlirDenseArrayGetNumElements");
+
+fn bool dense_bool_array_get_element(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseBoolArrayGetElement");
+
+fn ichar dense_i_8_array_get_element(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseI8ArrayGetElement");
+
+fn short dense_i_16_array_get_element(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseI16ArrayGetElement");
+
+fn int dense_i_32_array_get_element(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseI32ArrayGetElement");
+
+fn long dense_i_64_array_get_element(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseI64ArrayGetElement");
+
+fn float dense_f_32_array_get_element(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseF32ArrayGetElement");
+
+fn double dense_f_64_array_get_element(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseF64ArrayGetElement");
+
+fn bool attribute_is_a_dense_elements(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsADenseElements");
+
+fn bool attribute_is_a_dense_int_elements(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsADenseIntElements");
+
+fn bool attribute_is_a_dense_fp_elements(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsADenseFPElements");
+
+fn MLIRTypeID dense_int_or_fp_elements_attr_get_type_id()
+@extern("mlirDenseIntOrFPElementsAttrGetTypeID");
+
+fn MLIRAttribute dense_elements_attr_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  MLIRAttribute* elements)
+@extern("mlirDenseElementsAttrGet");
+
+fn MLIRAttribute dense_elements_attr_raw_buffer_get(
+  MLIRType shaped_type, 
+  usz raw_buffer_size, 
+  void* raw_buffer)
+@extern("mlirDenseElementsAttrRawBufferGet");
+
+fn MLIRAttribute dense_elements_attr_splat_get(
+  MLIRType shaped_type, 
+  MLIRAttribute element)
+@extern("mlirDenseElementsAttrSplatGet");
+
+fn MLIRAttribute dense_elements_attr_bool_splat_get(
+  MLIRType shaped_type, 
+  bool element)
+@extern("mlirDenseElementsAttrBoolSplatGet");
+
+fn MLIRAttribute dense_elements_attr_u_int_8_splat_get(
+  MLIRType shaped_type, 
+  char element)
+@extern("mlirDenseElementsAttrUInt8SplatGet");
+
+fn MLIRAttribute dense_elements_attr_int_8_splat_get(
+  MLIRType shaped_type, 
+  ichar element)
+@extern("mlirDenseElementsAttrInt8SplatGet");
+
+fn MLIRAttribute dense_elements_attr_u_int_32_splat_get(
+  MLIRType shaped_type, 
+  uint element)
+@extern("mlirDenseElementsAttrUInt32SplatGet");
+
+fn MLIRAttribute dense_elements_attr_int_32_splat_get(
+  MLIRType shaped_type, 
+  int element)
+@extern("mlirDenseElementsAttrInt32SplatGet");
+
+fn MLIRAttribute dense_elements_attr_u_int_64_splat_get(
+  MLIRType shaped_type, 
+  ulong element)
+@extern("mlirDenseElementsAttrUInt64SplatGet");
+
+fn MLIRAttribute dense_elements_attr_int_64_splat_get(
+  MLIRType shaped_type, 
+  long element)
+@extern("mlirDenseElementsAttrInt64SplatGet");
+
+fn MLIRAttribute dense_elements_attr_float_splat_get(
+  MLIRType shaped_type, 
+  float element)
+@extern("mlirDenseElementsAttrFloatSplatGet");
+
+fn MLIRAttribute dense_elements_attr_double_splat_get(
+  MLIRType shaped_type, 
+  double element)
+@extern("mlirDenseElementsAttrDoubleSplatGet");
+
+fn MLIRAttribute dense_elements_attr_bool_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  CInt* elements)
+@extern("mlirDenseElementsAttrBoolGet");
+
+fn MLIRAttribute dense_elements_attr_u_int_8_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  char* elements)
+@extern("mlirDenseElementsAttrUInt8Get");
+
+fn MLIRAttribute dense_elements_attr_int_8_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  ichar* elements)
+@extern("mlirDenseElementsAttrInt8Get");
+
+fn MLIRAttribute dense_elements_attr_u_int_16_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  ushort* elements)
+@extern("mlirDenseElementsAttrUInt16Get");
+
+fn MLIRAttribute dense_elements_attr_int_16_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  short* elements)
+@extern("mlirDenseElementsAttrInt16Get");
+
+fn MLIRAttribute dense_elements_attr_u_int_32_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  uint* elements)
+@extern("mlirDenseElementsAttrUInt32Get");
+
+fn MLIRAttribute dense_elements_attr_int_32_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  int* elements)
+@extern("mlirDenseElementsAttrInt32Get");
+
+fn MLIRAttribute dense_elements_attr_u_int_64_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  ulong* elements)
+@extern("mlirDenseElementsAttrUInt64Get");
+
+fn MLIRAttribute dense_elements_attr_int_64_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  long* elements)
+@extern("mlirDenseElementsAttrInt64Get");
+
+fn MLIRAttribute dense_elements_attr_float_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  float* elements)
+@extern("mlirDenseElementsAttrFloatGet");
+
+fn MLIRAttribute dense_elements_attr_double_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  double* elements)
+@extern("mlirDenseElementsAttrDoubleGet");
+
+fn MLIRAttribute dense_elements_attr_b_float_16_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  ushort* elements)
+@extern("mlirDenseElementsAttrBFloat16Get");
+
+fn MLIRAttribute dense_elements_attr_float_16_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  ushort* elements)
+@extern("mlirDenseElementsAttrFloat16Get");
+
+fn MLIRAttribute dense_elements_attr_string_get(
+  MLIRType shaped_type, 
+  iptr num_elements, 
+  MLIRStringRef* strs)
+@extern("mlirDenseElementsAttrStringGet");
+
+fn MLIRAttribute dense_elements_attr_reshape_get(
+  MLIRAttribute attr, 
+  MLIRType shaped_type)
+@extern("mlirDenseElementsAttrReshapeGet");
+
+fn bool dense_elements_attr_is_splat(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrIsSplat");
+
+fn MLIRAttribute dense_elements_attr_get_splat_value(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrGetSplatValue");
+
+fn CInt dense_elements_attr_get_bool_splat_value(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrGetBoolSplatValue");
+
+fn ichar dense_elements_attr_get_int_8_splat_value(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrGetInt8SplatValue");
+
+fn char dense_elements_attr_get_u_int_8_splat_value(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrGetUInt8SplatValue");
+
+fn int dense_elements_attr_get_int_32_splat_value(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrGetInt32SplatValue");
+
+fn uint dense_elements_attr_get_u_int_32_splat_value(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrGetUInt32SplatValue");
+
+fn long dense_elements_attr_get_int_64_splat_value(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrGetInt64SplatValue");
+
+fn ulong dense_elements_attr_get_u_int_64_splat_value(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrGetUInt64SplatValue");
+
+fn float dense_elements_attr_get_float_splat_value(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrGetFloatSplatValue");
+
+fn double dense_elements_attr_get_double_splat_value(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrGetDoubleSplatValue");
+
+fn MLIRStringRef dense_elements_attr_get_string_splat_value(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrGetStringSplatValue");
+
+fn bool dense_elements_attr_get_bool_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseElementsAttrGetBoolValue");
+
+fn ichar dense_elements_attr_get_int_8_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseElementsAttrGetInt8Value");
+
+fn char dense_elements_attr_get_u_int_8_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseElementsAttrGetUInt8Value");
+
+fn short dense_elements_attr_get_int_16_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseElementsAttrGetInt16Value");
+
+fn ushort dense_elements_attr_get_u_int_16_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseElementsAttrGetUInt16Value");
+
+fn int dense_elements_attr_get_int_32_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseElementsAttrGetInt32Value");
+
+fn uint dense_elements_attr_get_u_int_32_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseElementsAttrGetUInt32Value");
+
+fn long dense_elements_attr_get_int_64_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseElementsAttrGetInt64Value");
+
+fn ulong dense_elements_attr_get_u_int_64_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseElementsAttrGetUInt64Value");
+
+fn float dense_elements_attr_get_float_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseElementsAttrGetFloatValue");
+
+fn double dense_elements_attr_get_double_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseElementsAttrGetDoubleValue");
+
+fn MLIRStringRef dense_elements_attr_get_string_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseElementsAttrGetStringValue");
+
+fn void* dense_elements_attr_get_raw_data(
+  MLIRAttribute attr)
+@extern("mlirDenseElementsAttrGetRawData");
+
+fn bool attribute_is_a_dense_resource_elements(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsADenseResourceElements");
+
+alias UnnamedPFN3 @private = fn void(
+  void* user_data, 
+  void* data, 
+  usz size, 
+  usz align);
+
+fn MLIRAttribute unmanaged_dense_resource_elements_attr_get(
+  MLIRType shaped_type, 
+  MLIRStringRef name, 
+  void* data, 
+  usz data_length, 
+  usz data_alignment, 
+  bool data_is_mutable, 
+  UnnamedPFN3 deleter, 
+  void* user_data)
+@extern("mlirUnmanagedDenseResourceElementsAttrGet");
+
+fn MLIRAttribute unmanaged_dense_bool_resource_elements_attr_get(
+  MLIRType shaped_type, 
+  MLIRStringRef name, 
+  iptr num_elements, 
+  CInt* elements)
+@extern("mlirUnmanagedDenseBoolResourceElementsAttrGet");
+
+fn MLIRAttribute unmanaged_dense_u_int_8_resource_elements_attr_get(
+  MLIRType shaped_type, 
+  MLIRStringRef name, 
+  iptr num_elements, 
+  char* elements)
+@extern("mlirUnmanagedDenseUInt8ResourceElementsAttrGet");
+
+fn MLIRAttribute unmanaged_dense_int_8_resource_elements_attr_get(
+  MLIRType shaped_type, 
+  MLIRStringRef name, 
+  iptr num_elements, 
+  ichar* elements)
+@extern("mlirUnmanagedDenseInt8ResourceElementsAttrGet");
+
+fn MLIRAttribute unmanaged_dense_u_int_16_resource_elements_attr_get(
+  MLIRType shaped_type, 
+  MLIRStringRef name, 
+  iptr num_elements, 
+  ushort* elements)
+@extern("mlirUnmanagedDenseUInt16ResourceElementsAttrGet");
+
+fn MLIRAttribute unmanaged_dense_int_16_resource_elements_attr_get(
+  MLIRType shaped_type, 
+  MLIRStringRef name, 
+  iptr num_elements, 
+  short* elements)
+@extern("mlirUnmanagedDenseInt16ResourceElementsAttrGet");
+
+fn MLIRAttribute unmanaged_dense_u_int_32_resource_elements_attr_get(
+  MLIRType shaped_type, 
+  MLIRStringRef name, 
+  iptr num_elements, 
+  uint* elements)
+@extern("mlirUnmanagedDenseUInt32ResourceElementsAttrGet");
+
+fn MLIRAttribute unmanaged_dense_int_32_resource_elements_attr_get(
+  MLIRType shaped_type, 
+  MLIRStringRef name, 
+  iptr num_elements, 
+  int* elements)
+@extern("mlirUnmanagedDenseInt32ResourceElementsAttrGet");
+
+fn MLIRAttribute unmanaged_dense_u_int_64_resource_elements_attr_get(
+  MLIRType shaped_type, 
+  MLIRStringRef name, 
+  iptr num_elements, 
+  ulong* elements)
+@extern("mlirUnmanagedDenseUInt64ResourceElementsAttrGet");
+
+fn MLIRAttribute unmanaged_dense_int_64_resource_elements_attr_get(
+  MLIRType shaped_type, 
+  MLIRStringRef name, 
+  iptr num_elements, 
+  long* elements)
+@extern("mlirUnmanagedDenseInt64ResourceElementsAttrGet");
+
+fn MLIRAttribute unmanaged_dense_float_resource_elements_attr_get(
+  MLIRType shaped_type, 
+  MLIRStringRef name, 
+  iptr num_elements, 
+  float* elements)
+@extern("mlirUnmanagedDenseFloatResourceElementsAttrGet");
+
+fn MLIRAttribute unmanaged_dense_double_resource_elements_attr_get(
+  MLIRType shaped_type, 
+  MLIRStringRef name, 
+  iptr num_elements, 
+  double* elements)
+@extern("mlirUnmanagedDenseDoubleResourceElementsAttrGet");
+
+fn bool dense_bool_resource_elements_attr_get_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseBoolResourceElementsAttrGetValue");
+
+fn ichar dense_int_8_resource_elements_attr_get_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseInt8ResourceElementsAttrGetValue");
+
+fn char dense_u_int_8_resource_elements_attr_get_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseUInt8ResourceElementsAttrGetValue");
+
+fn short dense_int_16_resource_elements_attr_get_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseInt16ResourceElementsAttrGetValue");
+
+fn ushort dense_u_int_16_resource_elements_attr_get_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseUInt16ResourceElementsAttrGetValue");
+
+fn int dense_int_32_resource_elements_attr_get_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseInt32ResourceElementsAttrGetValue");
+
+fn uint dense_u_int_32_resource_elements_attr_get_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseUInt32ResourceElementsAttrGetValue");
+
+fn long dense_int_64_resource_elements_attr_get_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseInt64ResourceElementsAttrGetValue");
+
+fn ulong dense_u_int_64_resource_elements_attr_get_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseUInt64ResourceElementsAttrGetValue");
+
+fn float dense_float_resource_elements_attr_get_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseFloatResourceElementsAttrGetValue");
+
+fn double dense_double_resource_elements_attr_get_value(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirDenseDoubleResourceElementsAttrGetValue");
+
+fn bool attribute_is_a_sparse_elements(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsASparseElements");
+
+fn MLIRAttribute sparse_elements_attribute(
+  MLIRType shaped_type, 
+  MLIRAttribute dense_indices, 
+  MLIRAttribute dense_values)
+@extern("mlirSparseElementsAttribute");
+
+fn MLIRAttribute sparse_elements_attr_get_indices(
+  MLIRAttribute attr)
+@extern("mlirSparseElementsAttrGetIndices");
+
+fn MLIRAttribute sparse_elements_attr_get_values(
+  MLIRAttribute attr)
+@extern("mlirSparseElementsAttrGetValues");
+
+fn MLIRTypeID sparse_elements_attr_get_type_id()
+@extern("mlirSparseElementsAttrGetTypeID");
+
+fn bool attribute_is_a_strided_layout(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAStridedLayout");
+
+fn MLIRAttribute strided_layout_attr_get(
+  MLIRContext ctx, 
+  long offset, 
+  iptr num_strides, 
+  long* strides)
+@extern("mlirStridedLayoutAttrGet");
+
+fn long strided_layout_attr_get_offset(
+  MLIRAttribute attr)
+@extern("mlirStridedLayoutAttrGetOffset");
+
+fn iptr strided_layout_attr_get_num_strides(
+  MLIRAttribute attr)
+@extern("mlirStridedLayoutAttrGetNumStrides");
+
+fn long strided_layout_attr_get_stride(
+  MLIRAttribute attr, 
+  iptr pos)
+@extern("mlirStridedLayoutAttrGetStride");
+
+fn MLIRTypeID strided_layout_attr_get_type_id()
+@extern("mlirStridedLayoutAttrGetTypeID");
+
+fn MLIRTypeID integer_type_get_type_id()
+@extern("mlirIntegerTypeGetTypeID");
+
+fn bool type_is_a_integer(
+  MLIRType type)
+@extern("mlirTypeIsAInteger");
+
+fn MLIRType integer_type_get(
+  MLIRContext ctx, 
+  CUInt bitwidth)
+@extern("mlirIntegerTypeGet");
+
+fn MLIRType integer_type_signed_get(
+  MLIRContext ctx, 
+  CUInt bitwidth)
+@extern("mlirIntegerTypeSignedGet");
+
+fn MLIRType integer_type_unsigned_get(
+  MLIRContext ctx, 
+  CUInt bitwidth)
+@extern("mlirIntegerTypeUnsignedGet");
+
+fn CUInt integer_type_get_width(
+  MLIRType type)
+@extern("mlirIntegerTypeGetWidth");
+
+fn bool integer_type_is_signless(
+  MLIRType type)
+@extern("mlirIntegerTypeIsSignless");
+
+fn bool integer_type_is_signed(
+  MLIRType type)
+@extern("mlirIntegerTypeIsSigned");
+
+fn bool integer_type_is_unsigned(
+  MLIRType type)
+@extern("mlirIntegerTypeIsUnsigned");
+
+fn MLIRTypeID index_type_get_type_id()
+@extern("mlirIndexTypeGetTypeID");
+
+fn bool type_is_a_index(
+  MLIRType type)
+@extern("mlirTypeIsAIndex");
+
+fn MLIRType index_type_get(
+  MLIRContext ctx)
+@extern("mlirIndexTypeGet");
+
+fn bool type_is_a_float(
+  MLIRType type)
+@extern("mlirTypeIsAFloat");
+
+fn CUInt float_type_get_width(
+  MLIRType type)
+@extern("mlirFloatTypeGetWidth");
+
+fn MLIRTypeID float_4_e_2_m_1_fn_type_get_type_id()
+@extern("mlirFloat4E2M1FNTypeGetTypeID");
+
+fn bool type_is_a_float_4_e_2_m_1_fn(
+  MLIRType type)
+@extern("mlirTypeIsAFloat4E2M1FN");
+
+fn MLIRType float_4_e_2_m_1_fn_type_get(
+  MLIRContext ctx)
+@extern("mlirFloat4E2M1FNTypeGet");
+
+fn MLIRTypeID float_6_e_2_m_3_fn_type_get_type_id()
+@extern("mlirFloat6E2M3FNTypeGetTypeID");
+
+fn bool type_is_a_float_6_e_2_m_3_fn(
+  MLIRType type)
+@extern("mlirTypeIsAFloat6E2M3FN");
+
+fn MLIRType float_6_e_2_m_3_fn_type_get(
+  MLIRContext ctx)
+@extern("mlirFloat6E2M3FNTypeGet");
+
+fn MLIRTypeID float_6_e_3_m_2_fn_type_get_type_id()
+@extern("mlirFloat6E3M2FNTypeGetTypeID");
+
+fn bool type_is_a_float_6_e_3_m_2_fn(
+  MLIRType type)
+@extern("mlirTypeIsAFloat6E3M2FN");
+
+fn MLIRType float_6_e_3_m_2_fn_type_get(
+  MLIRContext ctx)
+@extern("mlirFloat6E3M2FNTypeGet");
+
+fn MLIRTypeID float_8_e_5_m_2_type_get_type_id()
+@extern("mlirFloat8E5M2TypeGetTypeID");
+
+fn bool type_is_a_float_8_e_5_m_2(
+  MLIRType type)
+@extern("mlirTypeIsAFloat8E5M2");
+
+fn MLIRType float_8_e_5_m_2_type_get(
+  MLIRContext ctx)
+@extern("mlirFloat8E5M2TypeGet");
+
+fn MLIRTypeID float_8_e_4_m_3_type_get_type_id()
+@extern("mlirFloat8E4M3TypeGetTypeID");
+
+fn bool type_is_a_float_8_e_4_m_3(
+  MLIRType type)
+@extern("mlirTypeIsAFloat8E4M3");
+
+fn MLIRType float_8_e_4_m_3_type_get(
+  MLIRContext ctx)
+@extern("mlirFloat8E4M3TypeGet");
+
+fn MLIRTypeID float_8_e_4_m_3_fn_type_get_type_id()
+@extern("mlirFloat8E4M3FNTypeGetTypeID");
+
+fn bool type_is_a_float_8_e_4_m_3_fn(
+  MLIRType type)
+@extern("mlirTypeIsAFloat8E4M3FN");
+
+fn MLIRType float_8_e_4_m_3_fn_type_get(
+  MLIRContext ctx)
+@extern("mlirFloat8E4M3FNTypeGet");
+
+fn MLIRTypeID float_8_e_5_m_2_fnuz_type_get_type_id()
+@extern("mlirFloat8E5M2FNUZTypeGetTypeID");
+
+fn bool type_is_a_float_8_e_5_m_2_fnuz(
+  MLIRType type)
+@extern("mlirTypeIsAFloat8E5M2FNUZ");
+
+fn MLIRType float_8_e_5_m_2_fnuz_type_get(
+  MLIRContext ctx)
+@extern("mlirFloat8E5M2FNUZTypeGet");
+
+fn MLIRTypeID float_8_e_4_m_3_fnuz_type_get_type_id()
+@extern("mlirFloat8E4M3FNUZTypeGetTypeID");
+
+fn bool type_is_a_float_8_e_4_m_3_fnuz(
+  MLIRType type)
+@extern("mlirTypeIsAFloat8E4M3FNUZ");
+
+fn MLIRType float_8_e_4_m_3_fnuz_type_get(
+  MLIRContext ctx)
+@extern("mlirFloat8E4M3FNUZTypeGet");
+
+fn MLIRTypeID float_8_e_4_m_3_b_11_fnuz_type_get_type_id()
+@extern("mlirFloat8E4M3B11FNUZTypeGetTypeID");
+
+fn bool type_is_a_float_8_e_4_m_3_b_11_fnuz(
+  MLIRType type)
+@extern("mlirTypeIsAFloat8E4M3B11FNUZ");
+
+fn MLIRType float_8_e_4_m_3_b_11_fnuz_type_get(
+  MLIRContext ctx)
+@extern("mlirFloat8E4M3B11FNUZTypeGet");
+
+fn MLIRTypeID float_8_e_3_m_4_type_get_type_id()
+@extern("mlirFloat8E3M4TypeGetTypeID");
+
+fn bool type_is_a_float_8_e_3_m_4(
+  MLIRType type)
+@extern("mlirTypeIsAFloat8E3M4");
+
+fn MLIRType float_8_e_3_m_4_type_get(
+  MLIRContext ctx)
+@extern("mlirFloat8E3M4TypeGet");
+
+fn MLIRTypeID float_8_e_8_m_0_fnu_type_get_type_id()
+@extern("mlirFloat8E8M0FNUTypeGetTypeID");
+
+fn bool type_is_a_float_8_e_8_m_0_fnu(
+  MLIRType type)
+@extern("mlirTypeIsAFloat8E8M0FNU");
+
+fn MLIRType float_8_e_8_m_0_fnu_type_get(
+  MLIRContext ctx)
+@extern("mlirFloat8E8M0FNUTypeGet");
+
+fn MLIRTypeID b_float_16_type_get_type_id()
+@extern("mlirBFloat16TypeGetTypeID");
+
+fn bool type_is_ab_f_16(
+  MLIRType type)
+@extern("mlirTypeIsABF16");
+
+fn MLIRType b_f_16_type_get(
+  MLIRContext ctx)
+@extern("mlirBF16TypeGet");
+
+fn MLIRTypeID float_16_type_get_type_id()
+@extern("mlirFloat16TypeGetTypeID");
+
+fn bool type_is_a_f_16(
+  MLIRType type)
+@extern("mlirTypeIsAF16");
+
+fn MLIRType f_16_type_get(
+  MLIRContext ctx)
+@extern("mlirF16TypeGet");
+
+fn MLIRTypeID float_32_type_get_type_id()
+@extern("mlirFloat32TypeGetTypeID");
+
+fn bool type_is_a_f_32(
+  MLIRType type)
+@extern("mlirTypeIsAF32");
+
+fn MLIRType f_32_type_get(
+  MLIRContext ctx)
+@extern("mlirF32TypeGet");
+
+fn MLIRTypeID float_64_type_get_type_id()
+@extern("mlirFloat64TypeGetTypeID");
+
+fn bool type_is_a_f_64(
+  MLIRType type)
+@extern("mlirTypeIsAF64");
+
+fn MLIRType f_64_type_get(
+  MLIRContext ctx)
+@extern("mlirF64TypeGet");
+
+fn MLIRTypeID float_t_f_32_type_get_type_id()
+@extern("mlirFloatTF32TypeGetTypeID");
+
+fn bool type_is_at_f_32(
+  MLIRType type)
+@extern("mlirTypeIsATF32");
+
+fn MLIRType t_f_32_type_get(
+  MLIRContext ctx)
+@extern("mlirTF32TypeGet");
+
+fn MLIRTypeID none_type_get_type_id()
+@extern("mlirNoneTypeGetTypeID");
+
+fn bool type_is_a_none(
+  MLIRType type)
+@extern("mlirTypeIsANone");
+
+fn MLIRType none_type_get(
+  MLIRContext ctx)
+@extern("mlirNoneTypeGet");
+
+fn MLIRTypeID complex_type_get_type_id()
+@extern("mlirComplexTypeGetTypeID");
+
+fn bool type_is_a_complex(
+  MLIRType type)
+@extern("mlirTypeIsAComplex");
+
+fn MLIRType complex_type_get(
+  MLIRType element_type)
+@extern("mlirComplexTypeGet");
+
+fn MLIRType complex_type_get_element_type(
+  MLIRType type)
+@extern("mlirComplexTypeGetElementType");
+
+fn bool type_is_a_shaped(
+  MLIRType type)
+@extern("mlirTypeIsAShaped");
+
+fn MLIRType shaped_type_get_element_type(
+  MLIRType type)
+@extern("mlirShapedTypeGetElementType");
+
+fn bool shaped_type_has_rank(
+  MLIRType type)
+@extern("mlirShapedTypeHasRank");
+
+fn long shaped_type_get_rank(
+  MLIRType type)
+@extern("mlirShapedTypeGetRank");
+
+fn bool shaped_type_has_static_shape(
+  MLIRType type)
+@extern("mlirShapedTypeHasStaticShape");
+
+fn bool shaped_type_is_dynamic_dim(
+  MLIRType type, 
+  iptr dim)
+@extern("mlirShapedTypeIsDynamicDim");
+
+fn long shaped_type_get_dim_size(
+  MLIRType type, 
+  iptr dim)
+@extern("mlirShapedTypeGetDimSize");
+
+fn bool shaped_type_is_dynamic_size(
+  long size)
+@extern("mlirShapedTypeIsDynamicSize");
+
+fn long shaped_type_get_dynamic_size()
+@extern("mlirShapedTypeGetDynamicSize");
+
+fn bool shaped_type_is_dynamic_stride_or_offset(
+  long val)
+@extern("mlirShapedTypeIsDynamicStrideOrOffset");
+
+fn long shaped_type_get_dynamic_stride_or_offset()
+@extern("mlirShapedTypeGetDynamicStrideOrOffset");
+
+fn MLIRTypeID vector_type_get_type_id()
+@extern("mlirVectorTypeGetTypeID");
+
+fn bool type_is_a_vector(
+  MLIRType type)
+@extern("mlirTypeIsAVector");
+
+fn MLIRType vector_type_get(
+  iptr rank, 
+  long* shape, 
+  MLIRType element_type)
+@extern("mlirVectorTypeGet");
+
+fn MLIRType vector_type_get_checked(
+  MLIRLocation loc, 
+  iptr rank, 
+  long* shape, 
+  MLIRType element_type)
+@extern("mlirVectorTypeGetChecked");
+
+fn MLIRType vector_type_get_scalable(
+  iptr rank, 
+  long* shape, 
+  bool* scalable, 
+  MLIRType element_type)
+@extern("mlirVectorTypeGetScalable");
+
+fn MLIRType vector_type_get_scalable_checked(
+  MLIRLocation loc, 
+  iptr rank, 
+  long* shape, 
+  bool* scalable, 
+  MLIRType element_type)
+@extern("mlirVectorTypeGetScalableChecked");
+
+fn bool vector_type_is_scalable(
+  MLIRType type)
+@extern("mlirVectorTypeIsScalable");
+
+fn bool vector_type_is_dim_scalable(
+  MLIRType type, 
+  iptr dim)
+@extern("mlirVectorTypeIsDimScalable");
+
+fn bool type_is_a_tensor(
+  MLIRType type)
+@extern("mlirTypeIsATensor");
+
+fn MLIRTypeID ranked_tensor_type_get_type_id()
+@extern("mlirRankedTensorTypeGetTypeID");
+
+fn bool type_is_a_ranked_tensor(
+  MLIRType type)
+@extern("mlirTypeIsARankedTensor");
+
+fn MLIRTypeID unranked_tensor_type_get_type_id()
+@extern("mlirUnrankedTensorTypeGetTypeID");
+
+fn bool type_is_a_unranked_tensor(
+  MLIRType type)
+@extern("mlirTypeIsAUnrankedTensor");
+
+fn MLIRType ranked_tensor_type_get(
+  iptr rank, 
+  long* shape, 
+  MLIRType element_type, 
+  MLIRAttribute encoding)
+@extern("mlirRankedTensorTypeGet");
+
+fn MLIRType ranked_tensor_type_get_checked(
+  MLIRLocation loc, 
+  iptr rank, 
+  long* shape, 
+  MLIRType element_type, 
+  MLIRAttribute encoding)
+@extern("mlirRankedTensorTypeGetChecked");
+
+fn MLIRAttribute ranked_tensor_type_get_encoding(
+  MLIRType type)
+@extern("mlirRankedTensorTypeGetEncoding");
+
+fn MLIRType unranked_tensor_type_get(
+  MLIRType element_type)
+@extern("mlirUnrankedTensorTypeGet");
+
+fn MLIRType unranked_tensor_type_get_checked(
+  MLIRLocation loc, 
+  MLIRType element_type)
+@extern("mlirUnrankedTensorTypeGetChecked");
+
+fn MLIRTypeID mem_ref_type_get_type_id()
+@extern("mlirMemRefTypeGetTypeID");
+
+fn bool type_is_a_mem_ref(
+  MLIRType type)
+@extern("mlirTypeIsAMemRef");
+
+fn MLIRTypeID unranked_mem_ref_type_get_type_id()
+@extern("mlirUnrankedMemRefTypeGetTypeID");
+
+fn bool type_is_a_unranked_mem_ref(
+  MLIRType type)
+@extern("mlirTypeIsAUnrankedMemRef");
+
+fn MLIRType mem_ref_type_get(
+  MLIRType element_type, 
+  iptr rank, 
+  long* shape, 
+  MLIRAttribute layout, 
+  MLIRAttribute memory_space)
+@extern("mlirMemRefTypeGet");
+
+fn MLIRType mem_ref_type_get_checked(
+  MLIRLocation loc, 
+  MLIRType element_type, 
+  iptr rank, 
+  long* shape, 
+  MLIRAttribute layout, 
+  MLIRAttribute memory_space)
+@extern("mlirMemRefTypeGetChecked");
+
+fn MLIRType mem_ref_type_contiguous_get(
+  MLIRType element_type, 
+  iptr rank, 
+  long* shape, 
+  MLIRAttribute memory_space)
+@extern("mlirMemRefTypeContiguousGet");
+
+fn MLIRType mem_ref_type_contiguous_get_checked(
+  MLIRLocation loc, 
+  MLIRType element_type, 
+  iptr rank, 
+  long* shape, 
+  MLIRAttribute memory_space)
+@extern("mlirMemRefTypeContiguousGetChecked");
+
+fn MLIRType unranked_mem_ref_type_get(
+  MLIRType element_type, 
+  MLIRAttribute memory_space)
+@extern("mlirUnrankedMemRefTypeGet");
+
+fn MLIRType unranked_mem_ref_type_get_checked(
+  MLIRLocation loc, 
+  MLIRType element_type, 
+  MLIRAttribute memory_space)
+@extern("mlirUnrankedMemRefTypeGetChecked");
+
+fn MLIRAttribute mem_ref_type_get_layout(
+  MLIRType type)
+@extern("mlirMemRefTypeGetLayout");
+
+fn MLIRAffineMap mem_ref_type_get_affine_map(
+  MLIRType type)
+@extern("mlirMemRefTypeGetAffineMap");
+
+fn MLIRAttribute mem_ref_type_get_memory_space(
+  MLIRType type)
+@extern("mlirMemRefTypeGetMemorySpace");
+
+fn MLIRLogicalResult mem_ref_type_get_strides_and_offset(
+  MLIRType type, 
+  long* strides, 
+  long* offset)
+@extern("mlirMemRefTypeGetStridesAndOffset");
+
+fn MLIRAttribute unranked_memref_get_memory_space(
+  MLIRType type)
+@extern("mlirUnrankedMemrefGetMemorySpace");
+
+fn MLIRTypeID tuple_type_get_type_id()
+@extern("mlirTupleTypeGetTypeID");
+
+fn bool type_is_a_tuple(
+  MLIRType type)
+@extern("mlirTypeIsATuple");
+
+fn MLIRType tuple_type_get(
+  MLIRContext ctx, 
+  iptr num_elements, 
+  MLIRType* elements)
+@extern("mlirTupleTypeGet");
+
+fn iptr tuple_type_get_num_types(
+  MLIRType type)
+@extern("mlirTupleTypeGetNumTypes");
+
+fn MLIRType tuple_type_get_type(
+  MLIRType type, 
+  iptr pos)
+@extern("mlirTupleTypeGetType");
+
+fn MLIRTypeID function_type_get_type_id()
+@extern("mlirFunctionTypeGetTypeID");
+
+fn bool type_is_a_function(
+  MLIRType type)
+@extern("mlirTypeIsAFunction");
+
+fn MLIRType function_type_get(
+  MLIRContext ctx, 
+  iptr num_inputs, 
+  MLIRType* inputs, 
+  iptr num_results, 
+  MLIRType* results)
+@extern("mlirFunctionTypeGet");
+
+fn iptr function_type_get_num_inputs(
+  MLIRType type)
+@extern("mlirFunctionTypeGetNumInputs");
+
+fn iptr function_type_get_num_results(
+  MLIRType type)
+@extern("mlirFunctionTypeGetNumResults");
+
+fn MLIRType function_type_get_input(
+  MLIRType type, 
+  iptr pos)
+@extern("mlirFunctionTypeGetInput");
+
+fn MLIRType function_type_get_result(
+  MLIRType type, 
+  iptr pos)
+@extern("mlirFunctionTypeGetResult");
+
+fn MLIRTypeID opaque_type_get_type_id()
+@extern("mlirOpaqueTypeGetTypeID");
+
+fn bool type_is_a_opaque(
+  MLIRType type)
+@extern("mlirTypeIsAOpaque");
+
+fn MLIRType opaque_type_get(
+  MLIRContext ctx, 
+  MLIRStringRef dialect_namespace, 
+  MLIRStringRef type_data)
+@extern("mlirOpaqueTypeGet");
+
+fn MLIRStringRef opaque_type_get_dialect_namespace(
+  MLIRType type)
+@extern("mlirOpaqueTypeGetDialectNamespace");
+
+fn MLIRStringRef opaque_type_get_data(
+  MLIRType type)
+@extern("mlirOpaqueTypeGetData");
+
+struct MLIRPass {
+  void* ptr;
+}
+
+struct MLIRExternalPass {
+  void* ptr;
+}
+
+struct MLIRPassManager {
+  void* ptr;
+}
+
+struct MLIROpPassManager {
+  void* ptr;
+}
+
+fn MLIRPassManager pass_manager_create(
+  MLIRContext ctx)
+@extern("mlirPassManagerCreate");
+
+fn MLIRPassManager pass_manager_create_on_operation(
+  MLIRContext ctx, 
+  MLIRStringRef anchor_op)
+@extern("mlirPassManagerCreateOnOperation");
+
+fn void pass_manager_destroy(
+  MLIRPassManager pass_manager)
+@extern("mlirPassManagerDestroy");
+
+fn bool pass_manager_is_null(
+  MLIRPassManager pass_manager)
+@extern("mlirPassManagerIsNull");
+
+fn MLIROpPassManager pass_manager_get_as_op_pass_manager(
+  MLIRPassManager pass_manager)
+@extern("mlirPassManagerGetAsOpPassManager");
+
+fn MLIRLogicalResult pass_manager_run_on_op(
+  MLIRPassManager pass_manager, 
+  MLIROperation op)
+@extern("mlirPassManagerRunOnOp");
+
+fn void pass_manager_enable_ir_printing(
+  MLIRPassManager pass_manager, 
+  bool print_before_all, 
+  bool print_after_all, 
+  bool print_module_scope, 
+  bool print_after_only_on_change, 
+  bool print_after_only_on_failure, 
+  MLIROpPrintingFlags flags, 
+  MLIRStringRef tree_printing_path)
+@extern("mlirPassManagerEnableIRPrinting");
+
+fn void pass_manager_enable_verifier(
+  MLIRPassManager pass_manager, 
+  bool enable)
+@extern("mlirPassManagerEnableVerifier");
+
+fn MLIROpPassManager pass_manager_get_nested_under(
+  MLIRPassManager pass_manager, 
+  MLIRStringRef operation_name)
+@extern("mlirPassManagerGetNestedUnder");
+
+fn MLIROpPassManager op_pass_manager_get_nested_under(
+  MLIROpPassManager pass_manager, 
+  MLIRStringRef operation_name)
+@extern("mlirOpPassManagerGetNestedUnder");
+
+fn void pass_manager_add_owned_pass(
+  MLIRPassManager pass_manager, 
+  MLIRPass pass)
+@extern("mlirPassManagerAddOwnedPass");
+
+fn void op_pass_manager_add_owned_pass(
+  MLIROpPassManager pass_manager, 
+  MLIRPass pass)
+@extern("mlirOpPassManagerAddOwnedPass");
+
+fn MLIRLogicalResult op_pass_manager_add_pipeline(
+  MLIROpPassManager pass_manager, 
+  MLIRStringRef pipeline_elements, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirOpPassManagerAddPipeline");
+
+fn void print_pass_pipeline(
+  MLIROpPassManager pass_manager, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirPrintPassPipeline");
+
+fn MLIRLogicalResult parse_pass_pipeline(
+  MLIROpPassManager pass_manager, 
+  MLIRStringRef pipeline, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirParsePassPipeline");
+
+alias UnnamedPFN4 @private = fn void(
+  void* user_data);
+
+alias UnnamedPFN5 @private = fn MLIRLogicalResult(
+  MLIRContext ctx, 
+  void* user_data);
+
+alias UnnamedPFN6 @private = fn void*(
+  void* user_data);
+
+alias UnnamedPFN7 @private = fn void(
+  MLIROperation op, 
+  MLIRExternalPass pass, 
+  void* user_data);
+
+struct MLIRExternalPassCallbacks {
+  UnnamedPFN4 construct;
+  UnnamedPFN4 destruct;
+  UnnamedPFN5 initialize;
+  UnnamedPFN6 clone;
+  UnnamedPFN7 run;
+}
+
+fn MLIRPass create_external_pass(
+  MLIRTypeID pass_id, 
+  MLIRStringRef name, 
+  MLIRStringRef argument, 
+  MLIRStringRef description, 
+  MLIRStringRef op_name, 
+  iptr n_dependent_dialects, 
+  MLIRDialectHandle* dependent_dialects, 
+  MLIRExternalPassCallbacks callbacks, 
+  void* user_data)
+@extern("mlirCreateExternalPass");
+
+fn void external_pass_signal_failure(
+  MLIRExternalPass pass)
+@extern("mlirExternalPassSignalFailure");
+
+fn void enable_global_debug(
+  bool enable)
+@extern("mlirEnableGlobalDebug");
+
+fn bool is_global_debug_enabled()
+@extern("mlirIsGlobalDebugEnabled");
+
+fn void set_global_debug_type(
+  CChar* type)
+@extern("mlirSetGlobalDebugType");
+
+fn void set_global_debug_types(
+  CChar** types, 
+  iptr n)
+@extern("mlirSetGlobalDebugTypes");
+
+fn bool is_current_debug_type(
+  CChar* type)
+@extern("mlirIsCurrentDebugType");
+
+struct MLIRDiagnostic {
+  void* ptr;
+}
+
+typedef MLIRDiagnosticSeverity = inline CUInt;
+const MLIRDiagnosticSeverity DIAGNOSTIC_ERROR = 0;
+const MLIRDiagnosticSeverity DIAGNOSTIC_WARNING = 1;
+const MLIRDiagnosticSeverity DIAGNOSTIC_NOTE = 2;
+const MLIRDiagnosticSeverity DIAGNOSTIC_REMARK = 3;
+
+alias MLIRDiagnosticHandlerID = ulong;
+
+alias MLIRDiagnosticHandler = fn MLIRLogicalResult(
+  MLIRDiagnostic, 
+  void* user_data);
+
+fn void diagnostic_print(
+  MLIRDiagnostic diagnostic, 
+  MLIRStringCallback callback, 
+  void* user_data)
+@extern("mlirDiagnosticPrint");
+
+fn MLIRLocation diagnostic_get_location(
+  MLIRDiagnostic diagnostic)
+@extern("mlirDiagnosticGetLocation");
+
+fn MLIRDiagnosticSeverity diagnostic_get_severity(
+  MLIRDiagnostic diagnostic)
+@extern("mlirDiagnosticGetSeverity");
+
+fn iptr diagnostic_get_num_notes(
+  MLIRDiagnostic diagnostic)
+@extern("mlirDiagnosticGetNumNotes");
+
+fn MLIRDiagnostic diagnostic_get_note(
+  MLIRDiagnostic diagnostic, 
+  iptr pos)
+@extern("mlirDiagnosticGetNote");
+
+fn MLIRDiagnosticHandlerID context_attach_diagnostic_handler(
+  MLIRContext context, 
+  MLIRDiagnosticHandler handler, 
+  void* user_data, 
+  UnnamedPFN4 delete_user_data)
+@extern("mlirContextAttachDiagnosticHandler");
+
+fn void context_detach_diagnostic_handler(
+  MLIRContext context, 
+  MLIRDiagnosticHandlerID id)
+@extern("mlirContextDetachDiagnosticHandler");
+
+fn void emit_error(
+  MLIRLocation location, 
+  CChar* message)
+@extern("mlirEmitError");
+
+struct MLIRExecutionEngine {
+  void* ptr;
+}
+
+fn MLIRExecutionEngine execution_engine_create(
+  MLIRModule op, 
+  CInt opt_level, 
+  CInt num_paths, 
+  MLIRStringRef* shared_lib_paths, 
+  bool enable_object_dump)
+@extern("mlirExecutionEngineCreate");
+
+fn void execution_engine_destroy(
+  MLIRExecutionEngine jit)
+@extern("mlirExecutionEngineDestroy");
+
+fn bool execution_engine_is_null(
+  MLIRExecutionEngine jit)
+@extern("mlirExecutionEngineIsNull");
+
+fn MLIRLogicalResult execution_engine_invoke_packed(
+  MLIRExecutionEngine jit, 
+  MLIRStringRef name, 
+  void** arguments)
+@extern("mlirExecutionEngineInvokePacked");
+
+fn void* execution_engine_lookup_packed(
+  MLIRExecutionEngine jit, 
+  MLIRStringRef name)
+@extern("mlirExecutionEngineLookupPacked");
+
+fn void* execution_engine_lookup(
+  MLIRExecutionEngine jit, 
+  MLIRStringRef name)
+@extern("mlirExecutionEngineLookup");
+
+fn void execution_engine_register_symbol(
+  MLIRExecutionEngine jit, 
+  MLIRStringRef name, 
+  void* sym)
+@extern("mlirExecutionEngineRegisterSymbol");
+
+fn void execution_engine_dump_to_object_file(
+  MLIRExecutionEngine jit, 
+  MLIRStringRef file_name)
+@extern("mlirExecutionEngineDumpToObjectFile");
+
+fn bool operation_implements_interface(
+  MLIROperation operation, 
+  MLIRTypeID interface_type_id)
+@extern("mlirOperationImplementsInterface");
+
+fn bool operation_implements_interface_static(
+  MLIRStringRef operation_name, 
+  MLIRContext context, 
+  MLIRTypeID interface_type_id)
+@extern("mlirOperationImplementsInterfaceStatic");
+
+fn MLIRTypeID infer_type_op_interface_type_id()
+@extern("mlirInferTypeOpInterfaceTypeID");
+
+alias MLIRTypesCallback = fn void(
+  iptr, 
+  MLIRType*, 
+  void*);
+
+fn MLIRLogicalResult infer_type_op_interface_infer_return_types(
+  MLIRStringRef op_name, 
+  MLIRContext context, 
+  MLIRLocation location, 
+  iptr n_operands, 
+  MLIRValue* operands, 
+  MLIRAttribute attributes, 
+  void* properties, 
+  iptr n_regions, 
+  MLIRRegion* regions, 
+  MLIRTypesCallback callback, 
+  void* user_data)
+@extern("mlirInferTypeOpInterfaceInferReturnTypes");
+
+fn MLIRTypeID infer_shaped_type_op_interface_type_id()
+@extern("mlirInferShapedTypeOpInterfaceTypeID");
+
+alias MLIRShapedTypeComponentsCallback = fn void(
+  bool, 
+  iptr, 
+  long*, 
+  MLIRType, 
+  MLIRAttribute, 
+  void*);
+
+fn MLIRLogicalResult infer_shaped_type_op_interface_infer_return_types(
+  MLIRStringRef op_name, 
+  MLIRContext context, 
+  MLIRLocation location, 
+  iptr n_operands, 
+  MLIRValue* operands, 
+  MLIRAttribute attributes, 
+  void* properties, 
+  iptr n_regions, 
+  MLIRRegion* regions, 
+  MLIRShapedTypeComponentsCallback callback, 
+  void* user_data)
+@extern("mlirInferShapedTypeOpInterfaceInferReturnTypes");
+
+fn void register_all_dialects(
+  MLIRDialectRegistry registry)
+@extern("mlirRegisterAllDialects");
+
+fn void register_all_llvm_translations(
+  MLIRContext context)
+@extern("mlirRegisterAllLLVMTranslations");
+
+fn void register_all_passes()
+@extern("mlirRegisterAllPasses");
+
+struct MLIRRewriterBase {
+  void* ptr;
+}
+
+struct MLIRFrozenRewritePatternSet {
+  void* ptr;
+}
+
+struct MLIRGreedyRewriteDriverConfig {
+  void* ptr;
+}
+
+struct MLIRRewritePatternSet {
+  void* ptr;
+}
+
+fn MLIRContext rewriter_base_get_context(
+  MLIRRewriterBase rewriter)
+@extern("mlirRewriterBaseGetContext");
+
+fn void rewriter_base_clear_insertion_point(
+  MLIRRewriterBase rewriter)
+@extern("mlirRewriterBaseClearInsertionPoint");
+
+fn void rewriter_base_set_insertion_point_before(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op)
+@extern("mlirRewriterBaseSetInsertionPointBefore");
+
+fn void rewriter_base_set_insertion_point_after(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op)
+@extern("mlirRewriterBaseSetInsertionPointAfter");
+
+fn void rewriter_base_set_insertion_point_after_value(
+  MLIRRewriterBase rewriter, 
+  MLIRValue value)
+@extern("mlirRewriterBaseSetInsertionPointAfterValue");
+
+fn void rewriter_base_set_insertion_point_to_start(
+  MLIRRewriterBase rewriter, 
+  MLIRBlock block)
+@extern("mlirRewriterBaseSetInsertionPointToStart");
+
+fn void rewriter_base_set_insertion_point_to_end(
+  MLIRRewriterBase rewriter, 
+  MLIRBlock block)
+@extern("mlirRewriterBaseSetInsertionPointToEnd");
+
+fn MLIRBlock rewriter_base_get_insertion_block(
+  MLIRRewriterBase rewriter)
+@extern("mlirRewriterBaseGetInsertionBlock");
+
+fn MLIRBlock rewriter_base_get_block(
+  MLIRRewriterBase rewriter)
+@extern("mlirRewriterBaseGetBlock");
+
+fn MLIRBlock rewriter_base_create_block_before(
+  MLIRRewriterBase rewriter, 
+  MLIRBlock insert_before, 
+  iptr n_arg_types, 
+  MLIRType* arg_types, 
+  MLIRLocation* locations)
+@extern("mlirRewriterBaseCreateBlockBefore");
+
+fn MLIROperation rewriter_base_insert(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op)
+@extern("mlirRewriterBaseInsert");
+
+fn MLIROperation rewriter_base_clone(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op)
+@extern("mlirRewriterBaseClone");
+
+fn MLIROperation rewriter_base_clone_without_regions(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op)
+@extern("mlirRewriterBaseCloneWithoutRegions");
+
+fn void rewriter_base_clone_region_before(
+  MLIRRewriterBase rewriter, 
+  MLIRRegion region, 
+  MLIRBlock before)
+@extern("mlirRewriterBaseCloneRegionBefore");
+
+fn void rewriter_base_inline_region_before(
+  MLIRRewriterBase rewriter, 
+  MLIRRegion region, 
+  MLIRBlock before)
+@extern("mlirRewriterBaseInlineRegionBefore");
+
+fn void rewriter_base_replace_op_with_values(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op, 
+  iptr n_values, 
+  MLIRValue* values)
+@extern("mlirRewriterBaseReplaceOpWithValues");
+
+fn void rewriter_base_replace_op_with_operation(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op, 
+  MLIROperation new_op)
+@extern("mlirRewriterBaseReplaceOpWithOperation");
+
+fn void rewriter_base_erase_op(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op)
+@extern("mlirRewriterBaseEraseOp");
+
+fn void rewriter_base_erase_block(
+  MLIRRewriterBase rewriter, 
+  MLIRBlock block)
+@extern("mlirRewriterBaseEraseBlock");
+
+fn void rewriter_base_inline_block_before(
+  MLIRRewriterBase rewriter, 
+  MLIRBlock source, 
+  MLIROperation op, 
+  iptr n_arg_values, 
+  MLIRValue* arg_values)
+@extern("mlirRewriterBaseInlineBlockBefore");
+
+fn void rewriter_base_merge_blocks(
+  MLIRRewriterBase rewriter, 
+  MLIRBlock source, 
+  MLIRBlock dest, 
+  iptr n_arg_values, 
+  MLIRValue* arg_values)
+@extern("mlirRewriterBaseMergeBlocks");
+
+fn void rewriter_base_move_op_before(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op, 
+  MLIROperation existing_op)
+@extern("mlirRewriterBaseMoveOpBefore");
+
+fn void rewriter_base_move_op_after(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op, 
+  MLIROperation existing_op)
+@extern("mlirRewriterBaseMoveOpAfter");
+
+fn void rewriter_base_move_block_before(
+  MLIRRewriterBase rewriter, 
+  MLIRBlock block, 
+  MLIRBlock existing_block)
+@extern("mlirRewriterBaseMoveBlockBefore");
+
+fn void rewriter_base_start_op_modification(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op)
+@extern("mlirRewriterBaseStartOpModification");
+
+fn void rewriter_base_finalize_op_modification(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op)
+@extern("mlirRewriterBaseFinalizeOpModification");
+
+fn void rewriter_base_cancel_op_modification(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op)
+@extern("mlirRewriterBaseCancelOpModification");
+
+fn void rewriter_base_replace_all_uses_with(
+  MLIRRewriterBase rewriter, 
+  MLIRValue from, 
+  MLIRValue to)
+@extern("mlirRewriterBaseReplaceAllUsesWith");
+
+fn void rewriter_base_replace_all_value_range_uses_with(
+  MLIRRewriterBase rewriter, 
+  iptr n_values, 
+  MLIRValue* from, 
+  MLIRValue* to)
+@extern("mlirRewriterBaseReplaceAllValueRangeUsesWith");
+
+fn void rewriter_base_replace_all_op_uses_with_value_range(
+  MLIRRewriterBase rewriter, 
+  MLIROperation from, 
+  iptr n_to, 
+  MLIRValue* to)
+@extern("mlirRewriterBaseReplaceAllOpUsesWithValueRange");
+
+fn void rewriter_base_replace_all_op_uses_with_operation(
+  MLIRRewriterBase rewriter, 
+  MLIROperation from, 
+  MLIROperation to)
+@extern("mlirRewriterBaseReplaceAllOpUsesWithOperation");
+
+fn void rewriter_base_replace_op_uses_within_block(
+  MLIRRewriterBase rewriter, 
+  MLIROperation op, 
+  iptr n_new_values, 
+  MLIRValue* new_values, 
+  MLIRBlock block)
+@extern("mlirRewriterBaseReplaceOpUsesWithinBlock");
+
+fn void rewriter_base_replace_all_uses_except(
+  MLIRRewriterBase rewriter, 
+  MLIRValue from, 
+  MLIRValue to, 
+  MLIROperation excepted_user)
+@extern("mlirRewriterBaseReplaceAllUsesExcept");
+
+fn MLIRRewriterBase ir_rewriter_create(
+  MLIRContext context)
+@extern("mlirIRRewriterCreate");
+
+fn MLIRRewriterBase ir_rewriter_create_from_op(
+  MLIROperation op)
+@extern("mlirIRRewriterCreateFromOp");
+
+fn void ir_rewriter_destroy(
+  MLIRRewriterBase rewriter)
+@extern("mlirIRRewriterDestroy");
+
+fn MLIRFrozenRewritePatternSet freeze_rewrite_pattern(
+  MLIRRewritePatternSet op)
+@extern("mlirFreezeRewritePattern");
+
+fn void frozen_rewrite_pattern_set_destroy(
+  MLIRFrozenRewritePatternSet op)
+@extern("mlirFrozenRewritePatternSetDestroy");
+
+fn MLIRLogicalResult apply_patterns_and_fold_greedily(
+  MLIRModule op, 
+  MLIRFrozenRewritePatternSet patterns, 
+  MLIRGreedyRewriteDriverConfig)
+@extern("mlirApplyPatternsAndFoldGreedily");
+
+struct MLIRPDLPatternModule {
+  void* ptr;
+}
+
+fn MLIRPDLPatternModule pdl_pattern_module_from_module(
+  MLIRModule op)
+@extern("mlirPDLPatternModuleFromModule");
+
+fn void pdl_pattern_module_destroy(
+  MLIRPDLPatternModule op)
+@extern("mlirPDLPatternModuleDestroy");
+
+fn MLIRRewritePatternSet rewrite_pattern_set_from_pdl_pattern_module(
+  MLIRPDLPatternModule op)
+@extern("mlirRewritePatternSetFromPDLPatternModule");
+
+fn MLIRDialectHandle get_dialect_handle__amdgpu__()
+@extern("mlirGetDialectHandle__amdgpu__");
+
+fn MLIRDialectHandle get_dialect_handle__arith__()
+@extern("mlirGetDialectHandle__arith__");
+
+fn MLIRDialectHandle get_dialect_handle__async__()
+@extern("mlirGetDialectHandle__async__");
+
+fn MLIRDialectHandle get_dialect_handle__cf__()
+@extern("mlirGetDialectHandle__cf__");
+
+fn MLIRDialectHandle get_dialect_handle__emitc__()
+@extern("mlirGetDialectHandle__emitc__");
+
+typedef MLIREmitCCmpPredicate = inline ulong;
+const MLIREmitCCmpPredicate MLI_R__EMIT_C__CM_P__PREDICAT_E__EQ = 0;
+const MLIREmitCCmpPredicate MLI_R__EMIT_C__CM_P__PREDICAT_E__NE = 1;
+const MLIREmitCCmpPredicate MLI_R__EMIT_C__CM_P__PREDICAT_E__LT = 2;
+const MLIREmitCCmpPredicate MLI_R__EMIT_C__CM_P__PREDICAT_E__LE = 3;
+const MLIREmitCCmpPredicate MLI_R__EMIT_C__CM_P__PREDICAT_E__GT = 4;
+const MLIREmitCCmpPredicate MLI_R__EMIT_C__CM_P__PREDICAT_E__GE = 5;
+const MLIREmitCCmpPredicate MLI_R__EMIT_C__CM_P__PREDICAT_E__THRE_E__WAY = 6;
+
+fn bool type_is_a_emit_c_array_type(
+  MLIRType type)
+@extern("mlirTypeIsAEmitCArrayType");
+
+fn MLIRTypeID emit_c_array_type_get_type_id()
+@extern("mlirEmitCArrayTypeGetTypeID");
+
+fn MLIRType emit_c_array_type_get(
+  iptr n_dims, 
+  long* shape, 
+  MLIRType element_type)
+@extern("mlirEmitCArrayTypeGet");
+
+fn bool type_is_a_emit_cl_value_type(
+  MLIRType type)
+@extern("mlirTypeIsAEmitCLValueType");
+
+fn MLIRTypeID emit_cl_value_type_get_type_id()
+@extern("mlirEmitCLValueTypeGetTypeID");
+
+fn MLIRType emit_cl_value_type_get(
+  MLIRType value_type)
+@extern("mlirEmitCLValueTypeGet");
+
+fn bool type_is_a_emit_c_opaque_type(
+  MLIRType type)
+@extern("mlirTypeIsAEmitCOpaqueType");
+
+fn MLIRTypeID emit_c_opaque_type_get_type_id()
+@extern("mlirEmitCOpaqueTypeGetTypeID");
+
+fn MLIRType emit_c_opaque_type_get(
+  MLIRContext ctx, 
+  MLIRStringRef value)
+@extern("mlirEmitCOpaqueTypeGet");
+
+fn bool type_is_a_emit_c_pointer_type(
+  MLIRType type)
+@extern("mlirTypeIsAEmitCPointerType");
+
+fn MLIRTypeID emit_c_pointer_type_get_type_id()
+@extern("mlirEmitCPointerTypeGetTypeID");
+
+fn MLIRType emit_c_pointer_type_get(
+  MLIRType pointee)
+@extern("mlirEmitCPointerTypeGet");
+
+fn bool type_is_a_emit_c_ptr_diff_t_type(
+  MLIRType type)
+@extern("mlirTypeIsAEmitCPtrDiffTType");
+
+fn MLIRTypeID emit_c_ptr_diff_t_type_get_type_id()
+@extern("mlirEmitCPtrDiffTTypeGetTypeID");
+
+fn MLIRType emit_c_ptr_diff_t_type_get(
+  MLIRContext ctx)
+@extern("mlirEmitCPtrDiffTTypeGet");
+
+fn bool type_is_a_emit_c_signed_size_t_type(
+  MLIRType type)
+@extern("mlirTypeIsAEmitCSignedSizeTType");
+
+fn MLIRTypeID emit_c_signed_size_t_type_get_type_id()
+@extern("mlirEmitCSignedSizeTTypeGetTypeID");
+
+fn MLIRType emit_c_signed_size_t_type_get(
+  MLIRContext ctx)
+@extern("mlirEmitCSignedSizeTTypeGet");
+
+fn bool type_is_a_emit_c_size_t_type(
+  MLIRType type)
+@extern("mlirTypeIsAEmitCSizeTType");
+
+fn MLIRTypeID emit_c_size_t_type_get_type_id()
+@extern("mlirEmitCSizeTTypeGetTypeID");
+
+fn MLIRType emit_c_size_t_type_get(
+  MLIRContext ctx)
+@extern("mlirEmitCSizeTTypeGet");
+
+fn bool attribute_is_a_emit_c_cmp_predicate(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAEmitCCmpPredicate");
+
+fn MLIRAttribute emit_c_cmp_predicate_attr_get(
+  MLIRContext ctx, 
+  MLIREmitCCmpPredicate val)
+@extern("mlirEmitCCmpPredicateAttrGet");
+
+fn MLIREmitCCmpPredicate emit_c_cmp_predicate_attr_get_value(
+  MLIRAttribute attr)
+@extern("mlirEmitCCmpPredicateAttrGetValue");
+
+fn MLIRTypeID emit_c_cmp_predicate_attr_get_type_id()
+@extern("mlirEmitCCmpPredicateAttrGetTypeID");
+
+fn bool attribute_is_a_emit_c_opaque(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAEmitCOpaque");
+
+fn MLIRAttribute emit_c_opaque_attr_get(
+  MLIRContext ctx, 
+  MLIRStringRef value)
+@extern("mlirEmitCOpaqueAttrGet");
+
+fn MLIRStringRef emit_c_opaque_attr_get_value(
+  MLIRAttribute attr)
+@extern("mlirEmitCOpaqueAttrGetValue");
+
+fn MLIRTypeID emit_c_opaque_attr_get_type_id()
+@extern("mlirEmitCOpaqueAttrGetTypeID");
+
+fn MLIRDialectHandle get_dialect_handle__func__()
+@extern("mlirGetDialectHandle__func__");
+
+fn void func_set_arg_attr(
+  MLIROperation op, 
+  iptr pos, 
+  MLIRStringRef name, 
+  MLIRAttribute attr)
+@extern("mlirFuncSetArgAttr");
+
+fn MLIRDialectHandle get_dialect_handle__gpu__()
+@extern("mlirGetDialectHandle__gpu__");
+
+fn bool type_is_agpu_async_token_type(
+  MLIRType type)
+@extern("mlirTypeIsAGPUAsyncTokenType");
+
+fn MLIRType gpu_async_token_type_get(
+  MLIRContext ctx)
+@extern("mlirGPUAsyncTokenTypeGet");
+
+fn bool attribute_is_agpu_object_attr(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsAGPUObjectAttr");
+
+fn MLIRAttribute gpu_object_attr_get(
+  MLIRContext mlir_ctx, 
+  MLIRAttribute target, 
+  uint format, 
+  MLIRStringRef object_str_ref, 
+  MLIRAttribute mlir_object_props)
+@extern("mlirGPUObjectAttrGet");
+
+fn MLIRAttribute gpu_object_attr_get_with_kernels(
+  MLIRContext mlir_ctx, 
+  MLIRAttribute target, 
+  uint format, 
+  MLIRStringRef object_str_ref, 
+  MLIRAttribute mlir_object_props, 
+  MLIRAttribute mlir_kernels_attr)
+@extern("mlirGPUObjectAttrGetWithKernels");
+
+fn MLIRAttribute gpu_object_attr_get_target(
+  MLIRAttribute mlir_object_attr)
+@extern("mlirGPUObjectAttrGetTarget");
+
+fn uint gpu_object_attr_get_format(
+  MLIRAttribute mlir_object_attr)
+@extern("mlirGPUObjectAttrGetFormat");
+
+fn MLIRStringRef gpu_object_attr_get_object(
+  MLIRAttribute mlir_object_attr)
+@extern("mlirGPUObjectAttrGetObject");
+
+fn bool gpu_object_attr_has_properties(
+  MLIRAttribute mlir_object_attr)
+@extern("mlirGPUObjectAttrHasProperties");
+
+fn MLIRAttribute gpu_object_attr_get_properties(
+  MLIRAttribute mlir_object_attr)
+@extern("mlirGPUObjectAttrGetProperties");
+
+fn bool gpu_object_attr_has_kernels(
+  MLIRAttribute mlir_object_attr)
+@extern("mlirGPUObjectAttrHasKernels");
+
+fn MLIRAttribute gpu_object_attr_get_kernels(
+  MLIRAttribute mlir_object_attr)
+@extern("mlirGPUObjectAttrGetKernels");
+
+fn MLIRDialectHandle get_dialect_handle__irdl__()
+@extern("mlirGetDialectHandle__irdl__");
+
+fn MLIRLogicalResult load_irdl_dialects(
+  MLIRModule module_)
+@extern("mlirLoadIRDLDialects");
+
+fn MLIRDialectHandle get_dialect_handle__llvm__()
+@extern("mlirGetDialectHandle__llvm__");
+
+fn MLIRType llvm_pointer_type_get(
+  MLIRContext ctx, 
+  CUInt address_space)
+@extern("mlirLLVMPointerTypeGet");
+
+fn bool type_is_allvm_pointer_type(
+  MLIRType type)
+@extern("mlirTypeIsALLVMPointerType");
+
+fn CUInt llvm_pointer_type_get_address_space(
+  MLIRType pointer_type)
+@extern("mlirLLVMPointerTypeGetAddressSpace");
+
+fn MLIRType llvm_void_type_get(
+  MLIRContext ctx)
+@extern("mlirLLVMVoidTypeGet");
+
+fn MLIRType llvm_array_type_get(
+  MLIRType element_type, 
+  CUInt num_elements)
+@extern("mlirLLVMArrayTypeGet");
+
+fn MLIRType llvm_array_type_get_element_type(
+  MLIRType type)
+@extern("mlirLLVMArrayTypeGetElementType");
+
+fn MLIRType llvm_function_type_get(
+  MLIRType result_type, 
+  iptr n_argument_types, 
+  MLIRType* argument_types, 
+  bool is_var_arg)
+@extern("mlirLLVMFunctionTypeGet");
+
+fn iptr llvm_function_type_get_num_inputs(
+  MLIRType type)
+@extern("mlirLLVMFunctionTypeGetNumInputs");
+
+fn MLIRType llvm_function_type_get_input(
+  MLIRType type, 
+  iptr pos)
+@extern("mlirLLVMFunctionTypeGetInput");
+
+fn bool type_is_allvm_struct_type(
+  MLIRType type)
+@extern("mlirTypeIsALLVMStructType");
+
+fn bool llvm_struct_type_is_literal(
+  MLIRType type)
+@extern("mlirLLVMStructTypeIsLiteral");
+
+fn iptr llvm_struct_type_get_num_element_types(
+  MLIRType type)
+@extern("mlirLLVMStructTypeGetNumElementTypes");
+
+fn MLIRType llvm_struct_type_get_element_type(
+  MLIRType type, 
+  iptr position)
+@extern("mlirLLVMStructTypeGetElementType");
+
+fn bool llvm_struct_type_is_packed(
+  MLIRType type)
+@extern("mlirLLVMStructTypeIsPacked");
+
+fn MLIRStringRef llvm_struct_type_get_identifier(
+  MLIRType type)
+@extern("mlirLLVMStructTypeGetIdentifier");
+
+fn bool llvm_struct_type_is_opaque(
+  MLIRType type)
+@extern("mlirLLVMStructTypeIsOpaque");
+
+fn MLIRType llvm_struct_type_literal_get(
+  MLIRContext ctx, 
+  iptr n_field_types, 
+  MLIRType* field_types, 
+  bool is_packed)
+@extern("mlirLLVMStructTypeLiteralGet");
+
+fn MLIRType llvm_struct_type_literal_get_checked(
+  MLIRLocation loc, 
+  iptr n_field_types, 
+  MLIRType* field_types, 
+  bool is_packed)
+@extern("mlirLLVMStructTypeLiteralGetChecked");
+
+fn MLIRType llvm_struct_type_identified_get(
+  MLIRContext ctx, 
+  MLIRStringRef name)
+@extern("mlirLLVMStructTypeIdentifiedGet");
+
+fn MLIRType llvm_struct_type_identified_new_get(
+  MLIRContext ctx, 
+  MLIRStringRef name, 
+  iptr n_field_types, 
+  MLIRType* field_types, 
+  bool is_packed)
+@extern("mlirLLVMStructTypeIdentifiedNewGet");
+
+fn MLIRType llvm_struct_type_opaque_get(
+  MLIRContext ctx, 
+  MLIRStringRef name)
+@extern("mlirLLVMStructTypeOpaqueGet");
+
+fn MLIRLogicalResult llvm_struct_type_set_body(
+  MLIRType struct_type, 
+  iptr n_field_types, 
+  MLIRType* field_types, 
+  bool is_packed)
+@extern("mlirLLVMStructTypeSetBody");
+
+typedef MLIRLLVMCConv = inline CUInt;
+const MLIRLLVMCConv LLVMC_CONV_C = 0;
+const MLIRLLVMCConv LLVMC_CONV_FAST = 8;
+const MLIRLLVMCConv LLVMC_CONV_COLD = 9;
+const MLIRLLVMCConv LLVMC_CONV_GHC = 10;
+const MLIRLLVMCConv LLVMC_CONV_HI_PE = 11;
+const MLIRLLVMCConv LLVMC_CONV_ANY_REG = 13;
+const MLIRLLVMCConv LLVMC_CONV_PRESERVE_MOST = 14;
+const MLIRLLVMCConv LLVMC_CONV_PRESERVE_ALL = 15;
+const MLIRLLVMCConv LLVMC_CONV_SWIFT = 16;
+const MLIRLLVMCConv LLVMC_CONV_CX_X__FAS_T__TLS = 17;
+const MLIRLLVMCConv LLVMC_CONV_TAIL = 18;
+const MLIRLLVMCConv LLVMC_CONV_CF_GUARD__CHECK = 19;
+const MLIRLLVMCConv LLVMC_CONV_SWIFT_TAIL = 20;
+const MLIRLLVMCConv LLVMC_CONV_X_86__STD_CALL = 64;
+const MLIRLLVMCConv LLVMC_CONV_X_86__FAST_CALL = 65;
+const MLIRLLVMCConv LLVMC_CONV_AR_M__APCS = 66;
+const MLIRLLVMCConv LLVMC_CONV_AR_M__AAPCS = 67;
+const MLIRLLVMCConv LLVMC_CONV_AR_M__AAPC_S__VFP = 68;
+const MLIRLLVMCConv LLVMC_CONV_MS_P_430__INTR = 69;
+const MLIRLLVMCConv LLVMC_CONV_X_86__THIS_CALL = 70;
+const MLIRLLVMCConv LLVMC_CONV_PT_X__KERNEL = 71;
+const MLIRLLVMCConv LLVMC_CONV_PT_X__DEVICE = 72;
+const MLIRLLVMCConv LLVMC_CONV_SPI_R__FUNC = 75;
+const MLIRLLVMCConv LLVMC_CONV_SPI_R__KERNEL = 76;
+const MLIRLLVMCConv LLVMC_CONV_INTEL__OC_L__BI = 77;
+const MLIRLLVMCConv LLVMC_CONV_X_86__64__SYS_V = 78;
+const MLIRLLVMCConv LLVMC_CONV_WIN_64 = 79;
+const MLIRLLVMCConv LLVMC_CONV_X_86__VECTOR_CALL = 80;
+const MLIRLLVMCConv LLVMC_CONV_DUMM_Y__HHVM = 81;
+const MLIRLLVMCConv LLVMC_CONV_DUMM_Y__HHV_M__C = 82;
+const MLIRLLVMCConv LLVMC_CONV_X_86__INTR = 83;
+const MLIRLLVMCConv LLVMC_CONV_AV_R__INTR = 84;
+const MLIRLLVMCConv LLVMC_CONV_AV_R__BUILTIN = 86;
+const MLIRLLVMCConv LLVMC_CONV_AMDGP_U__VS = 87;
+const MLIRLLVMCConv LLVMC_CONV_AMDGP_U__GS = 88;
+const MLIRLLVMCConv LLVMC_CONV_AMDGP_U__CS = 90;
+const MLIRLLVMCConv LLVMC_CONV_AMDGP_U__KERNEL = 91;
+const MLIRLLVMCConv LLVMC_CONV_X_86__REG_CALL = 92;
+const MLIRLLVMCConv LLVMC_CONV_AMDGP_U__HS = 93;
+const MLIRLLVMCConv LLVMC_CONV_MS_P_430__BUILTIN = 94;
+const MLIRLLVMCConv LLVMC_CONV_AMDGP_U__LS = 95;
+const MLIRLLVMCConv LLVMC_CONV_AMDGP_U__ES = 96;
+const MLIRLLVMCConv LLVMC_CONV_A_ARCH_64__VECTOR_CALL = 97;
+const MLIRLLVMCConv LLVMC_CONV_A_ARCH_64__SV_E__VECTOR_CALL = 98;
+const MLIRLLVMCConv LLVMC_CONV_WAS_M__EMSCRIPTEN_INVOKE = 99;
+const MLIRLLVMCConv LLVMC_CONV_AMDGP_U__GFX = 100;
+const MLIRLLVMCConv LLVMC_CONV_M_68_K__INTR = 101;
+
+fn MLIRAttribute llvmc_conv_attr_get(
+  MLIRContext ctx, 
+  MLIRLLVMCConv cconv)
+@extern("mlirLLVMCConvAttrGet");
+
+typedef MLIRLLVMComdat = inline CUInt;
+const MLIRLLVMComdat LLVM_COMDAT_ANY = 0;
+const MLIRLLVMComdat LLVM_COMDAT_EXACT_MATCH = 1;
+const MLIRLLVMComdat LLVM_COMDAT_LARGEST = 2;
+const MLIRLLVMComdat LLVM_COMDAT_NO_DEDUPLICATE = 3;
+const MLIRLLVMComdat LLVM_COMDAT_SAME_SIZE = 4;
+
+fn MLIRAttribute llvm_comdat_attr_get(
+  MLIRContext ctx, 
+  MLIRLLVMComdat comdat)
+@extern("mlirLLVMComdatAttrGet");
+
+typedef MLIRLLVMLinkage = inline CUInt;
+const MLIRLLVMLinkage LLVM_LINKAGE_EXTERNAL = 0;
+const MLIRLLVMLinkage LLVM_LINKAGE_AVAILABLE_EXTERNALLY = 1;
+const MLIRLLVMLinkage LLVM_LINKAGE_LINKONCE = 2;
+const MLIRLLVMLinkage LLVM_LINKAGE_LINKONCE_ODR = 3;
+const MLIRLLVMLinkage LLVM_LINKAGE_WEAK = 4;
+const MLIRLLVMLinkage LLVM_LINKAGE_WEAK_ODR = 5;
+const MLIRLLVMLinkage LLVM_LINKAGE_APPENDING = 6;
+const MLIRLLVMLinkage LLVM_LINKAGE_INTERNAL = 7;
+const MLIRLLVMLinkage LLVM_LINKAGE_PRIVATE = 8;
+const MLIRLLVMLinkage LLVM_LINKAGE_EXTERN_WEAK = 9;
+const MLIRLLVMLinkage LLVM_LINKAGE_COMMON = 10;
+
+fn MLIRAttribute llvm_linkage_attr_get(
+  MLIRContext ctx, 
+  MLIRLLVMLinkage linkage)
+@extern("mlirLLVMLinkageAttrGet");
+
+fn MLIRAttribute llvmdi_null_type_attr_get(
+  MLIRContext ctx)
+@extern("mlirLLVMDINullTypeAttrGet");
+
+fn MLIRAttribute llvmdi_expression_elem_attr_get(
+  MLIRContext ctx, 
+  CUInt opcode, 
+  iptr n_arguments, 
+  ulong* arguments)
+@extern("mlirLLVMDIExpressionElemAttrGet");
+
+fn MLIRAttribute llvmdi_expression_attr_get(
+  MLIRContext ctx, 
+  iptr n_operations, 
+  MLIRAttribute* operations)
+@extern("mlirLLVMDIExpressionAttrGet");
+
+typedef MLIRLLVMTypeEncoding = inline CUInt;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_ADDRESS = 0x1;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_BOOLEAN = 0x2;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_COMPLEX_FLOAT = 0x31;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_FLOAT_T = 0x4;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_SIGNED = 0x5;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_SIGNED_CHAR = 0x6;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_UNSIGNED = 0x7;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_UNSIGNED_CHAR = 0x08;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_IMAGINARY_FLOAT = 0x09;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_PACKED_DECIMAL = 0x0a;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_NUMERIC_STRING = 0x0b;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_EDITED = 0x0c;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_SIGNED_FIXED = 0x0d;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_UNSIGNED_FIXED = 0x0e;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_DECIMAL_FLOAT = 0x0f;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_UTF = 0x10;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_UCS = 0x11;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_ASCII = 0x12;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_LO_USER = 0x80;
+const MLIRLLVMTypeEncoding LLVM_TYPE_ENCODING_HI_USER = 0xff;
+
+fn MLIRAttribute llvmdi_basic_type_attr_get(
+  MLIRContext ctx, 
+  CUInt tag, 
+  MLIRAttribute name, 
+  ulong size_in_bits, 
+  MLIRLLVMTypeEncoding encoding)
+@extern("mlirLLVMDIBasicTypeAttrGet");
+
+fn MLIRAttribute llvmdi_composite_type_attr_get_rec_self(
+  MLIRAttribute rec_id)
+@extern("mlirLLVMDICompositeTypeAttrGetRecSelf");
+
+fn MLIRAttribute llvmdi_composite_type_attr_get(
+  MLIRContext ctx, 
+  MLIRAttribute rec_id, 
+  bool is_rec_self, 
+  CUInt tag, 
+  MLIRAttribute name, 
+  MLIRAttribute file, 
+  uint line, 
+  MLIRAttribute scope, 
+  MLIRAttribute base_type, 
+  long flags, 
+  ulong size_in_bits, 
+  ulong align_in_bits, 
+  iptr n_elements, 
+  MLIRAttribute* elements, 
+  MLIRAttribute data_location, 
+  MLIRAttribute rank, 
+  MLIRAttribute allocated, 
+  MLIRAttribute associated)
+@extern("mlirLLVMDICompositeTypeAttrGet");
+
+fn MLIRAttribute llvmdi_derived_type_attr_get(
+  MLIRContext ctx, 
+  CUInt tag, 
+  MLIRAttribute name, 
+  MLIRAttribute base_type, 
+  ulong size_in_bits, 
+  uint align_in_bits, 
+  ulong offset_in_bits, 
+  long dwarf_address_space, 
+  MLIRAttribute extra_data)
+@extern("mlirLLVMDIDerivedTypeAttrGet");
+
+fn MLIRAttribute llvmdi_string_type_attr_get(
+  MLIRContext ctx, 
+  CUInt tag, 
+  MLIRAttribute name, 
+  ulong size_in_bits, 
+  uint align_in_bits, 
+  MLIRAttribute string_length, 
+  MLIRAttribute string_length_exp, 
+  MLIRAttribute string_location_exp, 
+  MLIRLLVMTypeEncoding encoding)
+@extern("mlirLLVMDIStringTypeAttrGet");
+
+fn MLIRAttribute llvmdi_derived_type_attr_get_base_type(
+  MLIRAttribute di_derived_type)
+@extern("mlirLLVMDIDerivedTypeAttrGetBaseType");
+
+fn MLIRAttribute llvmdi_file_attr_get(
+  MLIRContext ctx, 
+  MLIRAttribute name, 
+  MLIRAttribute directory)
+@extern("mlirLLVMDIFileAttrGet");
+
+typedef MLIRLLVMDIEmissionKind = inline CUInt;
+const MLIRLLVMDIEmissionKind LLVMDI_EMISSION_KIND_NONE = 0;
+const MLIRLLVMDIEmissionKind LLVMDI_EMISSION_KIND_FULL = 1;
+const MLIRLLVMDIEmissionKind LLVMDI_EMISSION_KIND_LINE_TABLES_ONLY = 2;
+const MLIRLLVMDIEmissionKind LLVMDI_EMISSION_KIND_DEBUG_DIRECTIVES_ONLY = 3;
+
+typedef MLIRLLVMDINameTableKind = inline CUInt;
+const MLIRLLVMDINameTableKind LLVMDI_NAME_TABLE_KIND_DEFAULT = 0;
+const MLIRLLVMDINameTableKind LLVMDI_NAME_TABLE_KIND_GNU = 1;
+const MLIRLLVMDINameTableKind LLVMDI_NAME_TABLE_KIND_NONE = 2;
+const MLIRLLVMDINameTableKind LLVMDI_NAME_TABLE_KIND_APPLE = 3;
+
+fn MLIRAttribute llvmdi_compile_unit_attr_get(
+  MLIRContext ctx, 
+  MLIRAttribute id, 
+  CUInt source_language, 
+  MLIRAttribute file, 
+  MLIRAttribute producer, 
+  bool is_optimized, 
+  MLIRLLVMDIEmissionKind emission_kind, 
+  MLIRLLVMDINameTableKind name_table_kind)
+@extern("mlirLLVMDICompileUnitAttrGet");
+
+fn MLIRAttribute llvmdi_flags_attr_get(
+  MLIRContext ctx, 
+  ulong value)
+@extern("mlirLLVMDIFlagsAttrGet");
+
+fn MLIRAttribute llvmdi_lexical_block_attr_get(
+  MLIRContext ctx, 
+  MLIRAttribute scope, 
+  MLIRAttribute file, 
+  CUInt line, 
+  CUInt column)
+@extern("mlirLLVMDILexicalBlockAttrGet");
+
+fn MLIRAttribute llvmdi_lexical_block_file_attr_get(
+  MLIRContext ctx, 
+  MLIRAttribute scope, 
+  MLIRAttribute file, 
+  CUInt discriminator)
+@extern("mlirLLVMDILexicalBlockFileAttrGet");
+
+fn MLIRAttribute llvmdi_local_variable_attr_get(
+  MLIRContext ctx, 
+  MLIRAttribute scope, 
+  MLIRAttribute name, 
+  MLIRAttribute di_file, 
+  CUInt line, 
+  CUInt arg, 
+  CUInt align_in_bits, 
+  MLIRAttribute di_type, 
+  long flags)
+@extern("mlirLLVMDILocalVariableAttrGet");
+
+fn MLIRAttribute llvmdi_subprogram_attr_get_rec_self(
+  MLIRAttribute rec_id)
+@extern("mlirLLVMDISubprogramAttrGetRecSelf");
+
+fn MLIRAttribute llvmdi_subprogram_attr_get(
+  MLIRContext ctx, 
+  MLIRAttribute rec_id, 
+  bool is_rec_self, 
+  MLIRAttribute id, 
+  MLIRAttribute compile_unit, 
+  MLIRAttribute scope, 
+  MLIRAttribute name, 
+  MLIRAttribute linkage_name, 
+  MLIRAttribute file, 
+  CUInt line, 
+  CUInt scope_line, 
+  ulong subprogram_flags, 
+  MLIRAttribute type, 
+  iptr n_retained_nodes, 
+  MLIRAttribute* retained_nodes, 
+  iptr n_annotations, 
+  MLIRAttribute* annotations)
+@extern("mlirLLVMDISubprogramAttrGet");
+
+fn MLIRAttribute llvmdi_annotation_attr_get(
+  MLIRContext ctx, 
+  MLIRAttribute name, 
+  MLIRAttribute value)
+@extern("mlirLLVMDIAnnotationAttrGet");
+
+fn MLIRAttribute llvmdi_subprogram_attr_get_scope(
+  MLIRAttribute di_subprogram)
+@extern("mlirLLVMDISubprogramAttrGetScope");
+
+fn CUInt llvmdi_subprogram_attr_get_line(
+  MLIRAttribute di_subprogram)
+@extern("mlirLLVMDISubprogramAttrGetLine");
+
+fn CUInt llvmdi_subprogram_attr_get_scope_line(
+  MLIRAttribute di_subprogram)
+@extern("mlirLLVMDISubprogramAttrGetScopeLine");
+
+fn MLIRAttribute llvmdi_subprogram_attr_get_compile_unit(
+  MLIRAttribute di_subprogram)
+@extern("mlirLLVMDISubprogramAttrGetCompileUnit");
+
+fn MLIRAttribute llvmdi_subprogram_attr_get_file(
+  MLIRAttribute di_subprogram)
+@extern("mlirLLVMDISubprogramAttrGetFile");
+
+fn MLIRAttribute llvmdi_subprogram_attr_get_type(
+  MLIRAttribute di_subprogram)
+@extern("mlirLLVMDISubprogramAttrGetType");
+
+fn MLIRAttribute llvmdi_subroutine_type_attr_get(
+  MLIRContext ctx, 
+  CUInt calling_convention, 
+  iptr n_types, 
+  MLIRAttribute* types)
+@extern("mlirLLVMDISubroutineTypeAttrGet");
+
+fn MLIRAttribute llvmdi_module_attr_get(
+  MLIRContext ctx, 
+  MLIRAttribute file, 
+  MLIRAttribute scope, 
+  MLIRAttribute name, 
+  MLIRAttribute config_macros, 
+  MLIRAttribute include_path, 
+  MLIRAttribute apinotes, 
+  CUInt line, 
+  bool is_decl)
+@extern("mlirLLVMDIModuleAttrGet");
+
+fn MLIRAttribute llvmdi_imported_entity_attr_get(
+  MLIRContext ctx, 
+  CUInt tag, 
+  MLIRAttribute scope, 
+  MLIRAttribute entity, 
+  MLIRAttribute file, 
+  CUInt line, 
+  MLIRAttribute name, 
+  iptr n_elements, 
+  MLIRAttribute* elements)
+@extern("mlirLLVMDIImportedEntityAttrGet");
+
+fn MLIRAttribute llvmdi_module_attr_get_scope(
+  MLIRAttribute di_module)
+@extern("mlirLLVMDIModuleAttrGetScope");
+
+fn void linalg_fill_builtin_named_op_region(
+  MLIROperation mlir_op)
+@extern("mlirLinalgFillBuiltinNamedOpRegion");
+
+fn MLIRDialectHandle get_dialect_handle__linalg__()
+@extern("mlirGetDialectHandle__linalg__");
+
+fn MLIRDialectHandle get_dialect_handle__ml_program__()
+@extern("mlirGetDialectHandle__ml_program__");
+
+fn MLIRDialectHandle get_dialect_handle__math__()
+@extern("mlirGetDialectHandle__math__");
+
+fn MLIRDialectHandle get_dialect_handle__memref__()
+@extern("mlirGetDialectHandle__memref__");
+
+fn MLIRDialectHandle get_dialect_handle__nvgpu__()
+@extern("mlirGetDialectHandle__nvgpu__");
+
+fn bool type_is_anvgpu_tensor_map_descriptor_type(
+  MLIRType type)
+@extern("mlirTypeIsANVGPUTensorMapDescriptorType");
+
+fn MLIRType nvgpu_tensor_map_descriptor_type_get(
+  MLIRContext ctx, 
+  MLIRType tensor_memref_type, 
+  CInt swizzle, 
+  CInt l_2_promo, 
+  CInt oob_fill, 
+  CInt interleave)
+@extern("mlirNVGPUTensorMapDescriptorTypeGet");
+
+fn MLIRDialectHandle get_dialect_handle__nvvm__()
+@extern("mlirGetDialectHandle__nvvm__");
+
+fn MLIRDialectHandle get_dialect_handle__omp__()
+@extern("mlirGetDialectHandle__omp__");
+
+fn MLIRDialectHandle get_dialect_handle__pdl__()
+@extern("mlirGetDialectHandle__pdl__");
+
+fn bool type_is_apdl_type(
+  MLIRType type)
+@extern("mlirTypeIsAPDLType");
+
+fn bool type_is_apdl_attribute_type(
+  MLIRType type)
+@extern("mlirTypeIsAPDLAttributeType");
+
+fn MLIRType pdl_attribute_type_get(
+  MLIRContext ctx)
+@extern("mlirPDLAttributeTypeGet");
+
+fn bool type_is_apdl_operation_type(
+  MLIRType type)
+@extern("mlirTypeIsAPDLOperationType");
+
+fn MLIRType pdl_operation_type_get(
+  MLIRContext ctx)
+@extern("mlirPDLOperationTypeGet");
+
+fn bool type_is_apdl_range_type(
+  MLIRType type)
+@extern("mlirTypeIsAPDLRangeType");
+
+fn MLIRType pdl_range_type_get(
+  MLIRType element_type)
+@extern("mlirPDLRangeTypeGet");
+
+fn MLIRType pdl_range_type_get_element_type(
+  MLIRType type)
+@extern("mlirPDLRangeTypeGetElementType");
+
+fn bool type_is_apdl_type_type(
+  MLIRType type)
+@extern("mlirTypeIsAPDLTypeType");
+
+fn MLIRType pdl_type_type_get(
+  MLIRContext ctx)
+@extern("mlirPDLTypeTypeGet");
+
+fn bool type_is_apdl_value_type(
+  MLIRType type)
+@extern("mlirTypeIsAPDLValueType");
+
+fn MLIRType pdl_value_type_get(
+  MLIRContext ctx)
+@extern("mlirPDLValueTypeGet");
+
+fn MLIRDialectHandle get_dialect_handle__quant__()
+@extern("mlirGetDialectHandle__quant__");
+
+fn bool type_is_a_quantized_type(
+  MLIRType type)
+@extern("mlirTypeIsAQuantizedType");
+
+fn CUInt quantized_type_get_signed_flag()
+@extern("mlirQuantizedTypeGetSignedFlag");
+
+fn long quantized_type_get_default_minimum_for_integer(
+  bool is_signed, 
+  CUInt integral_width)
+@extern("mlirQuantizedTypeGetDefaultMinimumForInteger");
+
+fn long quantized_type_get_default_maximum_for_integer(
+  bool is_signed, 
+  CUInt integral_width)
+@extern("mlirQuantizedTypeGetDefaultMaximumForInteger");
+
+fn MLIRType quantized_type_get_expressed_type(
+  MLIRType type)
+@extern("mlirQuantizedTypeGetExpressedType");
+
+fn CUInt quantized_type_get_flags(
+  MLIRType type)
+@extern("mlirQuantizedTypeGetFlags");
+
+fn bool quantized_type_is_signed(
+  MLIRType type)
+@extern("mlirQuantizedTypeIsSigned");
+
+fn MLIRType quantized_type_get_storage_type(
+  MLIRType type)
+@extern("mlirQuantizedTypeGetStorageType");
+
+fn long quantized_type_get_storage_type_min(
+  MLIRType type)
+@extern("mlirQuantizedTypeGetStorageTypeMin");
+
+fn long quantized_type_get_storage_type_max(
+  MLIRType type)
+@extern("mlirQuantizedTypeGetStorageTypeMax");
+
+fn CUInt quantized_type_get_storage_type_integral_width(
+  MLIRType type)
+@extern("mlirQuantizedTypeGetStorageTypeIntegralWidth");
+
+fn bool quantized_type_is_compatible_expressed_type(
+  MLIRType type, 
+  MLIRType candidate)
+@extern("mlirQuantizedTypeIsCompatibleExpressedType");
+
+fn MLIRType quantized_type_get_quantized_element_type(
+  MLIRType type)
+@extern("mlirQuantizedTypeGetQuantizedElementType");
+
+fn MLIRType quantized_type_cast_from_storage_type(
+  MLIRType type, 
+  MLIRType candidate)
+@extern("mlirQuantizedTypeCastFromStorageType");
+
+fn MLIRType quantized_type_cast_to_storage_type(
+  MLIRType type)
+@extern("mlirQuantizedTypeCastToStorageType");
+
+fn MLIRType quantized_type_cast_from_expressed_type(
+  MLIRType type, 
+  MLIRType candidate)
+@extern("mlirQuantizedTypeCastFromExpressedType");
+
+fn MLIRType quantized_type_cast_to_expressed_type(
+  MLIRType type)
+@extern("mlirQuantizedTypeCastToExpressedType");
+
+fn MLIRType quantized_type_cast_expressed_to_storage_type(
+  MLIRType type, 
+  MLIRType candidate)
+@extern("mlirQuantizedTypeCastExpressedToStorageType");
+
+fn bool type_is_a_any_quantized_type(
+  MLIRType type)
+@extern("mlirTypeIsAAnyQuantizedType");
+
+fn MLIRType any_quantized_type_get(
+  CUInt flags, 
+  MLIRType storage_type, 
+  MLIRType expressed_type, 
+  long storage_type_min, 
+  long storage_type_max)
+@extern("mlirAnyQuantizedTypeGet");
+
+fn bool type_is_a_uniform_quantized_type(
+  MLIRType type)
+@extern("mlirTypeIsAUniformQuantizedType");
+
+fn MLIRType uniform_quantized_type_get(
+  CUInt flags, 
+  MLIRType storage_type, 
+  MLIRType expressed_type, 
+  double scale, 
+  long zero_point, 
+  long storage_type_min, 
+  long storage_type_max)
+@extern("mlirUniformQuantizedTypeGet");
+
+fn double uniform_quantized_type_get_scale(
+  MLIRType type)
+@extern("mlirUniformQuantizedTypeGetScale");
+
+fn long uniform_quantized_type_get_zero_point(
+  MLIRType type)
+@extern("mlirUniformQuantizedTypeGetZeroPoint");
+
+fn bool uniform_quantized_type_is_fixed_point(
+  MLIRType type)
+@extern("mlirUniformQuantizedTypeIsFixedPoint");
+
+fn bool type_is_a_uniform_quantized_per_axis_type(
+  MLIRType type)
+@extern("mlirTypeIsAUniformQuantizedPerAxisType");
+
+fn MLIRType uniform_quantized_per_axis_type_get(
+  CUInt flags, 
+  MLIRType storage_type, 
+  MLIRType expressed_type, 
+  iptr n_dims, 
+  double* scales, 
+  long* zero_points, 
+  int quantized_dimension, 
+  long storage_type_min, 
+  long storage_type_max)
+@extern("mlirUniformQuantizedPerAxisTypeGet");
+
+fn iptr uniform_quantized_per_axis_type_get_num_dims(
+  MLIRType type)
+@extern("mlirUniformQuantizedPerAxisTypeGetNumDims");
+
+fn double uniform_quantized_per_axis_type_get_scale(
+  MLIRType type, 
+  iptr pos)
+@extern("mlirUniformQuantizedPerAxisTypeGetScale");
+
+fn long uniform_quantized_per_axis_type_get_zero_point(
+  MLIRType type, 
+  iptr pos)
+@extern("mlirUniformQuantizedPerAxisTypeGetZeroPoint");
+
+fn int uniform_quantized_per_axis_type_get_quantized_dimension(
+  MLIRType type)
+@extern("mlirUniformQuantizedPerAxisTypeGetQuantizedDimension");
+
+fn bool uniform_quantized_per_axis_type_is_fixed_point(
+  MLIRType type)
+@extern("mlirUniformQuantizedPerAxisTypeIsFixedPoint");
+
+fn bool type_is_a_calibrated_quantized_type(
+  MLIRType type)
+@extern("mlirTypeIsACalibratedQuantizedType");
+
+fn MLIRType calibrated_quantized_type_get(
+  MLIRType expressed_type, 
+  double min, 
+  double max)
+@extern("mlirCalibratedQuantizedTypeGet");
+
+fn double calibrated_quantized_type_get_min(
+  MLIRType type)
+@extern("mlirCalibratedQuantizedTypeGetMin");
+
+fn double calibrated_quantized_type_get_max(
+  MLIRType type)
+@extern("mlirCalibratedQuantizedTypeGetMax");
+
+fn MLIRDialectHandle get_dialect_handle__rocdl__()
+@extern("mlirGetDialectHandle__rocdl__");
+
+fn MLIRDialectHandle get_dialect_handle__scf__()
+@extern("mlirGetDialectHandle__scf__");
+
+fn MLIRDialectHandle get_dialect_handle__spirv__()
+@extern("mlirGetDialectHandle__spirv__");
+
+fn MLIRDialectHandle get_dialect_handle__shape__()
+@extern("mlirGetDialectHandle__shape__");
+
+fn MLIRDialectHandle get_dialect_handle__sparse_tensor__()
+@extern("mlirGetDialectHandle__sparse_tensor__");
+
+alias MLIRSparseTensorLevelType = ulong;
+
+typedef MLIRSparseTensorLevelFormat = inline CUInt;
+const MLIRSparseTensorLevelFormat MLI_R__SPARS_E__TENSO_R__LEVE_L__DENSE = 0x000000010000;
+const MLIRSparseTensorLevelFormat MLI_R__SPARS_E__TENSO_R__LEVE_L__BATCH = 0x000000020000;
+const MLIRSparseTensorLevelFormat MLI_R__SPARS_E__TENSO_R__LEVE_L__COMPRESSED = 0x000000040000;
+const MLIRSparseTensorLevelFormat MLI_R__SPARS_E__TENSO_R__LEVE_L__SINGLETON = 0x000000080000;
+const MLIRSparseTensorLevelFormat MLI_R__SPARS_E__TENSO_R__LEVE_L__LOOS_E__COMPRESSED = 0x000000100000;
+const MLIRSparseTensorLevelFormat MLI_R__SPARS_E__TENSO_R__LEVE_L__N__OU_T__O_F__M = 0x000000200000;
+
+typedef MLIRSparseTensorLevelPropertyNondefault = inline CUInt;
+const MLIRSparseTensorLevelPropertyNondefault MLI_R__SPARS_E__PROPERT_Y__NO_N__UNIQUE = 0x0001;
+const MLIRSparseTensorLevelPropertyNondefault MLI_R__SPARS_E__PROPERT_Y__NO_N__ORDERED = 0x0002;
+const MLIRSparseTensorLevelPropertyNondefault MLI_R__SPARS_E__PROPERT_Y__SOA = 0x0004;
+
+fn bool attribute_is_a_sparse_tensor_encoding_attr(
+  MLIRAttribute attr)
+@extern("mlirAttributeIsASparseTensorEncodingAttr");
+
+fn MLIRAttribute sparse_tensor_encoding_attr_get(
+  MLIRContext ctx, 
+  iptr lvl_rank, 
+  MLIRSparseTensorLevelType* lvl_types, 
+  MLIRAffineMap dim_to_lvl, 
+  MLIRAffineMap lvl_todim, 
+  CInt pos_width, 
+  CInt crd_width, 
+  MLIRAttribute explicit_val, 
+  MLIRAttribute implicit_val)
+@extern("mlirSparseTensorEncodingAttrGet");
+
+fn iptr sparse_tensor_encoding_get_lvl_rank(
+  MLIRAttribute attr)
+@extern("mlirSparseTensorEncodingGetLvlRank");
+
+fn MLIRSparseTensorLevelType sparse_tensor_encoding_attr_get_lvl_type(
+  MLIRAttribute attr, 
+  iptr lvl)
+@extern("mlirSparseTensorEncodingAttrGetLvlType");
+
+fn MLIRSparseTensorLevelFormat sparse_tensor_encoding_attr_get_lvl_fmt(
+  MLIRAttribute attr, 
+  iptr lvl)
+@extern("mlirSparseTensorEncodingAttrGetLvlFmt");
+
+fn MLIRAffineMap sparse_tensor_encoding_attr_get_dim_to_lvl(
+  MLIRAttribute attr)
+@extern("mlirSparseTensorEncodingAttrGetDimToLvl");
+
+fn MLIRAffineMap sparse_tensor_encoding_attr_get_lvl_to_dim(
+  MLIRAttribute attr)
+@extern("mlirSparseTensorEncodingAttrGetLvlToDim");
+
+fn CInt sparse_tensor_encoding_attr_get_pos_width(
+  MLIRAttribute attr)
+@extern("mlirSparseTensorEncodingAttrGetPosWidth");
+
+fn CInt sparse_tensor_encoding_attr_get_crd_width(
+  MLIRAttribute attr)
+@extern("mlirSparseTensorEncodingAttrGetCrdWidth");
+
+fn MLIRAttribute sparse_tensor_encoding_attr_get_explicit_val(
+  MLIRAttribute attr)
+@extern("mlirSparseTensorEncodingAttrGetExplicitVal");
+
+fn MLIRAttribute sparse_tensor_encoding_attr_get_implicit_val(
+  MLIRAttribute attr)
+@extern("mlirSparseTensorEncodingAttrGetImplicitVal");
+
+fn CUInt sparse_tensor_encoding_attr_get_structured_n(
+  MLIRSparseTensorLevelType lvl_type)
+@extern("mlirSparseTensorEncodingAttrGetStructuredN");
+
+fn CUInt sparse_tensor_encoding_attr_get_structured_m(
+  MLIRSparseTensorLevelType lvl_type)
+@extern("mlirSparseTensorEncodingAttrGetStructuredM");
+
+fn MLIRSparseTensorLevelType sparse_tensor_encoding_attr_build_lvl_type(
+  MLIRSparseTensorLevelFormat lvl_fmt, 
+  MLIRSparseTensorLevelPropertyNondefault* properties, 
+  CUInt prop_size, 
+  CUInt n, 
+  CUInt m)
+@extern("mlirSparseTensorEncodingAttrBuildLvlType");
+
+fn MLIRDialectHandle get_dialect_handle__tensor__()
+@extern("mlirGetDialectHandle__tensor__");
+
+fn MLIRDialectHandle get_dialect_handle__transform__()
+@extern("mlirGetDialectHandle__transform__");
+
+fn bool type_is_a_transform_any_op_type(
+  MLIRType type)
+@extern("mlirTypeIsATransformAnyOpType");
+
+fn MLIRTypeID transform_any_op_type_get_type_id()
+@extern("mlirTransformAnyOpTypeGetTypeID");
+
+fn MLIRType transform_any_op_type_get(
+  MLIRContext ctx)
+@extern("mlirTransformAnyOpTypeGet");
+
+fn bool type_is_a_transform_any_param_type(
+  MLIRType type)
+@extern("mlirTypeIsATransformAnyParamType");
+
+fn MLIRTypeID transform_any_param_type_get_type_id()
+@extern("mlirTransformAnyParamTypeGetTypeID");
+
+fn MLIRType transform_any_param_type_get(
+  MLIRContext ctx)
+@extern("mlirTransformAnyParamTypeGet");
+
+fn bool type_is_a_transform_any_value_type(
+  MLIRType type)
+@extern("mlirTypeIsATransformAnyValueType");
+
+fn MLIRTypeID transform_any_value_type_get_type_id()
+@extern("mlirTransformAnyValueTypeGetTypeID");
+
+fn MLIRType transform_any_value_type_get(
+  MLIRContext ctx)
+@extern("mlirTransformAnyValueTypeGet");
+
+fn bool type_is_a_transform_operation_type(
+  MLIRType type)
+@extern("mlirTypeIsATransformOperationType");
+
+fn MLIRTypeID transform_operation_type_get_type_id()
+@extern("mlirTransformOperationTypeGetTypeID");
+
+fn MLIRType transform_operation_type_get(
+  MLIRContext ctx, 
+  MLIRStringRef operation_name)
+@extern("mlirTransformOperationTypeGet");
+
+fn MLIRStringRef transform_operation_type_get_operation_name(
+  MLIRType type)
+@extern("mlirTransformOperationTypeGetOperationName");
+
+fn bool type_is_a_transform_param_type(
+  MLIRType type)
+@extern("mlirTypeIsATransformParamType");
+
+fn MLIRTypeID transform_param_type_get_type_id()
+@extern("mlirTransformParamTypeGetTypeID");
+
+fn MLIRType transform_param_type_get(
+  MLIRContext ctx, 
+  MLIRType type)
+@extern("mlirTransformParamTypeGet");
+
+fn MLIRType transform_param_type_get_type(
+  MLIRType type)
+@extern("mlirTransformParamTypeGetType");
+
+fn MLIRDialectHandle get_dialect_handle__vector__()
+@extern("mlirGetDialectHandle__vector__");
+
+struct MLIRTransformOptions {
+  void* ptr;
+}
+
+fn MLIRTransformOptions transform_options_create()
+@extern("mlirTransformOptionsCreate");
+
+fn void transform_options_enable_expensive_checks(
+  MLIRTransformOptions transform_options, 
+  bool enable)
+@extern("mlirTransformOptionsEnableExpensiveChecks");
+
+fn bool transform_options_get_expensive_checks_enabled(
+  MLIRTransformOptions transform_options)
+@extern("mlirTransformOptionsGetExpensiveChecksEnabled");
+
+fn void transform_options_enforce_single_top_level_transform_op(
+  MLIRTransformOptions transform_options, 
+  bool enable)
+@extern("mlirTransformOptionsEnforceSingleTopLevelTransformOp");
+
+fn bool transform_options_get_enforce_single_top_level_transform_op(
+  MLIRTransformOptions transform_options)
+@extern("mlirTransformOptionsGetEnforceSingleTopLevelTransformOp");
+
+fn void transform_options_destroy(
+  MLIRTransformOptions transform_options)
+@extern("mlirTransformOptionsDestroy");
+
+fn MLIRLogicalResult transform_apply_named_sequence(
+  MLIROperation payload, 
+  MLIROperation transform_root, 
+  MLIROperation transform_module, 
+  MLIRTransformOptions transform_options)
+@extern("mlirTransformApplyNamedSequence");
+
+fn MLIRLogicalResult merge_symbols_into_from_clone(
+  MLIROperation target, 
+  MLIROperation other)
+@extern("mlirMergeSymbolsIntoFromClone");
+
+fn MLIRLLVMModuleRef translate_module_to_llvmir(
+  MLIROperation module_, 
+  MLIRLLVMContextRef context)
+@extern("mlirTranslateModuleToLLVMIR");
